@@ -1,6 +1,6 @@
 "use client"
 
-import { Bi } from "@/app/providers"
+import { Bi, useLang } from "@/app/providers"
 import {
   BiN,
   Callout,
@@ -30,28 +30,29 @@ import {
 /* ---------------- 01 · Vision (opening) ---------------- */
 
 export function Vision() {
+  const { lang } = useLang()
   return (
     <>
       <Statement
-        kicker="ParsLinks × NovinHost"
+        kicker={lang === "fa" ? "ParsLinks × نوین هاست" : "ParsLinks × NovinHost"}
         lead={
           <BiN
             fa={
               <>
-                زیرساخت، <Hl>به محصول تبدیل‌شده</Hl>
+                از قلب Infrastructure <Hl>نوین هاست</Hl> تا Productی که مشتری لمس می‌کند
               </>
             }
             en={
               <>
-                Infrastructure, <Hl>turned into products</Hl>
+                From the core of <Hl>NovinHost</Hl> Infrastructure to the Product the customer touches
               </>
             }
           />
         }
         sub={
           <Bi
-            fa="زیرساخت و مهندسیِ نرم‌افزار را ترکیب می‌کنیم تا محصولاتِ ابری بسازیم."
-            en="Combining infrastructure and software/product engineering to create the next generation of cloud services."
+            fa="نوین هاست قدرت Infrastructure را دارد؛ ParsLinks آن را به یک Software Layer تبدیل می‌کند که سرویس می‌سازد."
+            en="NovinHost brings infrastructure power; ParsLinks turns it into a software layer that builds products."
           />
         }
       />
@@ -59,7 +60,7 @@ export function Vision() {
         left={
           <>
             <strong>
-              <Bi fa="زیرساختِ NovinHost" en="NovinHost Infrastructure" />
+              <Bi fa="Infrastructure نوین هاست" en="NovinHost Infrastructure" />
             </strong>
             <span className="eq-meta">
               <Bi fa="محاسبات، شبکه، ذخیره‌سازی، ظرفیت" en="Compute, network, storage, capacity" />
@@ -69,17 +70,17 @@ export function Vision() {
         right={
           <>
             <strong>
-              <Bi fa="مهندسیِ نرم‌افزارِ ParsLinks" en="ParsLinks Software Eng." />
+              <Bi fa="مهندسی نرم‌افزار ParsLinks" en="ParsLinks Software Eng." />
             </strong>
             <span className="eq-meta">
-              <Bi fa="کنترل‌پلِین، اتوماسیون، تجربه‌ی توسعه‌دهنده" en="Control plane, automation, DX" />
+              <Bi fa="Control Plane، اتوماسیون، تجربه توسعه‌دهنده" en="Control plane, automation, DX" />
             </span>
           </>
         }
         result={
           <>
             <strong>
-              <Bi fa="محصولاتِ ابریِ نوین" en="New Cloud Products" />
+              <Bi fa="محصولات ابری تازه" en="New Cloud Products" />
             </strong>
           </>
         }
@@ -99,7 +100,7 @@ export function CapabilitiesSplit() {
           <BiN
             fa={
               <>
-                توانمندی‌های دو طرف، <Hl>مکمل</Hl> هم‌اند
+                دو تخصص متفاوت، یک مسیر <Hl>مشترک</Hl>
               </>
             }
             en={
@@ -115,28 +116,28 @@ export function CapabilitiesSplit() {
           brand: { fa: "NovinHost", en: "NovinHost" },
           side: "infra",
           items: [
-            { fa: "محاسبات (Compute)", en: "Compute" },
+            { fa: "Compute (محاسبات)", en: "Compute" },
             { fa: "شبکه و ارتباطات", en: "Network & connectivity" },
             { fa: "ذخیره‌سازی و دیتاسنتر", en: "Storage & datacenter" },
-            { fa: "ظرفیتِ سخت‌افزاری و تأمین", en: "Hardware capacity & procurement" },
-            { fa: "عملیاتِ زیرساخت", en: "Infrastructure operations" },
-            { fa: "مشتریانِ فعلی", en: "Existing customer base" },
-            { fa: "دسترسیِ تجاری و بازار", en: "Commercial reach & market" },
-            { fa: "تجربه‌ی میزبانی/ابر", en: "Hosting/cloud experience" },
+            { fa: "ظرفیت سخت‌افزاری و تأمین", en: "Hardware capacity & procurement" },
+            { fa: "عملیات زیرساخت", en: "Infrastructure operations" },
+            { fa: "مشتریان فعلی", en: "Existing customer base" },
+            { fa: "دسترسی تجاری و بازار", en: "Commercial reach & market" },
+            { fa: "تجربه میزبانی و ابر", en: "Hosting/cloud experience" },
           ],
         }}
         right={{
           brand: { fa: "ParsLinks", en: "ParsLinks" },
           side: "soft",
           items: [
-            { fa: "مهندسیِ نرم‌افزار", en: "Software engineering" },
-            { fa: "مهندسیِ محصولِ ابری", en: "Cloud product engineering" },
-            { fa: "مهندسیِ Control Plane", en: "Control-plane engineering" },
+            { fa: "مهندسی نرم‌افزار", en: "Software engineering" },
+            { fa: "مهندسی محصول ابری", en: "Cloud product engineering" },
+            { fa: "مهندسی Control Plane", en: "Control-plane engineering" },
             { fa: "اتوماسیون و Orchestration", en: "Automation & orchestration" },
-            { fa: "طراحیِ API و پلتفرم", en: "API & platform design" },
-            { fa: "تجربه‌ی توسعه‌دهنده (DX)", en: "Developer experience" },
-            { fa: "مشاهده‌پذیری و Metering", en: "Observability & metering" },
-            { fa: "یکپارچ‌سازیِ هوشِ مصنوعی", en: "AI integration" },
+            { fa: "طراحی API و پلتفرم", en: "API & platform design" },
+            { fa: "تجربه توسعه‌دهنده (DX)", en: "Developer experience" },
+            { fa: "Observability و Metering", en: "Observability & metering" },
+            { fa: "یکپارچه‌سازی هوش مصنوعی", en: "AI integration" },
           ],
         }}
       />
@@ -161,7 +162,7 @@ export function InfraToProducts() {
           <BiN
             fa={
               <>
-                از فروشِ منابع تا <Hl>محصولاتِ ابری</Hl>
+                مشتری منابع نمی‌خواهد؛ <Hl>نتیجه</Hl> می‌خواهد
               </>
             }
             en={
@@ -174,13 +175,13 @@ export function InfraToProducts() {
       />
       <Compare
         before={{
-          title: { fa: "فروشِ منابعِ خام", en: "Raw resource sales" },
+          title: { fa: "فروش منابع خام", en: "Raw resource sales" },
           items: ["CPU", "RAM", "Disk", "Bandwidth", "VM / VPS", "Dedicated"],
         }}
         after={{
-          title: { fa: "سرویس‌های ابریِ محصول‌شده", en: "Productized cloud services" },
+          title: { fa: "سرویس‌های ابری محصول‌شده", en: "Productized cloud services" },
           items: [
-            { fa: "استقرارِ اپلیکیشن", en: "Deploy an application" },
+            { fa: "Deploy اپلیکیشن", en: "Deploy an application" },
             { fa: "PostgreSQL مدیریت‌شده", en: "Managed PostgreSQL" },
             { fa: "Redis مدیریت‌شده", en: "Managed Redis" },
             { fa: "Object Storage", en: "Object storage" },
@@ -193,7 +194,7 @@ export function InfraToProducts() {
       />
       <Lede muted>
         <Bi
-          fa="مشتریان لزوماً نمی‌خواهند خودشان زیرساخت را مدیریت کنند؛ بیشتر ترجیح می‌دهند زیرساخت به سرویس تبدیل شود. منابعِ خام همچنان پایه‌اند — محصول‌سازی ارزشِ بیشتری می‌آورد."
+          fa="مشتریان لزوماً نمی‌خواهند خودشان زیرساخت را مدیریت کنند؛ بیشتر ترجیح می‌دهند زیرساخت به سرویس تبدیل شود. منابع خام همچنان پایه‌اند — محصول‌سازی ارزش بیشتری می‌آورد."
           en="Customers do not always want to manage infrastructure — often they want infrastructure converted into an outcome. Raw resources remain the foundation; productization adds value on top."
         />
       </Lede>
@@ -213,7 +214,7 @@ export function OpportunityMsg() {
           <BiN
             fa={
               <>
-                زیرساخت، وقتی <Hl>محصول‌سازی</Hl> شود، ارزشمندتر است.
+                زیرساخت وقتی <Hl>محصول</Hl> شود، ارزشمندتر است.
               </>
             }
             en={
@@ -225,7 +226,7 @@ export function OpportunityMsg() {
         }
         sub={
           <Bi
-            fa="پایگاهِ مشتریانِ فعلی می‌تواند نقطه‌ی شروعِ طبیعی برای ارائه‌ی سرویس‌های ابری با ارزشِ افزوده‌ی بیشتر باشد."
+            fa="مشتریان فعلی می‌توانند نقطه شروع طبیعی برای سرویس‌های ابری با ارزش افزوده بیشتر باشند."
             en="The existing customer base can provide a natural starting point for higher-value cloud services."
           />
         }
@@ -245,7 +246,7 @@ export function OpportunityMap() {
           <BiN
             fa={
               <>
-                خانواده‌های محصولِ <Hl>مشترکِ ممکن</Hl>
+                خانواده‌های محصول <Hl>مشترک ممکن</Hl>
               </>
             }
             en={
@@ -262,7 +263,7 @@ export function OpportunityMap() {
             name: { fa: "Application Platform", en: "Application Platform" },
             items: [
               { fa: "Git-to-deploy", en: "Git-to-deploy" },
-              { fa: "میزبانیِ اپلیکیشن", en: "App hosting" },
+              { fa: "میزبانی اپلیکیشن", en: "App hosting" },
               { fa: "سرویس‌ها و محیط‌ها", en: "Services & environments" },
               { fa: "دامنه‌ها", en: "Domains" },
               { fa: "گردش‌کارهای توسعه‌دهنده", en: "Dev workflows" },
@@ -273,8 +274,8 @@ export function OpportunityMap() {
             items: [
               { fa: "PostgreSQL", en: "PostgreSQL" },
               { fa: "Redis", en: "Redis" },
-              { fa: "ذخیره‌سازیِ ابجکت", en: "Object storage" },
-              { fa: "پشتیبان‌گیری", en: "Backups" },
+              { fa: "ذخیره‌سازی ابجکت", en: "Object storage" },
+              { fa: "Backup", en: "Backups" },
             ],
           },
           {
@@ -300,7 +301,7 @@ export function OpportunityMap() {
               { fa: "GPU workloads", en: "GPU workloads" },
               { fa: "سرویس‌های Inference", en: "Inference services" },
               { fa: "AI Gateway", en: "AI gateway" },
-              { fa: "مسیریابیِ مدل", en: "Model routing" },
+              { fa: "مسیریابی مدل", en: "Model routing" },
               { fa: "Metering", en: "Metering" },
             ],
           },
@@ -317,7 +318,7 @@ export function OpportunityMap() {
       />
       <Lede muted>
         <Bi
-          fa="جهت‌های محصول؛ نه تعهدِ نقشه‌راه. هر مورد، یک امکانِ همکاری‌ست — نه ادعای پیاده‌سازیِ امروز."
+          fa="جهت‌های محصول؛ نه تعهد نقشه‌راه. هر مورد یک امکان همکاری‌ست — نه ادعای پیاده‌سازی امروز."
           en="Product directions, not a roadmap commitment. Each is a possible collaboration — not a claim of today's implementation."
         />
       </Lede>
@@ -336,7 +337,7 @@ export function LayeredDiagram() {
           <BiN
             fa={
               <>
-                چگونه <Hl>لایه‌ها</Hl> روی هم می‌نشینند
+                فاصله Infrastructure تا Product، یک <Hl>Software Layer</Hl> است
               </>
             }
             en={
@@ -354,11 +355,11 @@ export function LayeredDiagram() {
             tone: "cust",
           },
           {
-            label: { fa: "محصولاتِ ابری", en: "Cloud Products" },
+            label: { fa: "محصولات ابری", en: "Cloud Products" },
             tone: "prod",
           },
           {
-            label: { fa: "لایه‌ی نرم‌افزار / محصولِ ParsLinks", en: "ParsLinks Software / Product Layer" },
+            label: { fa: "لایه نرم‌افزار / محصول ParsLinks", en: "ParsLinks Software / Product Layer" },
             tone: "soft",
           },
           {
@@ -366,7 +367,7 @@ export function LayeredDiagram() {
             tone: "soft",
           },
           {
-            label: { fa: "زیرساختِ NovinHost", en: "NovinHost Infrastructure" },
+            label: { fa: "Infrastructure نوین هاست", en: "NovinHost Infrastructure" },
             tone: "infra",
           },
           {
@@ -405,7 +406,7 @@ export function Scenarios() {
           <BiN
             fa={
               <>
-                سناریوهای <Hl>محصولِ مشترک</Hl>
+                سناریوهای <Hl>محصول مشترک</Hl>
               </>
             }
             en={
@@ -430,7 +431,7 @@ export function Scenarios() {
 export function Foundation() {
   return (
     <>
-      <Phase n="04" label={{ fa: "پایه‌ی فناوری", en: "Existing Foundation" }} />
+      <Phase n="04" label={{ fa: "پایه فناوری", en: "Existing Foundation" }} />
       <SlideHead
         eyebrow="// not from zero"
         title={
@@ -455,7 +456,7 @@ export function Foundation() {
           </div>
           <div className="cd">
             <Bi
-              fa="تیمِ نرم‌افزار و مهندسیِ محصول؛ مسئولِ طراحی و ساختِ لایه‌ی نرم‌افزاری."
+              fa="تیم نرم‌افزار و مهندسی محصول؛ مسئول طراحی و ساخت لایه نرم‌افزاری."
               en="The software & product engineering team — designs and builds the software layer."
             />
           </div>
@@ -466,30 +467,30 @@ export function Foundation() {
           </div>
           <div className="cd">
             <Bi
-              fa="پلتفرمِ ابریِ موجودی که بخشی از لایه‌ی نرم‌افزار را پیشاپیش پیاده‌سازی کرده است."
+              fa="پلتفرم ابری موجودی که بخشی از لایه نرم‌افزار را پیشاپیش پیاده‌سازی کرده است."
               en="An existing cloud platform that already implements part of the software layer."
             />
           </div>
         </div>
       </div>
       <Callout>
-        <Bi fa="ParsLinks سرمایه‌ی قابل‌توجهی در لایه‌ی نرم‌افزاری گذاشته که زیرساخت را به محصولاتِ توسعه‌دهنده‌محور تبدیل می‌کند — از جمله:" en="ParsLinks has already invested significantly in the software layer that turns infrastructure into developer-facing products — including:" />
+        <Bi fa="ParsLinks سرمایه قابل‌توجهی در لایه نرم‌افزاری گذاشته که زیرساخت را به محصولات توسعه‌دهنده‌محور تبدیل می‌کند — از جمله:" en="ParsLinks has already invested significantly in the software layer that turns infrastructure into developer-facing products — including:" />
       </Callout>
       <div className="chips">
         <span className="chip">
           <Bi fa="Projects / Services" en="Projects / Services" />
         </span>
         <span className="chip">
-          <Bi fa="استقرارِ مبتنی بر Git" en="Git-based deploy" />
+          <Bi fa="Deploy مبتنی بر Git" en="Git-based deploy" />
         </span>
         <span className="chip">
           <Bi fa="محیط‌ها (Preview / Prod)" en="Environments" />
         </span>
         <span className="chip">
-          <Bi fa="سرویس‌های مدیریت‌شده" en="Managed services" />
+          <Bi fa="Managed services" en="Managed services" />
         </span>
         <span className="chip">
-          <Bi fa="شبکه (دامنه، HTTPS، مسیریابی)" en="Networking" />
+          <Bi fa="Networking (دامنه، HTTPS، مسیریابی)" en="Networking" />
         </span>
         <span className="chip">
           <Bi fa="Volumes / ذخیره‌سازی" en="Volumes / storage" />
@@ -504,13 +505,13 @@ export function Foundation() {
           <Bi fa="الگوها (Templates)" en="Templates" />
         </span>
         <span className="chip">
-          <Bi fa="معماریِ Metering / Billing" en="Metering / billing" />
+          <Bi fa="معماری Metering / Billing" en="Metering / billing" />
         </span>
         <span className="chip">
-          <Bi fa="مفاهیمِ Region / Replica" en="Region / replica" />
+          <Bi fa="مفاهیم Region / Replica" en="Region / replica" />
         </span>
         <span className="chip">
-          <Bi fa="اتوماسیونِ Control Plane" en="Control-plane automation" />
+          <Bi fa="اتوماسیون Control Plane" en="Control-plane automation" />
         </span>
       </div>
     </>
@@ -541,15 +542,15 @@ export function WhatBrings() {
       />
       <div className="g3">
         {[
-          { fa: "مهندسیِ نرم‌افزارِ ابری", en: "Cloud software engineering" },
-          { fa: "مهندسیِ Control Plane", en: "Control-plane engineering" },
-          { fa: "معماریِ محصول", en: "Product architecture" },
-          { fa: "تجربه‌ی توسعه‌دهنده", en: "Developer experience" },
+          { fa: "مهندسی نرم‌افزار ابری", en: "Cloud software engineering" },
+          { fa: "مهندسی Control Plane", en: "Control-plane engineering" },
+          { fa: "معماری محصول", en: "Product architecture" },
+          { fa: "تجربه توسعه‌دهنده", en: "Developer experience" },
           { fa: "اتوماسیون", en: "Automation" },
           { fa: "مشاهده‌پذیری", en: "Observability" },
           { fa: "Metering / Billing", en: "Metering / billing" },
-          { fa: "یکپارچ‌سازی", en: "Integration capability" },
-          { fa: "پلتفرمِ موجود", en: "An existing platform" },
+          { fa: "یکپارچه‌سازی", en: "Integration capability" },
+          { fa: "پلتفرم موجود", en: "An existing platform" },
         ].map((c, i) => (
           <div className="card" key={i}>
             <div className="ct">
@@ -574,7 +575,7 @@ export function PartnershipModels() {
           <BiN
             fa={
               <>
-                مدل‌های <Hl>مشارکتِ ممکن</Hl>
+                مدل‌های <Hl>مشارکت ممکن</Hl>
               </>
             }
             en={
@@ -588,14 +589,14 @@ export function PartnershipModels() {
       <Matrix
         models={[
           {
-            name: { fa: "محصولِ زیرساخت‌محور", en: "Infra-backed product" },
+            name: { fa: "محصول زیرساخت‌محور", en: "Infra-backed product" },
             desc: {
-              fa: "محصولات روی زیرساختِ NovinHost اجرا می‌شوند و با نرم‌افزارِ ParsLinks مدیریت می‌شوند.",
+              fa: "محصولات روی Infrastructure نوین هاست اجرا می‌شوند و با نرم‌افزار ParsLinks مدیریت می‌شوند.",
               en: "Products run on NovinHost infra, operated through ParsLinks software.",
             },
           },
           {
-            name: { fa: "توسعه‌ی مشترکِ محصول", en: "Joint product dev" },
+            name: { fa: "توسعه‌ی مشترک محصول", en: "Joint product dev" },
             desc: {
               fa: "هر دو طرف سرویس‌های جدید را تعریف و ارائه می‌کنند.",
               en: "Both sides define and launch new services.",
@@ -604,28 +605,28 @@ export function PartnershipModels() {
           {
             name: { fa: "White-label", en: "White-label" },
             desc: {
-              fa: "نرم‌افزارِ ParsLinks، سرویس‌ها را با برندِ NovinHost ارائه می‌دهد.",
+              fa: "نرم‌افزار ParsLinks، سرویس‌ها را با برند نوین هاست ارائه می‌دهد.",
               en: "ParsLinks software powers services under NovinHost branding.",
             },
           },
           {
-            name: { fa: "مدلِ درآمدِ مشترک", en: "Revenue-sharing" },
+            name: { fa: "مدل درآمد مشترک", en: "Revenue-sharing" },
             desc: {
-              fa: "ساختارِ تجاری برای هر سرویس تعیین می‌شود.",
+              fa: "ساختار تجاری برای هر سرویس تعیین می‌شود.",
               en: "Commercial model decided per service.",
             },
           },
           {
-            name: { fa: "ظرفیتِ اختصاصی", en: "Dedicated capacity" },
+            name: { fa: "ظرفیت اختصاصی", en: "Dedicated capacity" },
             desc: {
-              fa: "ظرفیتِ مشخصی به محصولاتِ منتخب اختصاص می‌یابد.",
+              fa: "ظرفیت مشخصی به محصولات منتخب اختصاص می‌یابد.",
               en: "Specific capacity allocated to selected products.",
             },
           },
           {
             name: { fa: "راهکارهای سازمانی", en: "Enterprise solutions" },
             desc: {
-              fa: "زیرساخت + نرم‌افزار برای مشتریانِ بزرگ.",
+              fa: "زیرساخت + نرم‌افزار برای مشتریان بزرگ.",
               en: "Infra + software for larger customers.",
             },
           },
@@ -633,7 +634,7 @@ export function PartnershipModels() {
       />
       <Callout center>
         <Bi
-          fa="ساختارِ تجاری عمداً باز می‌ماند تا در جلسه بررسی شود."
+          fa="ساختار تجاری عمداً باز می‌ماند تا در جلسه بررسی شود."
           en="The commercial structure is deliberately left open for discussion."
         />
       </Callout>
@@ -653,7 +654,7 @@ export function Pilot() {
           <BiN
             fa={
               <>
-                یک <Hl>پایلوتِ کوچک</Hl>، اول
+                کوچک شروع کنیم، واقعی <Hl>بسنجیم</Hl>
               </>
             }
             en={
@@ -668,17 +669,17 @@ export function Pilot() {
         steps={[
           {
             k: "01",
-            label: { fa: "انتخابِ یک استخرِ زیرساخت", en: "Select an infra pool" },
+            label: { fa: "انتخاب یک استخر زیرساخت", en: "Select an infra pool" },
             note: { fa: "محدود و کنترل‌شده", en: "Limited, contained" },
           },
           {
             k: "02",
-            label: { fa: "اتصالِ لایه‌ی نرم‌افزار", en: "Connect the software layer" },
+            label: { fa: "اتصال لایه نرم‌افزار", en: "Connect the software layer" },
           },
           {
             k: "03",
             label: { fa: "انتخاب ۱–۲ سرویس", en: "Choose 1–2 services" },
-            note: { fa: "مثلاً استقرار یا PostgreSQL", en: "e.g. deploy or PostgreSQL" },
+            note: { fa: "مثلاً Deploy یا PostgreSQL", en: "e.g. deploy or PostgreSQL" },
           },
           {
             k: "04",
@@ -686,7 +687,7 @@ export function Pilot() {
           },
           {
             k: "05",
-            label: { fa: "اندازه‌گیریِ فنی + تجاری", en: "Measure tech + commercial" },
+            label: { fa: "اندازه‌گیری فنی + تجاری", en: "Measure tech + commercial" },
           },
           {
             k: "06",
@@ -696,7 +697,7 @@ export function Pilot() {
       />
       <Callout>
         <Bi
-          fa="می‌توانیم کوچک شروع کنیم، مدل را اعتبارسنجی کنیم و بر اساسِ شواهد گسترش دهیم."
+          fa="می‌توانیم کوچک شروع کنیم، مدل را اعتبارسنجی کنیم و بر اساس شواهد گسترش دهیم."
           en="We can start small, validate the model, and expand based on evidence."
         />
       </Callout>
@@ -730,15 +731,15 @@ export function Discussion() {
       <Questions
         items={[
           {
-            fa: "کدام استخرِ زیرساخت برای پایلوتِ اولیه مناسب‌تر است؟",
+            fa: "کدام استخر زیرساخت برای پایلوت اولیه مناسب‌تر است؟",
             en: "Which infrastructure pool is most suitable for an initial pilot?",
           },
           {
-            fa: "کدام خانواده‌ی محصول برای بازارِ فعلیِ NovinHost جذاب‌تر است؟",
+            fa: "کدام خانواده محصول برای بازار فعلی نوین هاست جذاب‌تر است؟",
             en: "Which product category is most attractive for NovinHost's current market?",
           },
           {
-            fa: "کدام مدلِ مشارکت برای فاز یک منطقی‌ست؟",
+            fa: "کدام مدل مشارکت برای فاز یک منطقی‌ست؟",
             en: "Which partnership model makes sense for phase one?",
           },
           {
