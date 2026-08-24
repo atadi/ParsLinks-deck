@@ -38,7 +38,7 @@ export function Vision() {
           <BiN
             fa={
               <>
-                زیرساخت، <Hl>تبدیل‌شده به محصول</Hl>
+                زیرساخت، <Hl>به محصول تبدیل‌شده</Hl>
               </>
             }
             en={
@@ -50,7 +50,7 @@ export function Vision() {
         }
         sub={
           <Bi
-            fa="ترکیبِ زیرساخت و مهندسیِ نرم‌افزار/محصول، تا نسلِ بعدیِ سرویس‌های ابری را بسازیم."
+            fa="زیرساخت و مهندسیِ نرم‌افزار را ترکیب می‌کنیم تا محصولاتِ ابری بسازیم."
             en="Combining infrastructure and software/product engineering to create the next generation of cloud services."
           />
         }
@@ -99,7 +99,7 @@ export function CapabilitiesSplit() {
           <BiN
             fa={
               <>
-                دو طرف، <Hl>توانمندی‌های مکمل</Hl> دارند
+                توانمندی‌های دو طرف، <Hl>مکمل</Hl> هم‌اند
               </>
             }
             en={
@@ -120,7 +120,7 @@ export function CapabilitiesSplit() {
             { fa: "ذخیره‌سازی و دیتاسنتر", en: "Storage & datacenter" },
             { fa: "ظرفیتِ سخت‌افزاری و تأمین", en: "Hardware capacity & procurement" },
             { fa: "عملیاتِ زیرساخت", en: "Infrastructure operations" },
-            { fa: "پایگاهِ مشتریانِ موجود", en: "Existing customer base" },
+            { fa: "مشتریانِ فعلی", en: "Existing customer base" },
             { fa: "دسترسیِ تجاری و بازار", en: "Commercial reach & market" },
             { fa: "تجربه‌ی میزبانی/ابر", en: "Hosting/cloud experience" },
           ],
@@ -131,7 +131,7 @@ export function CapabilitiesSplit() {
           items: [
             { fa: "مهندسیِ نرم‌افزار", en: "Software engineering" },
             { fa: "مهندسیِ محصولِ ابری", en: "Cloud product engineering" },
-            { fa: "مهندسیِ کنترل‌پلِین", en: "Control-plane engineering" },
+            { fa: "مهندسیِ Control Plane", en: "Control-plane engineering" },
             { fa: "اتوماسیون و Orchestration", en: "Automation & orchestration" },
             { fa: "طراحیِ API و پلتفرم", en: "API & platform design" },
             { fa: "تجربه‌ی توسعه‌دهنده (DX)", en: "Developer experience" },
@@ -183,17 +183,17 @@ export function InfraToProducts() {
             { fa: "استقرارِ اپلیکیشن", en: "Deploy an application" },
             { fa: "PostgreSQL مدیریت‌شده", en: "Managed PostgreSQL" },
             { fa: "Redis مدیریت‌شده", en: "Managed Redis" },
-            { fa: "ذخیره‌سازیِ ابجکت", en: "Object storage" },
-            { fa: "پلتفرمِ توسعه‌دهنده", en: "Developer platform" },
-            { fa: "مصرفِ هوشِ مصنوعی", en: "AI workloads" },
-            { fa: "اپلیکیشن‌های one-click", en: "One-click apps" },
+            { fa: "Object Storage", en: "Object storage" },
+            { fa: "Developer Platform", en: "Developer platform" },
+            { fa: "AI workloads", en: "AI workloads" },
+            { fa: "One-click apps", en: "One-click apps" },
             { fa: "API و اتوماسیون", en: "APIs & automation" },
           ],
         }}
       />
       <Lede muted>
         <Bi
-          fa="مشتریان همیشه نمی‌خواهند زیرساخت را مدیریت کنند؛ اغلب می‌خواهند زیرساخت به یک نتیجه تبدیل شود. منابعِ خام همچنان پایه‌اند — محصول‌سازی، ارزشِ روی آن می‌افزاید."
+          fa="مشتریان لزوماً نمی‌خواهند خودشان زیرساخت را مدیریت کنند؛ بیشتر ترجیح می‌دهند زیرساخت به سرویس تبدیل شود. منابعِ خام همچنان پایه‌اند — محصول‌سازی ارزشِ بیشتری می‌آورد."
           en="Customers do not always want to manage infrastructure — often they want infrastructure converted into an outcome. Raw resources remain the foundation; productization adds value on top."
         />
       </Lede>
@@ -225,7 +225,7 @@ export function OpportunityMsg() {
         }
         sub={
           <Bi
-            fa="پایگاهِ مشتریانِ فعلی می‌تواند نقطه‌ی شروعِ طبیعی برای عرضه‌ی سرویس‌های ابری با ارزشِ افزوده‌ی بیشتر باشد."
+            fa="پایگاهِ مشتریانِ فعلی می‌تواند نقطه‌ی شروعِ طبیعی برای ارائه‌ی سرویس‌های ابری با ارزشِ افزوده‌ی بیشتر باشد."
             en="The existing customer base can provide a natural starting point for higher-value cloud services."
           />
         }
@@ -283,7 +283,7 @@ export function OpportunityMap() {
               { fa: "API", en: "APIs" },
               { fa: "CLI", en: "CLI" },
               { fa: "اتوماسیون", en: "Automation" },
-              { fa: "Runtimeهای مدیریت‌شده", en: "Managed runtimes" },
+              { fa: "Managed runtimes", en: "Managed runtimes" },
             ],
           },
           {
@@ -590,21 +590,21 @@ export function PartnershipModels() {
           {
             name: { fa: "محصولِ زیرساخت‌محور", en: "Infra-backed product" },
             desc: {
-              fa: "محصولات روی زیرساختِ NovinHost اجرا می‌شوند و با نرم‌افزارِ ParsLinks مدیریت می‌گردند.",
+              fa: "محصولات روی زیرساختِ NovinHost اجرا می‌شوند و با نرم‌افزارِ ParsLinks مدیریت می‌شوند.",
               en: "Products run on NovinHost infra, operated through ParsLinks software.",
             },
           },
           {
             name: { fa: "توسعه‌ی مشترکِ محصول", en: "Joint product dev" },
             desc: {
-              fa: "هر دو طرف سرویس‌های جدید را تعریف و عرضه می‌کنند.",
+              fa: "هر دو طرف سرویس‌های جدید را تعریف و ارائه می‌کنند.",
               en: "Both sides define and launch new services.",
             },
           },
           {
             name: { fa: "White-label", en: "White-label" },
             desc: {
-              fa: "نرم‌افزارِ ParsLinks، سرویس‌ها را با برندِ NovinHost عرضه می‌کند.",
+              fa: "نرم‌افزارِ ParsLinks، سرویس‌ها را با برندِ NovinHost ارائه می‌دهد.",
               en: "ParsLinks software powers services under NovinHost branding.",
             },
           },

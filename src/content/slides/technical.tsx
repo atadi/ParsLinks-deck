@@ -36,7 +36,7 @@ export function TechOverview() {
         <PConn />
         <Plane hero accentSub code="Control Plane" sub={{ fa: "مغز پلتفرم", en: "Platform brain" }} items={["Build System", "Runtime Layer", "Platform Services"]} />
         <PConn />
-        <Plane code="Orchestration" sub={{ fa: "هماهنگ‌سازی", en: "Orchestration" }} items={["Scheduling", "Placement", "Routing"]} />
+        <Plane code="Orchestration" sub={{ fa: "Orchestration", en: "Orchestration" }} items={["Scheduling", "Placement", "Routing"]} />
         <PConn />
         <Plane infra code="NovinHost Infrastructure" sub={{ fa: "زیرساخت", en: "Infrastructure" }} items={["Compute", "Storage", "Network"]} />
       </div>
@@ -246,8 +246,8 @@ export function TechStorage() {
       />
       <div className="g2">
         <Card title={{ fa: "حجم‌های ماندگار", en: "Persistent volumes" }} desc={{ fa: "دیسکِ متصل به هر سرویس برای داده‌های ماندگار.", en: "Disk attached to a service for durable data." }} />
-        <Card title={{ fa: "ذخیره‌سازیِ ابجکت", en: "Object storage" }} desc={{ fa: "ظرفِ ساخت و خروجی‌های Build.", en: "Build artifacts and outputs." }} />
-        <Card title={{ fa: "لایه‌ی زیرساخت", en: "Infra layer" }} desc={{ fa: "روی بلوک/ابجکتِ NovinHost نشسته است.", en: "Sits on NovinHost block/object storage." }} />
+        <Card title={{ fa: "ذخیره‌سازیِ ابجکت", en: "Object storage" }} desc={{ fa: "محلِ Build artifacts و خروجی‌ها.", en: "Build artifacts and outputs." }} />
+        <Card title={{ fa: "لایه‌ی زیرساخت", en: "Infra layer" }} desc={{ fa: "روی Block/Object Storageِ NovinHost قرار دارد.", en: "Sits on NovinHost block/object storage." }} />
         <Card title={{ fa: "پشتیبان‌گیری (هدف)", en: "Backups (target)" }} desc={{ fa: "برنامه‌ریزی و بازیابیِ متمرکز — جهت.", en: "Scheduled, centralized recovery — a direction." }} />
       </div>
     </>
@@ -309,7 +309,7 @@ export function TechSecurity() {
       />
       <div className="g3">
         <Card title={{ fa: "احرازِ هویت", en: "Authentication" }} desc={{ fa: "کاربر و کلیدهای API.", en: "Users and API keys." }} />
-        <Card title={{ fa: "کنترلِ دسترس", en: "Access control" }} desc={{ fa: "محدوده‌ی دسترس بر پایه‌ی پروژه.", en: "Project-scoped access." }} />
+        <Card title={{ fa: "کنترلِ دسترس", en: "Access control" }} desc={{ fa: "محدوده‌ی دسترسی بر پایه‌ی پروژه.", en: "Project-scoped access." }} />
         <Card title={{ fa: "رازها", en: "Secrets" }} desc={{ fa: "تزریقِ ایمنِ متغیرهای محرمانه.", en: "Safe injection of secrets." }} />
         <Card title={{ fa: "ایزولاسیون", en: "Isolation" }} desc={{ fa: "مرزهای اجرا بین مستأجرها.", en: "Runtime boundaries between tenants." }} />
         <Card title={{ fa: "TLS", en: "TLS" }} desc={{ fa: "HTTPS خودکار برای دامنه‌ها.", en: "Automatic HTTPS for domains." }} />
@@ -424,7 +424,7 @@ export function TechIntegration() {
       />
       <div className="g3">
         <Card title={{ fa: "Compute", en: "Compute" }} desc={{ fa: "پلتفرم روی ظرفیتِ محاسباتیِ موجود مستقر می‌شود.", en: "Runs on existing compute capacity." }} />
-        <Card title={{ fa: "Storage", en: "Storage" }} desc={{ fa: "بلوک/ابجکت به‌عنوان لایه‌ی ذخیره‌سازی.", en: "Block/object as the storage layer." }} />
+        <Card title={{ fa: "Storage", en: "Storage" }} desc={{ fa: "Block/Object Storage به‌عنوان لایه‌ی ذخیره‌سازی.", en: "Block/object as the storage layer." }} />
         <Card title={{ fa: "Network", en: "Network" }} desc={{ fa: "شبکه و DNS از طریقِ زیرساخت.", en: "Network & DNS via the infrastructure." }} />
         <Card title={{ fa: "Billing", en: "Billing" }} desc={{ fa: "Metering به سیستمِ صورتحساب متصل می‌شود.", en: "Metering links to the billing system." }} />
         <Card title={{ fa: "Capacity", en: "Capacity" }} desc={{ fa: "تخصیصِ ظرفیت به محصولاتِ منتخب.", en: "Capacity allocated to selected products." }} />
