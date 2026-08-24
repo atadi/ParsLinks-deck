@@ -3,7 +3,7 @@
 import Link from "next/link"
 
 import { useLang } from "@/app/providers"
-import { CT } from "@/content/edit"
+import { CT, useEditHref } from "@/content/edit"
 
 /**
  * Slide 0 — the presentation opening statement.
@@ -14,6 +14,8 @@ import { CT } from "@/content/edit"
  */
 export default function Home() {
   const { lang, dir, toggle } = useLang()
+  const startHref = useEditHref("/main")
+  const techHref = useEditHref("/technical")
   return (
     <main className="cover">
       <div className="cover-head">
@@ -36,11 +38,11 @@ export default function Home() {
             <CT k="hero.subtitle" />
           </p>
           <div className="cover-cta">
-            <Link className="cover-btn" href="/main">
+            <Link className="cover-btn" href={startHref} data-edit-behavior="navigation">
               <CT k="hero.cta.start" />
               <span aria-hidden>{dir === "rtl" ? "←" : "→"}</span>
             </Link>
-            <Link className="cover-link" href="/technical">
+            <Link className="cover-link" href={techHref} data-edit-behavior="navigation">
               <CT k="hero.cta.technical" />
             </Link>
           </div>

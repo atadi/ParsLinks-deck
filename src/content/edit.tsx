@@ -30,14 +30,54 @@ import { useLang } from "@/app/providers"
    never touch repository source. Promote via Export + content:apply.
    ================================================================== */
 
-/** True when ?edit=1 is present in the given location string. */
+/* ---------------- edit-aware routing ---------------- */
+
+/**
+ * True when Edit Mode is requested. Canonical form is ?edit=1 in the
+ * query string, but a misplaced parameter inside the hash fragment
+ * (e.g. /main/#5/?edit=1) is also accepted so hand-typed URLs work.
+ */
 function readEditFromUrl(): boolean {
   if (typeof window === "undefined") return false
   try {
-    return new URLSearchParams(window.location.search).get("edit") === "1"
+    if (new URLSearchParams(window.location.search).get("edit") === "1") return true
+    // tolerate edit=1 inside the hash fragment
+    const h = window.location.hash
+    const q = h.indexOf("?")
+    return q !== -1 && new URLSearchParams(h.slice(q + 1)).get("edit") === "1"
   } catch {
     return false
   }
+}
+
+/**
+ * Centralized edit-aware internal routing.
+ *
+ * Returns `href` untouched when Edit Mode is off. When active, appends
+ * (or preserves) edit=1 on INTERNAL paths only — external URLs pass
+ * through unchanged so partner links never receive the parameter.
+ * Existing destination query params are merged correctly:
+ *   "/main/4?foo=bar"  ->  "/main/4?foo=bar&edit=1"
+ *
+ * Use via the useEditHref() hook inside client components.
+ */
+export function withEditMode(href: string, active: boolean): string {
+  // External links never carry the editing parameter.
+  if (/^(https?:)?\/\//i.test(href) || href.startsWith("mailto:") || href.startsWith("tel:")) return href
+  if (!active) return href
+  try {
+    const url = new URL(href, window.location.origin)
+    if (!url.searchParams.has("edit")) url.searchParams.set("edit", "1")
+    return url.pathname + url.search + url.hash
+  } catch {
+    return href
+  }
+}
+
+/** Hook form: resolves current Edit Mode state automatically. */
+export function useEditHref(href: string): string {
+  const active = useContext(EditCtx)
+  return withEditMode(href, active)
 }
 
 const EditCtx = createContext<boolean>(false)
@@ -111,6 +151,11 @@ export function EditModeProvider({ children }: { children: ReactNode }) {
         }
         return
       }
+
+      // Explicit navigation controls are never suppressed, regardless of
+      // whether their labels are editable: presenters must be able to move
+      // through the deck while editing.
+      if (target.closest('[data-edit-behavior="navigation"]')) return
 
       // Only guard interactive elements that carry editable copy.
       const interactive = target.closest<HTMLElement>("a, button, [role='button'], input[type='submit']")

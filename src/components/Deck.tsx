@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useCallback, useEffect, useRef, useState } from "react"
 
 import { useLang, useNum } from "@/app/providers"
-import { CT } from "@/content/edit"
+import { CT, useEditHref } from "@/content/edit"
 import { DECK_MAP } from "@/content/decks"
 import type { DeckSlide } from "@/content/slides"
 
@@ -41,14 +41,28 @@ export function Deck({ slides, deckSlug }: { slides: DeckSlide[]; deckSlug: stri
   useEffect(() => {
     if (!hydrated.current) return
     const hash = `#${i + 1}`
+    // preserve any query params (e.g. edit=1) when syncing the slide hash
     if (window.location.hash !== hash) {
-      window.history.replaceState(null, "", window.location.pathname + hash)
+      window.history.replaceState(null, "", window.location.search + window.location.pathname + hash)
     }
   }, [i])
 
   /* ---------- keyboard (direction-aware) ---------- */
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      // While editing, keyboard input belongs to the editor: never move
+      // slides when focus is inside a text field or the editor popover.
+      const t = e.target as HTMLElement | null
+      const inEditor =
+        !!t &&
+        (t.tagName === "TEXTAREA" ||
+          t.tagName === "INPUT" ||
+          t.tagName === "SELECT" ||
+          t.isContentEditable ||
+          !!t.closest(".edit-pop"))
+      if (inEditor) {
+        if (e.key !== "Escape") return
+      }
       if (e.key === "Escape") {
         setOverview(false)
         setHelp(false)
@@ -114,6 +128,8 @@ export function Deck({ slides, deckSlug }: { slides: DeckSlide[]; deckSlug: stri
 
   const slide = slides[i]
   const { Comp } = slide
+  const homeHref = useEditHref("/")
+  const otherDeckHref = useEditHref(`/${deckSlug === "main" ? "technical" : "main"}`)
 
   return (
     <>
@@ -137,7 +153,7 @@ export function Deck({ slides, deckSlug }: { slides: DeckSlide[]; deckSlug: stri
 
       {/* ---------------- HUD ---------------- */}
       <nav className="hud" aria-label={<CT k="hud.controlsLabel" /> as unknown as string}>
-        <Link className="hbtn" href="/" aria-label={lang === "fa" ? "خانه" : "Home"}>
+        <Link className="hbtn" href={homeHref} data-edit-behavior="navigation" aria-label={lang === "fa" ? "خانه" : "Home"}>
           ⌂
         </Link>
         <button
@@ -159,7 +175,8 @@ export function Deck({ slides, deckSlug }: { slides: DeckSlide[]; deckSlug: stri
         {DECK_MAP[deckSlug === "main" ? "technical" : "main"] && (
           <Link
             className="hbtn"
-            href={`/${deckSlug === "main" ? "technical" : "main"}`}
+            href={otherDeckHref}
+            data-edit-behavior="navigation"
             aria-label={
               deckSlug === "main"
                 ? lang === "fa"
