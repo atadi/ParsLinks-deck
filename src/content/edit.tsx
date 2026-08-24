@@ -11,7 +11,6 @@ import {
   useSyncExternalStore,
   type ReactNode,
 } from "react"
-
 import {
   DEFAULT_CONTENT,
   SCHEMA_VERSION,
@@ -31,24 +30,122 @@ import { useLang } from "@/app/providers"
    never touch repository source. Promote via Export + content:apply.
    ================================================================== */
 
+/** True when ?edit=1 is present in the given location string. */
+function readEditFromUrl(): boolean {
+  if (typeof window === "undefined") return false
+  try {
+    return new URLSearchParams(window.location.search).get("edit") === "1"
+  } catch {
+    return false
+  }
+}
+
 const EditCtx = createContext<boolean>(false)
 
+/**
+ * Single source of truth: the URL's ?edit=1 parameter.
+ * Subscribed to popstate so Back/Forward keeps UI and URL in sync.
+ */
 export function EditModeProvider({ children }: { children: ReactNode }) {
-  // Read once at mount; ?edit=1 is a deliberate navigation, not reactive state.
-  const [active] = useState(() => {
-    if (typeof window === "undefined") return false
-    try {
-      return new URLSearchParams(window.location.search).get("edit") === "1"
-    } catch {
-      return false
+  const [active, setActive] = useState(readEditFromUrl)
+
+  useEffect(() => {
+    const sync = () => setActive(readEditFromUrl())
+    window.addEventListener("popstate", sync)
+    return () => window.removeEventListener("popstate", sync)
+  }, [])
+
+  /* ----------------------------------------------------------------
+     Interaction guard (capture phase).
+
+     While Edit Mode is active, any activation (click / Enter / Space)
+     targeting an interactive element that CONTAINS editable content
+     ([data-ck]) is intercepted before it reaches React or the browser:
+       - preventDefault() kills link navigation, anchors, target=_blank
+         and implicit button activation;
+       - stopPropagation() keeps React's synthetic handlers (routing,
+         button onClicks) from ever firing;
+       - the associated field editor is opened via the module-level
+         opener registry (deterministic, no event-order dependence).
+
+     Interactive elements WITHOUT editable copy (HUD prev/next arrows,
+     language toggle) are left untouched, so the presenter can still
+     move through the deck deliberately while editing.
+
+     Events originating inside an editor popover (.edit-pop), the edit
+     toolbar (.editbar) or any form field are ignored so editing itself
+     works normally.
+     ---------------------------------------------------------------- */
+  useEffect(() => {
+    if (!active) return
+
+    const guard = (e: Event) => {
+      const target = e.target
+      if (!(target instanceof Element)) return
+
+      // Interactions inside the editing UI or toolbar must run their own
+      // React handlers untouched. Only if such an event would bubble up
+      // into an editable interactive element OUTSIDE the editor (e.g.
+      // the CTA link wrapping a popover) do we cut it off at the boundary.
+      const inEditor = target.closest(".edit-pop") || target.closest(".editbar")
+      if (inEditor) {
+        // find nearest interactive ancestor ABOVE the editor container
+        let n = inEditor.parentElement
+        while (n) {
+          if (n.matches("a, button, [role='button']")) {
+            e.preventDefault()
+            e.stopPropagation()
+            return
+          }
+          n = n.parentElement
+        }
+        return
+      }
+      const tag = target.tagName
+      if (tag === "TEXTAREA" || tag === "INPUT" || tag === "SELECT" || (target as HTMLElement).isContentEditable) return
+
+      // Only guard interactive elements that carry editable copy.
+      const interactive = target.closest<HTMLElement>("a, button, [role='button'], input[type='submit']")
+      if (!interactive) return
+      const editable = interactive.hasAttribute("data-ck")
+        ? interactive
+        : interactive.querySelector<HTMLElement>("[data-ck]")
+      if (!editable) return
+
+      // Suppress the underlying action entirely…
+      e.preventDefault()
+      e.stopPropagation()
+
+      // …then open the associated editor (clicks only).
+      if (e.type === "click") {
+        openEditor(editable as HTMLElement)
+      }
     }
-  })
+
+    // Capture phase runs before React's root listeners and before default action.
+    document.addEventListener("click", guard, true)
+    document.addEventListener("keydown", guard, true)
+    return () => {
+      document.removeEventListener("click", guard, true)
+      document.removeEventListener("keydown", guard, true)
+    }
+  }, [active])
 
   return <EditCtx.Provider value={active}>{children}</EditCtx.Provider>
 }
 
 export function useEditMode(): boolean {
   return useContext(EditCtx)
+}
+
+/* ---------------- module-level editor-opener registry ---------------- */
+
+const openers = new Map<ContentId, () => void>()
+
+function openEditor(el: HTMLElement) {
+  const id = el.getAttribute("data-ck") as ContentId | null
+  if (!id) return
+  openers.get(id)?.()
 }
 
 /* ---------------- resolved content hook ---------------- */
@@ -59,7 +156,11 @@ function subscribeOverrides(cb: () => void) {
 
 /** Resolved value for one content id: override wins over canonical default. */
 export function useResolved(id: ContentId): LocalizedText {
-  const overrides = useSyncExternalStore(subscribeOverrides, overrideStore.get, () => ({}) as Record<string, Partial<LocalizedText>>)
+  const overrides = useSyncExternalStore(
+    subscribeOverrides,
+    overrideStore.get,
+    () => ({}) as Record<string, Partial<LocalizedText>>,
+  )
   const def = DEFAULT_CONTENT[id]
   const ov = overrides[id]
   return useMemo(
@@ -177,30 +278,40 @@ function FieldEditor({
 export function CT({
   k,
   rich = false,
-  as: Tag = "span",
   className,
 }: {
   k: ContentId
   rich?: boolean
-  as?: keyof HTMLElementTagNameMap
   className?: string
 }) {
   const editing = useEditMode()
   const { lang } = useLang()
   const value = useResolved(k)
   const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLSpanElement>(null)
   const text = lang === "fa" ? value.fa : value.en
   const overridden =
     value.fa !== DEFAULT_CONTENT[k].fa || value.en !== DEFAULT_CONTENT[k].en
 
   const body = rich ? renderRich(text) : text
 
+  /* Register a direct opener so the interaction guard (which intercepts
+     clicks before React sees them) can open this field deterministically. */
+  useEffect(() => {
+    if (!editing) return
+    openers.set(k, () => setOpen(true))
+    return () => {
+      openers.delete(k)
+    }
+  }, [editing, k])
+
   if (!editing) {
-    return <Tag className={className}>{body}</Tag>
+    return <span className={className}>{body}</span>
   }
 
   return (
-    <Tag
+    <span
+      ref={ref}
       className={[className, "editable", open && "open", overridden && "overridden"].filter(Boolean).join(" ")}
       data-ck={k}
       onClick={(e) => {
@@ -214,6 +325,33 @@ export function CT({
       {open && (
         <FieldEditor id={k} initial={value} lang={lang} onClose={() => setOpen(false)} />
       )}
-    </Tag>
+    </span>
   )
 }
+
+/* ---------------- exit edit mode ---------------- */
+
+/**
+ * Exit Edit Mode cleanly:
+ *  - removes ?edit=1 preserving path, hash (slide) and other params
+ *  - the provider listens for popstate, so UI updates immediately
+ *  - saved overrides stay; unsaved popover edits are simply discarded
+ */
+export function exitEditMode() {
+  if (typeof window === "undefined") return
+  try {
+    const url = new URL(window.location.href)
+    if (url.searchParams.has("edit")) {
+      url.searchParams.delete("edit")
+      // pushState keeps the slide/route; the synthetic popstate makes the
+      // EditModeProvider re-read the URL and switch every consumer off.
+      window.history.pushState({}, "", url.toString())
+      window.dispatchEvent(new PopStateEvent("popstate"))
+    }
+  } catch {
+    /* leave URL as-is */
+  }
+}
+
+/* re-export SCHEMA_VERSION so the toolbar can surface it without extra imports */
+export { SCHEMA_VERSION }
