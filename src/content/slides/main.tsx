@@ -225,8 +225,8 @@ export function OpportunityMsg() {
         }
         sub={
           <Bi
-            fa="مشتریانِ فعلیِ میزبانی، مسیری کوتاه با ماندگاریِ بیشتر به سمتِ سرویس‌های باارزش‌تر دارند — بدون رها کردنِ زیرساخت."
-            en="Today's hosting customers are a short, sticky step away from higher-value services — without abandoning the infrastructure."
+            fa="پایگاهِ مشتریانِ فعلی می‌تواند نقطه‌ی شروعِ طبیعی برای عرضه‌ی سرویس‌های ابری با ارزشِ افزوده‌ی بیشتر باشد."
+            en="The existing customer base can provide a natural starting point for higher-value cloud services."
           />
         }
       />
@@ -375,12 +375,6 @@ export function LayeredDiagram() {
           },
         ]}
       />
-      <Callout>
-        <Bi
-          fa="این نمودار پلِ میانِ مخاطبِ تجاری و فنی‌ست — بدون جزئیاتِ پیاده‌سازی."
-          en="This diagram bridges business and technical audiences — without implementation detail."
-        />
-      </Callout>
     </>
   )
 }
@@ -564,12 +558,6 @@ export function WhatBrings() {
           </div>
         ))}
       </div>
-      <Lede muted>
-        <Bi
-          fa="عمقِ مهندسی از طریقِ معماری و پایه‌ی فناوریِ موجود نشان داده می‌شود — نه با ادعای دشواریِ ساخت."
-          en="Engineering depth is shown through the architecture and existing foundation — not by claiming how hard it is to build."
-        />
-      </Lede>
     </>
   )
 }

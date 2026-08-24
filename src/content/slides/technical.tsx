@@ -42,8 +42,8 @@ export function TechOverview() {
       </div>
       <Lede muted>
         <Bi
-          fa="هدف، توضیحِ هر زیرسیستم نیست — نشان دادنِ این است که پلتفرم روی زیرساختِ NovinHost می‌نشیند و لایه‌ی نرم‌افزارِ آن آماده است."
-          en="Not to explain every subsystem — but to show the platform sits on NovinHost infrastructure and its software layer is in place."
+          fa="هدف، توضیحِ هر زیرسیستم نیست — نشان دادنِ این است که پلتفرم روی زیرساختِ NovinHost می‌نشیند و بخشِ قابل‌توجهی از پایه‌ی نرم‌افزاریِ موردنیاز از قبل توسعه داده شده است."
+          en="Not to explain every subsystem — but to show the platform sits on NovinHost infrastructure, and a substantial part of the required software foundation already exists."
         />
       </Lede>
     </>
