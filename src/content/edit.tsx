@@ -65,16 +65,19 @@ export function EditModeProvider({ children }: { children: ReactNode }) {
          and implicit button activation;
        - stopPropagation() keeps React's synthetic handlers (routing,
          button onClicks) from ever firing;
-       - the associated field editor is opened via the module-level
-         opener registry (deterministic, no event-order dependence).
+       - the associated field editor opens via the module-level opener
+         registry (deterministic, no event-order dependence).
+
+     Events inside the editor popover (.edit-pop) or toolbar (.editbar)
+     are left alone so editing itself works — EXCEPT when they would
+     bubble up into an interactive element OUTSIDE that container
+     (e.g. the CTA link wrapping an open popover): those are cut off
+     at the boundary. The boundary check stops at the editor container
+     itself, so the popover's own Save/Cancel/Reset buttons always run.
 
      Interactive elements WITHOUT editable copy (HUD prev/next arrows,
      language toggle) are left untouched, so the presenter can still
      move through the deck deliberately while editing.
-
-     Events originating inside an editor popover (.edit-pop), the edit
-     toolbar (.editbar) or any form field are ignored so editing itself
-     works normally.
      ---------------------------------------------------------------- */
   useEffect(() => {
     if (!active) return
@@ -83,26 +86,31 @@ export function EditModeProvider({ children }: { children: ReactNode }) {
       const target = e.target
       if (!(target instanceof Element)) return
 
-      // Interactions inside the editing UI or toolbar must run their own
-      // React handlers untouched. Only if such an event would bubble up
-      // into an editable interactive element OUTSIDE the editor (e.g.
-      // the CTA link wrapping a popover) do we cut it off at the boundary.
+      const tag = target.tagName
+      if (tag === "TEXTAREA" || tag === "INPUT" || tag === "SELECT" || (target as HTMLElement).isContentEditable)
+        return
+
+      // Interactions inside the editing UI or toolbar belong to them.
+      // Only suppress if they'd bubble into a guarded interactive element
+      // OUTSIDE that container (the CTA link wrapping an open popover).
       const inEditor = target.closest(".edit-pop") || target.closest(".editbar")
       if (inEditor) {
-        // find nearest interactive ancestor ABOVE the editor container
-        let n = inEditor.parentElement
-        while (n) {
-          if (n.matches("a, button, [role='button']")) {
+        let n: Element | null = inEditor.parentElement
+        while (n && !n.matches(".edit-pop, .editbar")) {
+          n = n.parentElement
+        }
+        // n is now the outermost .edit-pop/.editbar (or null)
+        let outer: Element | null = n?.parentElement ?? null
+        while (outer) {
+          if (outer.matches("a, button, [role='button']")) {
             e.preventDefault()
             e.stopPropagation()
             return
           }
-          n = n.parentElement
+          outer = outer.parentElement
         }
         return
       }
-      const tag = target.tagName
-      if (tag === "TEXTAREA" || tag === "INPUT" || tag === "SELECT" || (target as HTMLElement).isContentEditable) return
 
       // Only guard interactive elements that carry editable copy.
       const interactive = target.closest<HTMLElement>("a, button, [role='button'], input[type='submit']")
@@ -288,15 +296,15 @@ export function CT({
   const { lang } = useLang()
   const value = useResolved(k)
   const [open, setOpen] = useState(false)
-  const ref = useRef<HTMLSpanElement>(null)
   const text = lang === "fa" ? value.fa : value.en
   const overridden =
     value.fa !== DEFAULT_CONTENT[k].fa || value.en !== DEFAULT_CONTENT[k].en
 
   const body = rich ? renderRich(text) : text
 
-  /* Register a direct opener so the interaction guard (which intercepts
-     clicks before React sees them) can open this field deterministically. */
+  /* The interaction guard intercepts clicks on interactive ancestors
+     before React sees them; it calls the opener from this registry so
+     the editor still opens. */
   useEffect(() => {
     if (!editing) return
     openers.set(k, () => setOpen(true))
@@ -311,7 +319,6 @@ export function CT({
 
   return (
     <span
-      ref={ref}
       className={[className, "editable", open && "open", overridden && "overridden"].filter(Boolean).join(" ")}
       data-ck={k}
       onClick={(e) => {
@@ -333,9 +340,9 @@ export function CT({
 
 /**
  * Exit Edit Mode cleanly:
- *  - removes ?edit=1 preserving path, hash (slide) and other params
- *  - the provider listens for popstate, so UI updates immediately
- *  - saved overrides stay; unsaved popover edits are simply discarded
+ *  - removes edit=1 preserving path, hash (slide) and other params
+ *  - hard navigation guarantees every consumer resets cleanly
+ *  - saved localStorage overrides persist untouched
  */
 export function exitEditMode() {
   if (typeof window === "undefined") return
@@ -343,10 +350,7 @@ export function exitEditMode() {
     const url = new URL(window.location.href)
     if (url.searchParams.has("edit")) {
       url.searchParams.delete("edit")
-      // pushState keeps the slide/route; the synthetic popstate makes the
-      // EditModeProvider re-read the URL and switch every consumer off.
-      window.history.pushState({}, "", url.toString())
-      window.dispatchEvent(new PopStateEvent("popstate"))
+      window.location.replace(url.toString())
     }
   } catch {
     /* leave URL as-is */
