@@ -4,14 +4,20 @@ import { useNum } from "@/app/providers"
 import { CT } from "@/content/edit"
 import type { ContentId } from "@/content/store"
 import { Deck } from "@/components/Deck"
-import { resolveDeck, SLIDES, type DeckSlide } from "@/content/slides"
+import { resolveDeck, type DeckSlide } from "@/content/slides"
 import { DECKS, DECK_MAP } from "@/content/decks"
 
-/** Generated first slide of every deck, built from the deck metadata. */
+/**
+ * Generated intro slide for decks that still need one.
+ * The main deck opens directly on its first story slide — the approved
+ * landing page (/) is the presentation cover — so only the optional
+ * Technical Deep Dive branch keeps a generated intro card.
+ */
 function makeIntro(slug: string): DeckSlide {
   const deck = DECK_MAP[slug]
-  const titleK = (`deck.${slug === "main" ? "main" : "technical"}.title`) as ContentId
-  const taglineK = (`deck.${slug === "main" ? "main" : "technical"}.tagline`) as ContentId
+  const key = slug === "main" ? "main" : "technical"
+  const titleK = `deck.${key}.title` as ContentId
+  const taglineK = `deck.${key}.tagline` as ContentId
   return {
     id: `intro-${slug}`,
     section: <CT k={titleK} />,
@@ -40,7 +46,8 @@ function makeIntro(slug: string): DeckSlide {
 }
 
 export function CategoryDeck({ slug }: { slug: string }) {
-  const slides: DeckSlide[] = [makeIntro(slug), ...resolveDeck(slug)]
-  void SLIDES
+  // Landing page is the cover: the main deck starts straight on slide 1.
+  const slides: DeckSlide[] =
+    slug === "main" ? resolveDeck(slug) : [makeIntro(slug), ...resolveDeck(slug)]
   return <Deck slides={slides} deckSlug={slug} />
 }

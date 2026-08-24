@@ -14,7 +14,8 @@ export const DECKS: DeckMeta[] = [
     title: { fa: "ParsLinks × NovinHost", en: "ParsLinks × NovinHost" },
     tagline: { fa: "داستانِ اصلیِ ارائه", en: "The main presentation story" },
     slides: [
-      "vision",
+      // "vision" removed: its message is duplicated by the approved
+      // landing/hero page, which now serves as the presentation cover.
       "together",
       "shift",
       "opportunity",
