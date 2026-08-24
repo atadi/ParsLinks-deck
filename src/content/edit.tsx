@@ -242,24 +242,102 @@ export function renderRich(text: string, hlClass = "hl"): ReactNode[] {
 
 /* ---------------- per-field editor popover ---------------- */
 
+/**
+ * Collision-aware placement for the field editor.
+ *
+ * Computes a fixed position near `anchor` (the clicked editable element)
+ * that keeps the popover fully inside the viewport, never covers the
+ * anchor, and avoids the slide heading when another placement works.
+ * Returns {left, top, width} in viewport coordinates.
+ */
+function placePopover(anchor: HTMLElement, pop: HTMLElement): {
+  left: number
+  top: number
+  width: number
+} {
+  const MARGIN = 10 // separation from the anchor element
+  const EDGE = 12 // viewport padding
+  const a = anchor.getBoundingClientRect()
+  const vw = window.innerWidth
+  const vh = window.innerHeight
+
+  /* Content-aware width: eyebrows/tags are compact, headlines medium,
+     body copy wider. Capped so it never dominates the slide. */
+  const isShort = a.height <= 34
+  const width = Math.min(isShort ? 340 : a.width > 560 ? 560 : 420, vw - EDGE * 2)
+
+  // measure actual popover height at the chosen width
+  pop.style.width = `${width}px`
+  const ph = pop.offsetHeight || 240
+
+  // vertical: below if it fits (with margin), else above, else clamp
+  const below = a.bottom + MARGIN
+  const above = a.top - MARGIN - ph
+  let top: number
+  if (below + ph <= vh - EDGE) top = below
+  else if (above >= EDGE) top = above
+  else top = Math.max(EDGE, Math.min(vh - EDGE - ph, below))
+
+  // horizontal: align to the anchor's inline edge, clamped to viewport
+  const isRtl = document.documentElement.dir === "rtl"
+  let left: number
+  if (isRtl) {
+    left = a.right - width // right-align to the anchor (natural RTL)
+    if (left < EDGE) left = EDGE
+    if (left + width > vw - EDGE) left = vw - EDGE - width
+  } else {
+    left = a.left
+    if (left + width > vw - EDGE) left = vw - EDGE - width
+    if (left < EDGE) left = EDGE
+  }
+  return { left, top, width }
+}
+
 function FieldEditor({
   id,
   initial,
   lang,
+  getAnchor,
   onClose,
 }: {
   id: ContentId
   initial: LocalizedText
   lang: Lang
+  getAnchor: () => HTMLElement | null
   onClose: () => void
 }) {
   const [fa, setFa] = useState(initial.fa)
   const [en, setEn] = useState(initial.en)
   const ref = useRef<HTMLDivElement>(null)
+  const [pos, setPos] = useState<{ left: number; top: number; width: number } | null>(null)
+
+  /* Position on mount and re-position on resize/scroll/slide change. */
+  useEffect(() => {
+    const el = ref.current
+    const anchor = getAnchor()
+    if (!el || !anchor) return
+    const place = () => setPos(placePopover(anchor, el))
+    place()
+    const ro = new ResizeObserver(place)
+    ro.observe(anchor)
+    window.addEventListener("resize", place)
+    window.addEventListener("scroll", place, true)
+    return () => {
+      ro.disconnect()
+      window.removeEventListener("resize", place)
+      window.removeEventListener("scroll", place, true)
+    }
+  }, [getAnchor])
 
   useEffect(() => {
     const onDoc = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) onClose()
+      const anchor = getAnchor()
+      if (
+        ref.current &&
+        !ref.current.contains(e.target as Node) &&
+        !(anchor && anchor.contains(e.target as Node))
+      )
+        onClose()
     }
     const onKey = (e: KeyboardEvent) => {
       e.stopPropagation()
@@ -271,12 +349,21 @@ function FieldEditor({
       document.removeEventListener("mousedown", onDoc)
       document.removeEventListener("keydown", onKey, true)
     }
-  }, [onClose])
+  }, [onClose, getAnchor])
 
   const dirty = fa !== initial.fa || en !== initial.en
 
   return (
-    <div className="edit-pop" ref={ref} dir="ltr">
+    <div
+      className="edit-pop fixed"
+      ref={ref}
+      dir="ltr"
+      style={
+        pos
+          ? { left: pos.left, top: pos.top, width: pos.width, visibility: "visible" }
+          : { visibility: "hidden" } // hidden until first placement (no flash)
+      }
+    >
       <div className="edit-pop-id">{id}</div>
       <label>
         <span>فارسی</span>
@@ -341,6 +428,7 @@ export function CT({
   const { lang } = useLang()
   const value = useResolved(k)
   const [open, setOpen] = useState(false)
+  const elRef = useRef<HTMLSpanElement>(null)
   const text = lang === "fa" ? value.fa : value.en
   const overridden =
     value.fa !== DEFAULT_CONTENT[k].fa || value.en !== DEFAULT_CONTENT[k].en
@@ -366,6 +454,7 @@ export function CT({
     <span
       className={[className, "editable", open && "open", overridden && "overridden"].filter(Boolean).join(" ")}
       data-ck={k}
+      ref={elRef}
       onClick={(e) => {
         e.stopPropagation()
         setOpen(true)
@@ -375,7 +464,13 @@ export function CT({
     >
       {body}
       {open && (
-        <FieldEditor id={k} initial={value} lang={lang} onClose={() => setOpen(false)} />
+        <FieldEditor
+          id={k}
+          initial={value}
+          lang={lang}
+          getAnchor={() => elRef.current}
+          onClose={() => setOpen(false)}
+        />
       )}
     </span>
   )

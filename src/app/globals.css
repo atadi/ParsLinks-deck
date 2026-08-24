@@ -2014,8 +2014,18 @@
   font-size: 13px;
   text-align: start;
 }
+.edit-pop.fixed {
+  position: fixed; /* viewport-anchored: placement computed in JS */
+  inset-inline-start: auto;
+  top: auto;
+}
 .editable {
   position: relative;
+}
+/* while its popover is open, lift the editable above sibling stacking
+   contexts (animated blocks create transforms) so the popover shows */
+.editable.open {
+  z-index: 80;
 }
 .edit-pop-id {
   font-family: var(--font-mono, monospace);
