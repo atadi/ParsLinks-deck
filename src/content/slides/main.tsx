@@ -105,7 +105,13 @@ export function InfraToProducts() {
 export function OpportunityMsg() {
   return (
     <>
-      <Phase n={<CT k="opportunity.phaseN" />} label={<CT k="opportunity.phase" />} />
+      {/* phase number removed — HUD/progress is the single position source;
+          the section label survives as a subtle eyebrow */}
+      <div className="stack" style={{ gap: 10 }}>
+        <span className="eyebrow">
+          <CT k="opportunity.phase" />
+        </span>
+      </div>
       <Statement center lead={<CT k="opportunity.lead" rich />} sub={<CT k="opportunity.sub" />} />
     </>
   )
@@ -230,7 +236,7 @@ const FOUNDATION_CHIPS = [
 export function Foundation() {
   return (
     <>
-      <Phase n={<CT k="foundation.phaseN" />} label={<CT k="foundation.phase" />} />
+      {/* phase number removed; section context lives in the eyebrow below */}
       <SlideHead eyebrow={<CT k="foundation.eyebrow" />} title={<CT k="foundation.title" rich />} />
       <div className="two">
         <div className="card">
@@ -312,7 +318,7 @@ const MODELS: { name: string; desc: string }[] = [
 export function PartnershipModels() {
   return (
     <>
-      <Phase n={<CT k="models.phaseN" />} label={<CT k="models.phase" />} />
+      {/* phase number removed; section context lives in the eyebrow below */}
       <SlideHead eyebrow={<CT k="models.eyebrow" />} title={<CT k="models.title" rich />} />
       {/* option spectrum: models arranged along a shared rail — an option
           space, not a mandatory sequence */}
@@ -351,7 +357,7 @@ const PILOT_STEPS: { k: string; label: string; note?: string }[] = [
 export function Pilot() {
   return (
     <>
-      <Phase n={<CT k="pilot.phaseN" />} label={<CT k="pilot.phase" />} />
+      {/* phase number removed; section context lives in the eyebrow below */}
       <SlideHead eyebrow={<CT k="pilot.eyebrow" />} title={<CT k="pilot.title" rich />} />
       <Timeline
         steps={PILOT_STEPS.map((s) => ({
@@ -374,7 +380,7 @@ const DISCUSSION_QS = ["discussion.q1", "discussion.q2", "discussion.q3", "discu
 export function Discussion() {
   return (
     <>
-      <Phase n={<CT k="discussion.phaseN" />} label={<CT k="discussion.phase" />} />
+      {/* phase number removed; section context lives in the eyebrow below */}
       <SlideHead eyebrow={<CT k="discussion.eyebrow" />} title={<CT k="discussion.title" rich />} />
       {/* open frame: prompts, not dense content — conversation begins here */}
       <div className="discussion-frame">

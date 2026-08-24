@@ -20,10 +20,12 @@ export const DECKS: DeckMeta[] = [
       "shift",
       "opportunity",
       "oppmap",
-      "layers",
+      // scenarios before architecture: concrete product examples first,
+      // then how the layers fit together technically
       "scenarios",
       "foundation",
       "brings",
+      "layers",
       "models",
       "pilot",
       "discussion",
