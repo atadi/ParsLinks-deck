@@ -2,11 +2,13 @@
 
 import type { ReactNode } from "react"
 
-import { Bi, useLang, type T } from "@/app/providers"
+import { CT } from "@/content/edit"
 
 /* ------------------------------------------------------------------
    kit.tsx — the shared slide primitives.
    Slides compose ONLY these; the Deck supplies the .slide frame.
+   Labels are plain ReactNode: slides pass <CT k="id"/> content
+   bindings (see src/content/edit.tsx) or literal technical tokens.
    ------------------------------------------------------------------ */
 
 export function SlideHead({
@@ -14,7 +16,7 @@ export function SlideHead({
   title,
   sm,
 }: {
-  eyebrow: string
+  eyebrow: ReactNode
   title: ReactNode
   sm?: boolean
 }) {
@@ -26,15 +28,9 @@ export function SlideHead({
   )
 }
 
-/** Title highlight span (turquoise). */
+/** Title highlight span (turquoise). Kept for ad-hoc JSX titles. */
 export function Hl({ children }: { children: ReactNode }) {
   return <span className="hl">{children}</span>
-}
-
-/** Bilingual JSX (for titles that contain <Hl> / <span className="tk">). */
-export function BiN({ fa, en }: { fa: ReactNode; en: ReactNode }) {
-  const { lang } = useLang()
-  return <>{lang === "fa" ? fa : en}</>
 }
 
 export function Lede({
@@ -82,10 +78,10 @@ export function Plane({
   infra,
   accentSub,
 }: {
-  code: string
-  sub?: T
-  /** Plain string = language-neutral token; T pair = bilingual label. */
-  items: (string | T)[]
+  code?: ReactNode
+  /** Bilingual/bound label rendered in the plane header. */
+  sub?: ReactNode
+  items?: ReactNode[]
   hero?: boolean
   infra?: boolean
   accentSub?: boolean
@@ -93,26 +89,18 @@ export function Plane({
   return (
     <div className={["plane", hero && "hero", infra && "infra"].filter(Boolean).join(" ")}>
       <div className="plabel">
-        <span className="tk">{code}</span>
-        {sub && (
-          <span className={accentSub ? "sub accent" : "sub"}>
-            <Bi {...sub} />
-          </span>
-        )}
+        {code !== undefined && <span className="tk">{code}</span>}
+        {sub && <span className={accentSub ? "sub accent" : "sub"}>{sub}</span>}
       </div>
-      <div className="pbody">
-        {items.map((it, i) =>
-          typeof it === "string" ? (
+      {items && items.length > 0 && (
+        <div className="pbody">
+          {items.map((it, i) => (
             <span className="chip tk" key={i}>
               {it}
             </span>
-          ) : (
-            <span className="chip" key={i}>
-              <Bi {...it} />
-            </span>
-          ),
-        )}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
@@ -124,23 +112,17 @@ export function PConn({ up }: { up?: boolean }) {
 
 /* ---------------- flow ---------------- */
 
-export function Fnode({
-  code,
-  sub,
-  hero,
-}: {
-  code?: string
-  sub?: T
+export interface FlowNodeSpec {
+  code?: ReactNode
+  sub?: ReactNode
   hero?: boolean
-}) {
+}
+
+export function Fnode({ code, sub, hero }: FlowNodeSpec) {
   return (
     <div className={hero ? "fnode hero" : "fnode"}>
       {code && <span className="tk">{code}</span>}
-      {sub && (
-        <span className="sub">
-          <Bi {...sub} />
-        </span>
-      )}
+      {sub && <span className="sub">{sub}</span>}
     </div>
   )
 }
@@ -150,13 +132,7 @@ export function Arrow({ down }: { down?: boolean }) {
 }
 
 /** Joins nodes with direction-aware arrows. */
-export function Flow({
-  nodes,
-  vert,
-}: {
-  nodes: { code?: string; sub?: T; hero?: boolean }[]
-  vert?: boolean
-}) {
+export function Flow({ nodes, vert }: { nodes: FlowNodeSpec[]; vert?: boolean }) {
   return (
     <div className={vert ? "flow vert" : "flow"}>
       {nodes.map((n, i) => (
@@ -183,32 +159,17 @@ export function Card({
   accent,
   children,
 }: {
-  k?: string | T
-  title?: T
-  desc?: T
+  k?: ReactNode
+  title?: ReactNode
+  desc?: ReactNode
   accent?: boolean
   children?: ReactNode
 }) {
   return (
     <div className={accent ? "card accent" : "card"}>
-      {k !== undefined &&
-        (typeof k === "string" ? (
-          <span className="k tk">{k}</span>
-        ) : (
-          <span className="k">
-            <Bi {...k} />
-          </span>
-        ))}
-      {title && (
-        <h3 className="ct">
-          <Bi {...title} />
-        </h3>
-      )}
-      {desc && (
-        <p className="cd">
-          <Bi {...desc} />
-        </p>
-      )}
+      {k !== undefined && <span className="k">{k}</span>}
+      {title && <h3 className="ct">{title}</h3>}
+      {desc && <p className="cd">{desc}</p>}
       {children}
     </div>
   )
@@ -218,52 +179,44 @@ export function Chip({ children, on }: { children: ReactNode; on?: boolean }) {
   return <span className={on ? "chip on" : "chip"}>{children}</span>
 }
 
-/** Bilingual/neutral chip list. */
-export function Chips({ items, on }: { items: (string | T)[]; on?: boolean }) {
+/** Chip list of language-neutral technical tokens. */
+export function Chips({ items, on }: { items: string[]; on?: boolean }) {
   return (
     <div className="flow" style={{ gap: 8 }}>
-      {items.map((it, i) =>
-        typeof it === "string" ? (
-          <Chip on={on} key={i}>
-            <span className="tk">{it}</span>
-          </Chip>
-        ) : (
-          <Chip on={on} key={i}>
-            <Bi {...it} />
-          </Chip>
-        ),
-      )}
+      {items.map((it, i) => (
+        <Chip on={on} key={i}>
+          <span className="tk">{it}</span>
+        </Chip>
+      ))}
     </div>
   )
 }
 
 export type Status = "ok" | "dev" | "plan"
 
-const STATUS_LABEL: Record<Status, T> = {
-  ok: { fa: "موجود", en: "Available" },
-  dev: { fa: "در توسعه", en: "In dev" },
-  plan: { fa: "برنامه", en: "Planned" },
+const STATUS_KEY: Record<Status, string> = {
+  ok: "state.ok",
+  dev: "state.dev",
+  plan: "state.plan",
 }
 
 export function Pill({ s }: { s: Status }) {
   return (
     <span className={`pill ${s}`}>
-      <Bi {...STATUS_LABEL[s]} />
+      <CT k={STATUS_KEY[s] as "state.ok"} />
     </span>
   )
 }
 
 /* ---------------- def list ---------------- */
 
-export function Defs({ rows }: { rows: { k: string; v: T }[] }) {
+export function Defs({ rows }: { rows: { k: string; v: ReactNode }[] }) {
   return (
     <div className="defs">
       {rows.map((r, i) => (
         <div className="row" key={i}>
           <span className="dk">{r.k}</span>
-          <span className="dv">
-            <Bi {...r.v} />
-          </span>
+          <span className="dv">{r.v}</span>
         </div>
       ))}
     </div>
@@ -272,28 +225,22 @@ export function Defs({ rows }: { rows: { k: string; v: T }[] }) {
 
 /* ---------------- benefit row ---------------- */
 
-export function BRow({ icon, title, sub }: { icon: string; title: T; sub: T }) {
+export function BRow({ icon, title, sub }: { icon: ReactNode; title: ReactNode; sub: ReactNode }) {
   return (
     <div className="brow">
       <span className="bic" aria-hidden>
         {icon}
       </span>
       <div>
-        <div className="bt">
-          <Bi {...title} />
-        </div>
-        <div className="bs">
-          <Bi {...sub} />
-        </div>
+        <div className="bt">{title}</div>
+        <div className="bs">{sub}</div>
       </div>
     </div>
   )
 }
 
 /* ==================================================================
-   NEW STRATEGIC COMPOSITIONS (ParsLinks × NovinHost deck)
-   These give each major section its own visual rhythm rather than
-   the repeated heading+cards+chips+callout template.
+   STRATEGIC COMPOSITIONS (ParsLinks × NovinHost deck)
    ================================================================== */
 
 /** Big editorial statement — a section that is mostly a conclusion. */
@@ -303,7 +250,7 @@ export function Statement({
   sub,
   center,
 }: {
-  kicker?: string
+  kicker?: ReactNode
   lead: ReactNode
   sub?: ReactNode
   center?: boolean
@@ -351,41 +298,26 @@ export function Split({
   left,
   right,
 }: {
-  left: { brand: T; items: T[]; side: "infra" | "soft" }
-  right: { brand: T; items: T[]; side: "infra" | "soft" }
+  left: { brand: ReactNode; items: ReactNode[]; side: "infra" | "soft" }
+  right: { brand: ReactNode; items: ReactNode[]; side: "infra" | "soft" }
 }) {
+  const col = (c: { brand: ReactNode; items: ReactNode[]; side: "infra" | "soft" }, i: number) => (
+    <div className={`split-col ${c.side}`} key={i}>
+      <div className="split-head">
+        <span className="split-brand">{c.brand}</span>
+        <span className="split-tag">{c.side === "infra" ? "Infrastructure" : "Software"}</span>
+      </div>
+      <ul className="split-list">
+        {c.items.map((it, j) => (
+          <li key={j}>{it}</li>
+        ))}
+      </ul>
+    </div>
+  )
   return (
     <div className="split">
-      <div className={`split-col ${left.side}`}>
-        <div className="split-head">
-          <span className="split-brand">
-            <Bi {...left.brand} />
-          </span>
-          <span className="split-tag">{left.side === "infra" ? "Infrastructure" : "Software"}</span>
-        </div>
-        <ul className="split-list">
-          {left.items.map((it, i) => (
-            <li key={i}>
-              <Bi {...it} />
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className={`split-col ${right.side}`}>
-        <div className="split-head">
-          <span className="split-brand">
-            <Bi {...right.brand} />
-          </span>
-          <span className="split-tag">{right.side === "infra" ? "Infrastructure" : "Software"}</span>
-        </div>
-        <ul className="split-list">
-          {right.items.map((it, i) => (
-            <li key={i}>
-              <Bi {...it} />
-            </li>
-          ))}
-        </ul>
-      </div>
+      {col(left, 0)}
+      {col(right, 1)}
     </div>
   )
 }
@@ -394,7 +326,7 @@ export function Split({
 export function LayerStack({
   layers,
 }: {
-  layers: { label: T; sub?: T; tone?: "infra" | "soft" | "prod" | "cust" }[]
+  layers: { label: ReactNode; tone?: "infra" | "soft" | "prod" | "cust" }[]
 }) {
   return (
     <div className="layers">
@@ -403,14 +335,7 @@ export function LayerStack({
           key={i}
           className={`layer ${l.tone ?? "cust"} ${i === layers.length - 1 ? "base" : ""}`}
         >
-          <span className="layer-label">
-            <Bi {...l.label} />
-          </span>
-          {l.sub && (
-            <span className="layer-sub">
-              <Bi {...l.sub} />
-            </span>
-          )}
+          <span className="layer-label">{l.label}</span>
         </div>
       ))}
     </div>
@@ -422,15 +347,13 @@ export function Compare({
   before,
   after,
 }: {
-  before: { title: T; items: string[] }
-  after: { title: T; items: T[] }
+  before: { title: ReactNode; items: string[] }
+  after: { title: ReactNode; items: ReactNode[] }
 }) {
   return (
     <div className="compare">
       <div className="compare-col before">
-        <div className="compare-title">
-          <Bi {...before.title} />
-        </div>
+        <div className="compare-title">{before.title}</div>
         <div className="compare-items">
           {before.items.map((it, i) => (
             <span className="tk chip" key={i}>
@@ -443,13 +366,11 @@ export function Compare({
         →
       </span>
       <div className="compare-col after">
-        <div className="compare-title">
-          <Bi {...after.title} />
-        </div>
+        <div className="compare-title">{after.title}</div>
         <div className="compare-items">
           {after.items.map((it, i) => (
             <span className="chip on" key={i}>
-              <Bi {...it} />
+              {it}
             </span>
           ))}
         </div>
@@ -462,19 +383,17 @@ export function Compare({
 export function OppMap({
   families,
 }: {
-  families: { name: T; items: T[] }[]
+  families: { name: ReactNode; items: ReactNode[] }[]
 }) {
   return (
     <div className="oppmap">
       {families.map((f, i) => (
         <div className="opp-fam" key={i}>
-          <div className="opp-name">
-            <Bi {...f.name} />
-          </div>
+          <div className="opp-name">{f.name}</div>
           <div className="opp-items">
             {f.items.map((it, j) => (
               <span className="chip" key={j}>
-                <Bi {...it} />
+                {it}
               </span>
             ))}
           </div>
@@ -489,18 +408,20 @@ export function Scenario({
   title,
   steps,
 }: {
-  title: T
+  title: ReactNode
   steps: string[]
 }) {
   return (
     <div className="scenario">
-      <div className="sc-title">
-        <Bi {...title} />
-      </div>
+      <div className="sc-title">{title}</div>
       <div className="sc-flow">
         {steps.map((s, i) => (
           <span className="sc-step" key={i}>
-            {i > 0 && <span className="sc-conn" aria-hidden>→</span>}
+            {i > 0 && (
+              <span className="sc-conn" aria-hidden>
+                →
+              </span>
+            )}
             <span className="tk">{s}</span>
           </span>
         ))}
@@ -513,18 +434,14 @@ export function Scenario({
 export function Matrix({
   models,
 }: {
-  models: { name: T; desc: T }[]
+  models: { name: ReactNode; desc: ReactNode }[]
 }) {
   return (
     <div className="matrix">
       {models.map((m, i) => (
         <div className="matrix-cell" key={i}>
-          <div className="matrix-name">
-            <Bi {...m.name} />
-          </div>
-          <div className="matrix-desc">
-            <Bi {...m.desc} />
-          </div>
+          <div className="matrix-name">{m.name}</div>
+          <div className="matrix-desc">{m.desc}</div>
         </div>
       ))}
     </div>
@@ -535,7 +452,7 @@ export function Matrix({
 export function Timeline({
   steps,
 }: {
-  steps: { k: string; label: T; note?: T }[]
+  steps: { k: ReactNode; label: ReactNode; note?: ReactNode }[]
 }) {
   return (
     <div className="timeline">
@@ -543,14 +460,8 @@ export function Timeline({
         <div className="tl-step" key={i}>
           <span className="tl-dot" aria-hidden />
           <span className="tl-k tk">{s.k}</span>
-          <span className="tl-label">
-            <Bi {...s.label} />
-          </span>
-          {s.note && (
-            <span className="tl-note">
-              <Bi {...s.note} />
-            </span>
-          )}
+          <span className="tl-label">{s.label}</span>
+          {s.note && <span className="tl-note">{s.note}</span>}
         </div>
       ))}
     </div>
@@ -563,23 +474,21 @@ export function Phase({
   label,
   children,
 }: {
-  n: string
-  label: T
+  n: ReactNode
+  label: ReactNode
   children?: ReactNode
 }) {
   return (
     <div className="phase">
       <span className="phase-n tk">{n}</span>
-      <span className="phase-label">
-        <Bi {...label} />
-      </span>
+      <span className="phase-label">{label}</span>
       {children}
     </div>
   )
 }
 
 /** Discussion prompt list — closing questions. */
-export function Questions({ items }: { items: T[] }) {
+export function Questions({ items }: { items: ReactNode[] }) {
   return (
     <ul className="questions">
       {items.map((it, i) => (
@@ -587,7 +496,7 @@ export function Questions({ items }: { items: T[] }) {
           <span className="q-mark" aria-hidden>
             ?
           </span>
-          <Bi {...it} />
+          {it}
         </li>
       ))}
     </ul>
@@ -598,10 +507,7 @@ export function Questions({ items }: { items: T[] }) {
 export function StateTag({ kind }: { kind: "current" | "target" }) {
   return (
     <span className={`statetag ${kind}`}>
-      <Bi
-        fa={kind === "current" ? "وضعیت فعلی" : "معماری هدف"}
-        en={kind === "current" ? "Current" : "Target"}
-      />
+      <CT k={kind === "current" ? "state.current" : "state.target"} />
     </span>
   )
 }

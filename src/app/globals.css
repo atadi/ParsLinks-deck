@@ -1966,3 +1966,160 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ==================================================================
+   EDIT MODE (?edit=1) — local override editing. Inactive by default;
+   none of these styles apply to the normal presentation.
+   ================================================================== */
+
+.editable {
+  cursor: text;
+  outline: 1px dashed color-mix(in srgb, var(--color-turq) 55%, transparent);
+  outline-offset: 3px;
+  border-radius: 4px;
+  transition: outline-color 0.15s ease, background-color 0.15s ease;
+}
+.editable:hover {
+  background: color-mix(in srgb, var(--color-turq) 8%, transparent);
+}
+.editable.open {
+  outline: 1px solid var(--color-turq);
+}
+.editable.overridden::after {
+  content: "•";
+  margin-inline-start: 0.35em;
+  font-size: 0.6em;
+  vertical-align: super;
+  color: var(--color-saffron-ink, #c77b1e);
+}
+
+.edit-pop {
+  position: absolute;
+  z-index: 90;
+  inset-inline-start: 0;
+  top: calc(100% + 8px);
+  width: min(360px, 88vw);
+  background: var(--card, #fff);
+  color: var(--foreground, inherit);
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.15));
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
+  padding: 12px;
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+  text-align: start;
+}
+.editable {
+  position: relative;
+}
+.edit-pop-id {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  opacity: 0.65;
+}
+.edit-pop label {
+  display: grid;
+  gap: 4px;
+}
+.edit-pop label span {
+  font-size: 11px;
+  opacity: 0.7;
+}
+.edit-pop textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 44px;
+  font: inherit;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.2));
+  background: transparent;
+  color: inherit;
+}
+.edit-pop-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.ep-btn {
+  font: inherit;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.25));
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.ep-btn.primary {
+  background: var(--color-turq, #0e7490);
+  border-color: var(--color-turq, #0e7490);
+  color: #fff;
+}
+.ep-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.edit-pop-hint {
+  margin: 0;
+  font-size: 10.5px;
+  opacity: 0.55;
+}
+
+/* toolbar */
+.editbar {
+  position: fixed;
+  z-index: 95;
+  bottom: 14px;
+  inset-inline-end: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.18));
+  background: var(--card, #fff);
+  color: var(--foreground, inherit);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  font-family: var(--font-mono, monospace);
+  font-size: 11.5px;
+}
+.eb-status {
+  letter-spacing: 0.04em;
+  font-weight: 700;
+  margin-inline-end: 4px;
+}
+.eb-status b {
+  font-weight: 500;
+  opacity: 0.75;
+}
+.eb-btn {
+  font: inherit;
+  padding: 4px 9px;
+  border-radius: 6px;
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.22));
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.eb-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.eb-btn.exit {
+  border-color: var(--color-saffron-ink, #c77b1e);
+  color: var(--color-saffron-ink, #c77b1e);
+}
+.eb-msg {
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.eb-msg.ok {
+  color: #0f766e;
+}
+.eb-msg.err {
+  color: #b91c1c;
+}

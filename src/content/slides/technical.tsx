@@ -1,12 +1,13 @@
 "use client"
 
-import { Bi, useLang } from "@/app/providers"
-import { BiN, Callout, Card, Defs, Flow, Hl, Lede, Plane, PConn, SlideHead, StateTag } from "@/components/kit"
+import { CT } from "@/content/edit"
+import { Callout, Card, Defs, Flow, Lede, Plane, PConn, SlideHead, StateTag } from "@/components/kit"
 
 /* ==================================================================
    TECHNICAL DEEP DIVE — optional branch (presenter may skip)
    Uses a "Current" vs "Target" discipline: planned subsystems are
    explicitly labelled, never shown as production-ready.
+   All copy lives in src/content/presentation.json (t_* keys).
    ================================================================== */
 
 /* ---------------- T1 · Architecture overview ---------------- */
@@ -14,37 +15,18 @@ import { BiN, Callout, Card, Defs, Flow, Hl, Lede, Plane, PConn, SlideHead, Stat
 export function TechOverview() {
   return (
     <>
-      <SlideHead
-        eyebrow="// deep dive · 01"
-        title={
-          <BiN
-            fa={
-              <>
-                نمای کلی <Hl>معماری</Hl>
-              </>
-            }
-            en={
-              <>
-                Architecture <Hl>Overview</Hl>
-              </>
-            }
-          />
-        }
-      />
+      <SlideHead eyebrow={<CT k="t_overview.eyebrow" />} title={<CT k="t_overview.title" rich />} />
       <div>
-        <Plane code="Developer / Git" sub={{ fa: "توسعه‌دهنده", en: "Developer" }} items={["Push", "CLI", "API"]} />
+        <Plane code="Developer / Git" sub={<CT k="t_overview.plane1.sub" />} items={["Push", "CLI", "API"]} />
         <PConn />
-        <Plane hero accentSub code="Control Plane" sub={{ fa: "مغز پلتفرم", en: "Platform brain" }} items={["Build System", "Runtime Layer", "Platform Services"]} />
+        <Plane hero accentSub code="Control Plane" sub={<CT k="t_overview.plane2.sub" />} items={["Build System", "Runtime Layer", "Platform Services"]} />
         <PConn />
-        <Plane code="Orchestration" sub={{ fa: "Orchestration", en: "Orchestration" }} items={["Scheduling", "Placement", "Routing"]} />
+        <Plane code="Orchestration" sub={<CT k="t_overview.plane3.sub" />} items={["Scheduling", "Placement", "Routing"]} />
         <PConn />
-        <Plane infra code="Infrastructure نوین هاست" sub={{ fa: "زیرساخت", en: "Infrastructure" }} items={["Compute", "Storage", "Network"]} />
+        <Plane infra code={<CT k="t_overview.plane4.code" />} sub={<CT k="t_overview.plane4.sub" />} items={["Compute", "Storage", "Network"]} />
       </div>
       <Lede muted>
-        <Bi
-          fa="هدف توضیح هر زیرسیستم نیست — نشان دادن این است که پلتفرم روی Infrastructure نوین هاست می‌نشیند و بخش قابل‌توجهی از پایه نرم‌افزاری موردنیاز از قبل توسعه داده شده است."
-          en="Not to explain every subsystem — but to show the platform sits on NovinHost infrastructure, and a substantial part of the required software foundation already exists."
-        />
+        <CT k="t_overview.lede" />
       </Lede>
     </>
   )
@@ -55,37 +37,18 @@ export function TechOverview() {
 export function TechPlanes() {
   return (
     <>
-      <SlideHead
-        eyebrow="// deep dive · 02"
-        title={
-          <BiN
-            fa={
-              <>
-                صفحه‌های <Hl>Developer / Control / Execution / Infra</Hl>
-              </>
-            }
-            en={
-              <>
-                <Hl>Developer / Control / Execution / Infra</Hl> Planes
-              </>
-            }
-          />
-        }
-      />
+      <SlideHead eyebrow={<CT k="t_planes.eyebrow" />} title={<CT k="t_planes.title" rich />} />
       <div>
-        <Plane code="Developer Plane" sub={{ fa: "ورودی", en: "Entry" }} items={["Git integration", "CLI", "API", "Dashboard"]} />
+        <Plane code="Developer Plane" sub={<CT k="t_planes.p1.sub" />} items={["Git integration", "CLI", "API", "Dashboard"]} />
         <PConn />
-        <Plane hero accentSub code="Control Plane" sub={{ fa: "وضعیت مطلوب", en: "Desired state" }} items={["Projects", "Deployments", "Scheduler", "Config", "Secrets", "Domains"]} />
+        <Plane hero accentSub code="Control Plane" sub={<CT k="t_planes.p2.sub" />} items={["Projects", "Deployments", "Scheduler", "Config", "Secrets", "Domains"]} />
         <PConn />
-        <Plane code="Execution Plane" sub={{ fa: "اجرا", en: "Run" }} items={["Build workers", "App runtime", "Containers", "Health checks"]} />
+        <Plane code="Execution Plane" sub={<CT k="t_planes.p3.sub" />} items={["Build workers", "App runtime", "Containers", "Health checks"]} />
         <PConn />
-        <Plane infra code="Infrastructure Plane" sub={{ fa: "زیرساخت", en: "Infra" }} items={["Compute", "Storage", "Network", "DNS"]} />
+        <Plane infra code="Infrastructure Plane" sub={<CT k="t_planes.p4.sub" />} items={["Compute", "Storage", "Network", "DNS"]} />
       </div>
       <Callout>
-        <Bi
-          fa="تفکیک مسیر کنترل از اجرا، پایداری و ارتقای مستقل پلتفرم را ممکن می‌کند."
-          en="Separating the control path from execution enables independent stability and upgrades."
-        />
+        <CT k="t_planes.callout" />
       </Callout>
     </>
   )
@@ -96,23 +59,7 @@ export function TechPlanes() {
 export function TechLifecycle() {
   return (
     <>
-      <SlideHead
-        eyebrow="// deep dive · 03"
-        title={
-          <BiN
-            fa={
-              <>
-                چرخه حیات <Hl>Deploy</Hl>
-              </>
-            }
-            en={
-              <>
-                Deployment <Hl>Lifecycle</Hl>
-              </>
-            }
-          />
-        }
-      />
+      <SlideHead eyebrow={<CT k="t_lifecycle.eyebrow" />} title={<CT k="t_lifecycle.title" rich />} />
       <Flow
         nodes={[
           { code: "Git Push" },
@@ -129,10 +76,7 @@ export function TechLifecycle() {
         <strong>
           <span className="tk">Commit → Deployment</span>
         </strong>
-        <Bi
-          fa=" — هر تغییر کد، مسیر کامل اعتبارسنجی، ساخت و مسیریابی را طی می‌کند."
-          en=" — every code change runs the full validation, build and routing path."
-        />
+        <CT k="t_lifecycle.callout" />
       </Callout>
     </>
   )
@@ -143,34 +87,21 @@ export function TechLifecycle() {
 export function TechRuntime() {
   return (
     <>
-      <SlideHead
-        eyebrow="// deep dive · 04"
-        title={
-          <BiN
-            fa={
-              <>
-                مدل اجرای <Hl>سرویس</Hl>
-              </>
-            }
-            en={
-              <>
-                Service <Hl>Runtime</Hl> Model
-              </>
-            }
-          />
-        }
-      />
+      <SlideHead eyebrow={<CT k="t_runtime.eyebrow" />} title={<CT k="t_runtime.title" rich />} />
       <div className="two">
-        <Flow vert nodes={[
-          { code: "Tenant", sub: { fa: "مستأجر", en: "Tenant" } },
-          { code: "Namespace / Sandbox", sub: { fa: "محدوده جدا", en: "Isolated scope" } },
-          { code: "Container / microVM", sub: { fa: "مرز اجرا", en: "Execution boundary" }, hero: true },
-          { code: "cgroups · seccomp · netns" },
-        ]} />
+        <Flow
+          vert
+          nodes={[
+            { code: "Tenant", sub: <CT k="t_runtime.tenant.sub" /> },
+            { code: "Namespace / Sandbox", sub: <CT k="t_runtime.namespace.sub" /> },
+            { code: "Container / microVM", sub: <CT k="t_runtime.container.sub" />, hero: true },
+            { code: "cgroups · seccomp · netns" },
+          ]}
+        />
         <div className="stack">
-          <Card title={{ fa: "مرز منابع", en: "Resource boundary" }} desc={{ fa: "سهمیه CPU/RAM برای هر بار کاری.", en: "CPU/RAM quotas per workload." }} />
-          <Card title={{ fa: "مرز شبکه", en: "Network boundary" }} desc={{ fa: "هر مستأجر در فضای شبکه مجزا.", en: "Each tenant in its own network space." }} />
-          <Card title={{ fa: "مرز سیستم‌عامل", en: "OS boundary" }} desc={{ fa: "محدودسازی syscall و سطح دسترسی.", en: "Constrained syscalls and privileges." }} />
+          <Card title={<CT k="t_runtime.resources.title" />} desc={<CT k="t_runtime.resources.desc" />} />
+          <Card title={<CT k="t_runtime.network.title" />} desc={<CT k="t_runtime.network.desc" />} />
+          <Card title={<CT k="t_runtime.os.title" />} desc={<CT k="t_runtime.os.desc" />} />
         </div>
       </div>
     </>
@@ -182,41 +113,30 @@ export function TechRuntime() {
 export function TechNetworking() {
   return (
     <>
-      <SlideHead
-        eyebrow="// deep dive · 05"
-        title={
-          <BiN
-            fa={
-              <>
-                <Hl>Networking</Hl> و مسیریابی
-              </>
-            }
-            en={
-              <>
-                <Hl>Networking</Hl> & Routing
-              </>
-            }
-          />
-        }
-      />
+      <SlideHead eyebrow={<CT k="t_networking.eyebrow" />} title={<CT k="t_networking.title" rich />} />
       <div className="two">
         <Card accent k="Current">
-          <Defs rows={[
-            { k: "ingress", v: { fa: "ورودی HTTP(S) برای هر سرویس.", en: "HTTP(S) ingress per service." } },
-            { k: "domains", v: { fa: "مدیریت خودکار دامنه و HTTPS.", en: "Automatic domain & HTTPS." } },
-            { k: "routing", v: { fa: "مسیریابی ترافیک به نمونه‌های سالم.", en: "Routing to healthy instances." } },
-          ]} />
+          <Defs
+            rows={[
+              { k: "ingress", v: <CT key="i" k="t_networking.cur.ingress" /> },
+              { k: "domains", v: <CT key="d" k="t_networking.cur.domains" /> },
+              { k: "routing", v: <CT key="r" k="t_networking.cur.routing" /> },
+            ]}
+          />
         </Card>
         <Card k="Target">
-          <Defs rows={[
-            { k: "anycast", v: { fa: "توزیع لبه‌ای ترافیک (هدف).", en: "Edge traffic distribution (target)." } },
-            { k: "edge routers", v: { fa: "روترهای لبه برای کاهش تأخیر (هدف).", en: "Edge routers to cut latency (target)." } },
-            { k: "multi-site", v: { fa: "مسیریابی چند-سایت (هدف).", en: "Multi-site routing (target)." } },
-          ]} />
+          <Defs
+            rows={[
+              { k: "anycast", v: <CT key="a" k="t_networking.tgt.anycast" /> },
+              { k: "edge routers", v: <CT key="e" k="t_networking.tgt.edgeRouters" /> },
+              { k: "multi-site", v: <CT key="m" k="t_networking.tgt.multiSite" /> },
+            ]}
+          />
         </Card>
       </div>
       <Callout>
-        <StateTag kind="current" /> <Bi fa=" امروز پیاده‌سازی شده؛ " en=" shipped today — " /> <StateTag kind="target" /> <Bi fa=" جهت توسعه‌ست، نه وضعیت فعلی." en=" is a direction, not current state." />
+        <StateTag kind="current" /> <CT k="t_networking.callout.current" /> <StateTag kind="target" />{" "}
+        <CT k="t_networking.callout.target" />
       </Callout>
     </>
   )
@@ -227,28 +147,12 @@ export function TechNetworking() {
 export function TechStorage() {
   return (
     <>
-      <SlideHead
-        eyebrow="// deep dive · 06"
-        title={
-          <BiN
-            fa={
-              <>
-                ذخیره‌سازی و <Hl>Volumes</Hl>
-              </>
-            }
-            en={
-              <>
-                Storage & <Hl>Volumes</Hl>
-              </>
-            }
-          />
-        }
-      />
+      <SlideHead eyebrow={<CT k="t_storage.eyebrow" />} title={<CT k="t_storage.title" rich />} />
       <div className="g2">
-        <Card title={{ fa: "حجم‌های ماندگار", en: "Persistent volumes" }} desc={{ fa: "دیسک متصل به هر سرویس برای داده‌های ماندگار.", en: "Disk attached to a service for durable data." }} />
-        <Card title={{ fa: "Object Storage", en: "Object storage" }} desc={{ fa: "محل Build artifacts و خروجی‌ها.", en: "Build artifacts and outputs." }} />
-        <Card title={{ fa: "لایه زیرساخت", en: "Infra layer" }} desc={{ fa: "روی Block/Object Storage نوین هاست قرار دارد.", en: "Sits on NovinHost block/object storage." }} />
-        <Card title={{ fa: "Backup (هدف)", en: "Backups (target)" }} desc={{ fa: "برنامه‌ریزی و بازیابی متمرکز — جهت.", en: "Scheduled, centralized recovery — a direction." }} />
+        <Card title={<CT k="t_storage.volumes.title" />} desc={<CT k="t_storage.volumes.desc" />} />
+        <Card title={<CT k="t_storage.objectStorage.title" />} desc={<CT k="t_storage.objectStorage.desc" />} />
+        <Card title={<CT k="t_storage.infraLayer.title" />} desc={<CT k="t_storage.infraLayer.desc" />} />
+        <Card title={<CT k="t_storage.backup.title" />} desc={<CT k="t_storage.backup.desc" />} />
       </div>
     </>
   )
@@ -259,27 +163,11 @@ export function TechStorage() {
 export function TechObservability() {
   return (
     <>
-      <SlideHead
-        eyebrow="// deep dive · 07"
-        title={
-          <BiN
-            fa={
-              <>
-                Observability و <Hl>Logs</Hl>
-              </>
-            }
-            en={
-              <>
-                Observability & <Hl>Logs</Hl>
-              </>
-            }
-          />
-        }
-      />
+      <SlideHead eyebrow={<CT k="t_observability.eyebrow" />} title={<CT k="t_observability.title" rich />} />
       <div className="g3">
-        <Card title={{ fa: "Logs", en: "Logs" }} desc={{ fa: "گردآوری لاگ هر سرویس به‌صورت زنده.", en: "Live per-service log aggregation." }} />
-        <Card title={{ fa: "Metrics", en: "Metrics" }} desc={{ fa: "زمان پاسخ، بار، مصرف منابع.", en: "Latency, throughput, resource use." }} />
-        <Card title={{ fa: "Health", en: "Health" }} desc={{ fa: "بررسی سلامت برای مسیریابی.", en: "Health checks drive routing." }} />
+        <Card title={<CT k="t_observability.logs.title" />} desc={<CT k="t_observability.logs.desc" />} />
+        <Card title={<CT k="t_observability.metrics.title" />} desc={<CT k="t_observability.metrics.desc" />} />
+        <Card title={<CT k="t_observability.health.title" />} desc={<CT k="t_observability.health.desc" />} />
       </div>
     </>
   )
@@ -290,30 +178,14 @@ export function TechObservability() {
 export function TechSecurity() {
   return (
     <>
-      <SlideHead
-        eyebrow="// deep dive · 08"
-        title={
-          <BiN
-            fa={
-              <>
-                Security و <Hl>Identity</Hl>
-              </>
-            }
-            en={
-              <>
-                Security & <Hl>Identity</Hl>
-              </>
-            }
-          />
-        }
-      />
+      <SlideHead eyebrow={<CT k="t_security.eyebrow" />} title={<CT k="t_security.title" rich />} />
       <div className="g3">
-        <Card title={{ fa: "Authentication", en: "Authentication" }} desc={{ fa: "کاربر و کلیدهای API.", en: "Users and API keys." }} />
-        <Card title={{ fa: "Access control", en: "Access control" }} desc={{ fa: "محدوده دسترسی بر پایه پروژه.", en: "Project-scoped access." }} />
-        <Card title={{ fa: "Secrets", en: "Secrets" }} desc={{ fa: "تزریق ایمن متغیرهای محرمانه.", en: "Safe injection of secrets." }} />
-        <Card title={{ fa: "Isolation", en: "Isolation" }} desc={{ fa: "مرزهای اجرا بین مستأجرها.", en: "Runtime boundaries between tenants." }} />
-        <Card title={{ fa: "TLS", en: "TLS" }} desc={{ fa: "HTTPS خودکار برای دامنه‌ها.", en: "Automatic HTTPS for domains." }} />
-        <Card title={{ fa: "Network policy", en: "Network policy" }} desc={{ fa: "محدودسازی ترافیک درون محیط.", en: "Constrains in-environment traffic." }} />
+        <Card title={<CT k="t_security.auth.title" />} desc={<CT k="t_security.auth.desc" />} />
+        <Card title={<CT k="t_security.access.title" />} desc={<CT k="t_security.access.desc" />} />
+        <Card title={<CT k="t_security.secrets.title" />} desc={<CT k="t_security.secrets.desc" />} />
+        <Card title={<CT k="t_security.isolation.title" />} desc={<CT k="t_security.isolation.desc" />} />
+        <Card title={<CT k="t_security.tls.title" />} desc={<CT k="t_security.tls.desc" />} />
+        <Card title={<CT k="t_security.netpol.title" />} desc={<CT k="t_security.netpol.desc" />} />
       </div>
     </>
   )
@@ -324,34 +196,17 @@ export function TechSecurity() {
 export function TechMetering() {
   return (
     <>
-      <SlideHead
-        eyebrow="// deep dive · 09"
-        title={
-          <BiN
-            fa={
-              <>
-                <Hl>Metering</Hl> و Billing
-              </>
-            }
-            en={
-              <>
-                <Hl>Metering</Hl> & Billing
-              </>
-            }
-          />
-        }
+      <SlideHead eyebrow={<CT k="t_metering.eyebrow" />} title={<CT k="t_metering.title" rich />} />
+      <Flow
+        nodes={[
+          { code: "Usage events", sub: <CT k="t_metering.usage.sub" /> },
+          { code: "Aggregate", sub: <CT k="t_metering.aggregate.sub" /> },
+          { code: "Metered units", sub: <CT k="t_metering.units.sub" />, hero: true },
+          { code: "Billing adapter", sub: <CT k="t_metering.adapter.sub" /> },
+        ]}
       />
-      <Flow nodes={[
-        { code: "Usage events", sub: { fa: "رویدادهای مصرف", en: "Usage" } },
-        { code: "Aggregate", sub: { fa: "تجمیع", en: "Aggregate" } },
-        { code: "Metered units", sub: { fa: "واحدهای اندازه‌گیری", en: "Units" }, hero: true },
-        { code: "Billing adapter", sub: { fa: "آداپتور صورتحساب", en: "Adapter" } },
-      ]} />
       <Callout>
-        <Bi
-          fa="معماری Metering جدا از پلتفرم طراحی شده تا به سیستم‌های صورتحساب متنوع (از جمله مدل نوین هاست) متصل شود."
-          en="The metering architecture is decoupled so it can plug into different billing systems — including NovinHost's."
-        />
+        <CT k="t_metering.callout" />
       </Callout>
     </>
   )
@@ -362,39 +217,27 @@ export function TechMetering() {
 export function TechRegion() {
   return (
     <>
-      <SlideHead
-        eyebrow="// deep dive · 10"
-        title={
-          <BiN
-            fa={
-              <>
-                معماری <Hl>Region / Replica</Hl>
-              </>
-            }
-            en={
-              <>
-                <Hl>Region / Replica</Hl> Architecture
-              </>
-            }
-          />
-        }
-      />
+      <SlideHead eyebrow={<CT k="t_region.eyebrow" />} title={<CT k="t_region.title" rich />} />
       <div className="two">
         <Card k="Current">
-          <Defs rows={[
-            { k: "single pool", v: { fa: "استقرار روی یک استخر زیرساخت.", en: "Runs on a single infra pool." } },
-            { k: "replica concept", v: { fa: "مفهوم نمونه‌های تکرار برای سرویس.", en: "Replica concept per service." } },
-          ]} />
+          <Defs
+            rows={[
+              { k: "single pool", v: <CT key="sp" k="t_region.cur.singlePool" /> },
+              { k: "replica concept", v: <CT key="rc" k="t_region.cur.replica" /> },
+            ]}
+          />
         </Card>
         <Card k="Target">
-          <Defs rows={[
-            { k: "multi-region", v: { fa: "توزیع روی چند منطقه (هدف).", en: "Distribute across regions (target)." } },
-            { k: "failover", v: { fa: "انتقال بار در صورت خطا (هدف).", en: "Workload failover (target)." } },
-          ]} />
+          <Defs
+            rows={[
+              { k: "multi-region", v: <CT key="mr" k="t_region.tgt.multiRegion" /> },
+              { k: "failover", v: <CT key="fo" k="t_region.tgt.failover" /> },
+            ]}
+          />
         </Card>
       </div>
       <Callout>
-        <StateTag kind="target" /> <Bi fa=" چند-منطقه‌ای و DR از جهت‌های معماری‌اند، نه ادعای آمادگی فعلی." en=" Multi-region and DR are architectural directions, not a claim of current readiness." />
+        <StateTag kind="target" /> <CT k="t_region.callout" />
       </Callout>
     </>
   )
@@ -402,33 +245,23 @@ export function TechRegion() {
 
 /* ---------------- T11 · Integration with partner infra ---------------- */
 
+const INTEGRATION_CARDS: { t: string; d: string }[] = [
+  { t: "t_integration.compute.title", d: "t_integration.compute.desc" },
+  { t: "t_integration.storage.title", d: "t_integration.storage.desc" },
+  { t: "t_integration.network.title", d: "t_integration.network.desc" },
+  { t: "t_integration.billing.title", d: "t_integration.billing.desc" },
+  { t: "t_integration.capacity.title", d: "t_integration.capacity.desc" },
+  { t: "t_integration.ops.title", d: "t_integration.ops.desc" },
+]
+
 export function TechIntegration() {
   return (
     <>
-      <SlideHead
-        eyebrow="// deep dive · 11"
-        title={
-          <BiN
-            fa={
-              <>
-                یکپارچگی با Infrastructure <Hl>نوین هاست</Hl>
-              </>
-            }
-            en={
-              <>
-                Integration with <Hl>NovinHost</Hl> Infrastructure
-              </>
-            }
-          />
-        }
-      />
+      <SlideHead eyebrow={<CT k="t_integration.eyebrow" />} title={<CT k="t_integration.title" rich />} />
       <div className="g3">
-        <Card title={{ fa: "Compute", en: "Compute" }} desc={{ fa: "پلتفرم روی ظرفیت محاسباتی موجود مستقر می‌شود.", en: "Runs on existing compute capacity." }} />
-        <Card title={{ fa: "Storage", en: "Storage" }} desc={{ fa: "Block/Object Storage به‌عنوان لایه ذخیره‌سازی.", en: "Block/object as the storage layer." }} />
-        <Card title={{ fa: "Network", en: "Network" }} desc={{ fa: "شبکه و DNS از طریق زیرساخت.", en: "Network & DNS via the infrastructure." }} />
-        <Card title={{ fa: "Billing", en: "Billing" }} desc={{ fa: "Metering به سیستم صورتحساب متصل می‌شود.", en: "Metering links to the billing system." }} />
-        <Card title={{ fa: "Capacity", en: "Capacity" }} desc={{ fa: "تخصیص ظرفیت به محصولات منتخب.", en: "Capacity allocated to selected products." }} />
-        <Card title={{ fa: "Ops", en: "Operations" }} desc={{ fa: "عملیات زیرساخت با نوین هاست.", en: "Infra operations with NovinHost." }} />
+        {INTEGRATION_CARDS.map((c) => (
+          <Card key={c.t} title={<CT k={c.t as "t_integration.compute.title"} />} desc={<CT k={c.d as "t_integration.compute.desc"} />} />
+        ))}
       </div>
     </>
   )

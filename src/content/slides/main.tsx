@@ -1,12 +1,10 @@
 "use client"
 
-import { Bi, useLang } from "@/app/providers"
+import { CT } from "@/content/edit"
 import {
-  BiN,
   Callout,
   Compare,
   Equation,
-  Hl,
   LayerStack,
   Lede,
   OppMap,
@@ -21,68 +19,46 @@ import {
 } from "@/components/kit"
 
 /* ==================================================================
-   MAIN DECK — ParsLinks × NovinHost
-   One deliberate executive story, presenter-controlled.
-   Sections: Vision · Opportunity · Together · Existing Foundation ·
-   Partnership · Pilot · Discussion
+   MAIN DECK — ParsLinks × نوین هاست
+   All audience-visible copy lives in src/content/presentation.json.
+   Slides compose layout primitives + <CT k="..."/> content keys only.
    ================================================================== */
 
 /* ---------------- 01 · Vision (opening) ---------------- */
 
 export function Vision() {
-  const { lang } = useLang()
   return (
     <>
       <Statement
-        kicker={lang === "fa" ? "ParsLinks × نوین هاست" : "ParsLinks × NovinHost"}
-        lead={
-          <BiN
-            fa={
-              <>
-                از قلب Infrastructure <Hl>نوین هاست</Hl> تا Productی که مشتری لمس می‌کند
-              </>
-            }
-            en={
-              <>
-                From the core of <Hl>NovinHost</Hl> Infrastructure to the Product the customer touches
-              </>
-            }
-          />
-        }
-        sub={
-          <Bi
-            fa="نوین هاست قدرت Infrastructure را دارد؛ ParsLinks آن را به یک Software Layer تبدیل می‌کند که سرویس می‌سازد."
-            en="NovinHost brings infrastructure power; ParsLinks turns it into a software layer that builds products."
-          />
-        }
+        kicker={<CT k="vision.kicker" />}
+        lead={<CT k="vision.lead" rich />}
+        sub={<CT k="vision.sub" />}
       />
       <Equation
         left={
           <>
             <strong>
-              <Bi fa="Infrastructure نوین هاست" en="NovinHost Infrastructure" />
+              <CT k="vision.eq.left" />
             </strong>
             <span className="eq-meta">
-              <Bi fa="محاسبات، شبکه، ذخیره‌سازی، ظرفیت" en="Compute, network, storage, capacity" />
+              <CT k="vision.eq.leftMeta" />
             </span>
           </>
         }
         right={
           <>
             <strong>
-              <Bi fa="مهندسی نرم‌افزار ParsLinks" en="ParsLinks Software Eng." />
+              <CT k="vision.eq.right" />
             </strong>
             <span className="eq-meta">
-              <Bi fa="Control Plane، اتوماسیون، تجربه توسعه‌دهنده" en="Control plane, automation, DX" />
+              <CT k="vision.eq.rightMeta" />
             </span>
           </>
         }
         result={
-          <>
-            <strong>
-              <Bi fa="محصولات ابری تازه" en="New Cloud Products" />
-            </strong>
-          </>
+          <strong>
+            <CT k="vision.eq.result" />
+          </strong>
         }
       />
     </>
@@ -91,61 +67,46 @@ export function Vision() {
 
 /* ---------------- 02 · Complementary capabilities ---------------- */
 
+const INFRA_ITEMS = [
+  "together.infra.compute",
+  "together.infra.network",
+  "together.infra.storage",
+  "together.infra.capacity",
+  "together.infra.operations",
+  "together.infra.customers",
+  "together.infra.market",
+  "together.infra.experience",
+] as const
+
+const SOFT_ITEMS = [
+  "together.soft.softwareEng",
+  "together.soft.productEng",
+  "together.soft.controlPlane",
+  "together.soft.automation",
+  "together.soft.apiDesign",
+  "together.soft.dx",
+  "together.soft.observability",
+  "together.soft.aiIntegration",
+] as const
+
 export function CapabilitiesSplit() {
   return (
     <>
-      <SlideHead
-        eyebrow="// together"
-        title={
-          <BiN
-            fa={
-              <>
-                دو تخصص متفاوت، یک مسیر <Hl>مشترک</Hl>
-              </>
-            }
-            en={
-              <>
-                Two sides, <Hl>complementary capabilities</Hl>
-              </>
-            }
-          />
-        }
-      />
+      <SlideHead eyebrow={<CT k="together.eyebrow" />} title={<CT k="together.title" rich />} />
       <Split
         left={{
-          brand: { fa: "NovinHost", en: "NovinHost" },
+          brand: <CT k="together.infra.brand" />,
           side: "infra",
-          items: [
-            { fa: "Compute (محاسبات)", en: "Compute" },
-            { fa: "شبکه و ارتباطات", en: "Network & connectivity" },
-            { fa: "ذخیره‌سازی و دیتاسنتر", en: "Storage & datacenter" },
-            { fa: "ظرفیت سخت‌افزاری و تأمین", en: "Hardware capacity & procurement" },
-            { fa: "عملیات زیرساخت", en: "Infrastructure operations" },
-            { fa: "مشتریان فعلی", en: "Existing customer base" },
-            { fa: "دسترسی تجاری و بازار", en: "Commercial reach & market" },
-            { fa: "تجربه میزبانی و ابر", en: "Hosting/cloud experience" },
-          ],
+          items: INFRA_ITEMS.map((k) => <CT key={k} k={k} />),
         }}
         right={{
-          brand: { fa: "ParsLinks", en: "ParsLinks" },
+          brand: <CT k="together.soft.brand" />,
           side: "soft",
-          items: [
-            { fa: "مهندسی نرم‌افزار", en: "Software engineering" },
-            { fa: "مهندسی محصول ابری", en: "Cloud product engineering" },
-            { fa: "مهندسی Control Plane", en: "Control-plane engineering" },
-            { fa: "اتوماسیون و Orchestration", en: "Automation & orchestration" },
-            { fa: "طراحی API و پلتفرم", en: "API & platform design" },
-            { fa: "تجربه توسعه‌دهنده (DX)", en: "Developer experience" },
-            { fa: "Observability و Metering", en: "Observability & metering" },
-            { fa: "یکپارچه‌سازی هوش مصنوعی", en: "AI integration" },
-          ],
+          items: SOFT_ITEMS.map((k) => <CT key={k} k={k} />),
         }}
       />
       <Callout center>
-        <Bi
-          fa="توانمندی‌های مکمل — نه کسب‌وکارهای هم‌پوشان."
-          en="Complementary capabilities, not overlapping businesses."
-        />
+        <CT k="together.callout" />
       </Callout>
     </>
   )
@@ -153,50 +114,30 @@ export function CapabilitiesSplit() {
 
 /* ---------------- 03 · From infrastructure to products ---------------- */
 
+const AFTER_ITEMS = [
+  "shift.after.deployApp",
+  "shift.after.postgres",
+  "shift.after.redis",
+  "shift.after.objectStorage",
+  "shift.after.devPlatform",
+  "shift.after.aiWorkloads",
+  "shift.after.oneClick",
+  "shift.after.apiAutomation",
+] as const
+
 export function InfraToProducts() {
   return (
     <>
-      <SlideHead
-        eyebrow="// the shift"
-        title={
-          <BiN
-            fa={
-              <>
-                مشتری منابع نمی‌خواهد؛ <Hl>نتیجه</Hl> می‌خواهد
-              </>
-            }
-            en={
-              <>
-                From selling resources to <Hl>cloud products</Hl>
-              </>
-            }
-          />
-        }
-      />
+      <SlideHead eyebrow={<CT k="shift.eyebrow" />} title={<CT k="shift.title" rich />} />
       <Compare
         before={{
-          title: { fa: "فروش منابع خام", en: "Raw resource sales" },
+          title: <CT k="shift.beforeTitle" />,
           items: ["CPU", "RAM", "Disk", "Bandwidth", "VM / VPS", "Dedicated"],
         }}
-        after={{
-          title: { fa: "سرویس‌های ابری محصول‌شده", en: "Productized cloud services" },
-          items: [
-            { fa: "Deploy اپلیکیشن", en: "Deploy an application" },
-            { fa: "PostgreSQL مدیریت‌شده", en: "Managed PostgreSQL" },
-            { fa: "Redis مدیریت‌شده", en: "Managed Redis" },
-            { fa: "Object Storage", en: "Object storage" },
-            { fa: "Developer Platform", en: "Developer platform" },
-            { fa: "AI workloads", en: "AI workloads" },
-            { fa: "One-click apps", en: "One-click apps" },
-            { fa: "API و اتوماسیون", en: "APIs & automation" },
-          ],
-        }}
+        after={{ title: <CT k="shift.afterTitle" />, items: AFTER_ITEMS.map((k) => <CT key={k} k={k} />) }}
       />
       <Lede muted>
-        <Bi
-          fa="مشتریان لزوماً نمی‌خواهند خودشان زیرساخت را مدیریت کنند؛ بیشتر ترجیح می‌دهند زیرساخت به سرویس تبدیل شود. منابع خام همچنان پایه‌اند — محصول‌سازی ارزش بیشتری می‌آورد."
-          en="Customers do not always want to manage infrastructure — often they want infrastructure converted into an outcome. Raw resources remain the foundation; productization adds value on top."
-        />
+        <CT k="shift.lede" />
       </Lede>
     </>
   )
@@ -207,120 +148,59 @@ export function InfraToProducts() {
 export function OpportunityMsg() {
   return (
     <>
-      <Phase n="02" label={{ fa: "فرصت", en: "Opportunity" }} />
-      <Statement
-        center
-        lead={
-          <BiN
-            fa={
-              <>
-                زیرساخت وقتی <Hl>محصول</Hl> شود، ارزشمندتر است.
-              </>
-            }
-            en={
-              <>
-                Infrastructure becomes more valuable when it is <Hl>productized</Hl>.
-              </>
-            }
-          />
-        }
-        sub={
-          <Bi
-            fa="مشتریان فعلی می‌توانند نقطه شروع طبیعی برای سرویس‌های ابری با ارزش افزوده بیشتر باشند."
-            en="The existing customer base can provide a natural starting point for higher-value cloud services."
-          />
-        }
-      />
+      <Phase n={<CT k="opportunity.phaseN" />} label={<CT k="opportunity.phase" />} />
+      <Statement center lead={<CT k="opportunity.lead" rich />} sub={<CT k="opportunity.sub" />} />
     </>
   )
 }
 
 /* ---------------- 05 · Opportunity map ---------------- */
 
+const FAMILIES: { name: string; items: readonly string[] }[] = [
+  {
+    name: "oppmap.appPlatform.name",
+    items: [
+      "oppmap.appPlatform.gitDeploy",
+      "oppmap.appPlatform.hosting",
+      "oppmap.appPlatform.services",
+      "oppmap.appPlatform.domains",
+      "oppmap.appPlatform.workflows",
+    ],
+  },
+  {
+    name: "oppmap.managedData.name",
+    items: ["oppmap.managedData.postgresql", "oppmap.managedData.redis", "oppmap.managedData.objectStorage", "oppmap.managedData.backup"],
+  },
+  {
+    name: "oppmap.devCloud.name",
+    items: ["oppmap.devCloud.api", "oppmap.devCloud.cli", "oppmap.devCloud.automation", "oppmap.devCloud.runtimes"],
+  },
+  {
+    name: "oppmap.enterprise.name",
+    items: ["oppmap.enterprise.platforms", "oppmap.enterprise.environments", "oppmap.enterprise.deployments"],
+  },
+  {
+    name: "oppmap.aiInfra.name",
+    items: ["oppmap.aiInfra.gpu", "oppmap.aiInfra.inference", "oppmap.aiInfra.gateway", "oppmap.aiInfra.routing", "oppmap.aiInfra.metering"],
+  },
+  {
+    name: "oppmap.marketplace.name",
+    items: ["oppmap.marketplace.wordpress", "oppmap.marketplace.n8n", "oppmap.marketplace.gitlab", "oppmap.marketplace.templates"],
+  },
+]
+
 export function OpportunityMap() {
   return (
     <>
-      <SlideHead
-        eyebrow="// possible directions"
-        title={
-          <BiN
-            fa={
-              <>
-                خانواده‌های محصول <Hl>مشترک ممکن</Hl>
-              </>
-            }
-            en={
-              <>
-                Possible <Hl>joint product</Hl> families
-              </>
-            }
-          />
-        }
-      />
+      <SlideHead eyebrow={<CT k="oppmap.eyebrow" />} title={<CT k="oppmap.title" rich />} />
       <OppMap
-        families={[
-          {
-            name: { fa: "Application Platform", en: "Application Platform" },
-            items: [
-              { fa: "Git-to-deploy", en: "Git-to-deploy" },
-              { fa: "میزبانی اپلیکیشن", en: "App hosting" },
-              { fa: "سرویس‌ها و محیط‌ها", en: "Services & environments" },
-              { fa: "دامنه‌ها", en: "Domains" },
-              { fa: "گردش‌کارهای توسعه‌دهنده", en: "Dev workflows" },
-            ],
-          },
-          {
-            name: { fa: "Managed Data", en: "Managed Data" },
-            items: [
-              { fa: "PostgreSQL", en: "PostgreSQL" },
-              { fa: "Redis", en: "Redis" },
-              { fa: "ذخیره‌سازی ابجکت", en: "Object storage" },
-              { fa: "Backup", en: "Backups" },
-            ],
-          },
-          {
-            name: { fa: "Developer Cloud", en: "Developer Cloud" },
-            items: [
-              { fa: "API", en: "APIs" },
-              { fa: "CLI", en: "CLI" },
-              { fa: "اتوماسیون", en: "Automation" },
-              { fa: "Managed runtimes", en: "Managed runtimes" },
-            ],
-          },
-          {
-            name: { fa: "Enterprise / Private", en: "Enterprise / Private" },
-            items: [
-              { fa: "پلتفرم‌های اختصاصی", en: "Private platforms" },
-              { fa: "محیط‌های ایزوله", en: "Isolated environments" },
-              { fa: "استقرارهای مدیریت‌شده", en: "Managed deployments" },
-            ],
-          },
-          {
-            name: { fa: "AI Infrastructure", en: "AI Infrastructure" },
-            items: [
-              { fa: "GPU workloads", en: "GPU workloads" },
-              { fa: "سرویس‌های Inference", en: "Inference services" },
-              { fa: "AI Gateway", en: "AI gateway" },
-              { fa: "مسیریابی مدل", en: "Model routing" },
-              { fa: "Metering", en: "Metering" },
-            ],
-          },
-          {
-            name: { fa: "Marketplace", en: "Marketplace" },
-            items: [
-              { fa: "WordPress", en: "WordPress" },
-              { fa: "n8n", en: "n8n" },
-              { fa: "GitLab", en: "GitLab" },
-              { fa: "الگوهای سرویس", en: "Service templates" },
-            ],
-          },
-        ]}
+        families={FAMILIES.map((f) => ({
+          name: <CT key={f.name} k={f.name as "oppmap.appPlatform.name"} />,
+          items: f.items.map((k) => <CT key={k} k={k as "oppmap.appPlatform.gitDeploy"} />),
+        }))}
       />
       <Lede muted>
-        <Bi
-          fa="جهت‌های محصول؛ نه تعهد نقشه‌راه. هر مورد یک امکان همکاری‌ست — نه ادعای پیاده‌سازی امروز."
-          en="Product directions, not a roadmap commitment. Each is a possible collaboration — not a claim of today's implementation."
-        />
+        <CT k="oppmap.lede" />
       </Lede>
     </>
   )
@@ -328,53 +208,24 @@ export function OpportunityMap() {
 
 /* ---------------- 06 · Layered architecture (bridge) ---------------- */
 
+const LAYERS: { k: string; tone: "cust" | "prod" | "soft" | "infra" }[] = [
+  { k: "layers.customers.label", tone: "cust" },
+  { k: "layers.products.label", tone: "prod" },
+  { k: "layers.software.label", tone: "soft" },
+  { k: "layers.controlPlane.label", tone: "soft" },
+  { k: "layers.infra.label", tone: "infra" },
+  { k: "layers.infraMeta.label", tone: "infra" },
+]
+
 export function LayeredDiagram() {
   return (
     <>
-      <SlideHead
-        eyebrow="// how it fits"
-        title={
-          <BiN
-            fa={
-              <>
-                فاصله Infrastructure تا Product، یک <Hl>Software Layer</Hl> است
-              </>
-            }
-            en={
-              <>
-                How the <Hl>layers</Hl> stack
-              </>
-            }
-          />
-        }
-      />
+      <SlideHead eyebrow={<CT k="layers.eyebrow" />} title={<CT k="layers.title" rich />} />
       <LayerStack
-        layers={[
-          {
-            label: { fa: "مشتریان، توسعه‌دهندگان، سازمان‌ها", en: "Customers · Developers · Enterprises" },
-            tone: "cust",
-          },
-          {
-            label: { fa: "محصولات ابری", en: "Cloud Products" },
-            tone: "prod",
-          },
-          {
-            label: { fa: "لایه نرم‌افزار / محصول ParsLinks", en: "ParsLinks Software / Product Layer" },
-            tone: "soft",
-          },
-          {
-            label: { fa: "Control Plane · اتوماسیون · API", en: "Control Plane · Automation · API" },
-            tone: "soft",
-          },
-          {
-            label: { fa: "Infrastructure نوین هاست", en: "NovinHost Infrastructure" },
-            tone: "infra",
-          },
-          {
-            label: { fa: "محاسبات · شبکه · ذخیره‌سازی · ظرفیت", en: "Compute · Network · Storage · Capacity" },
-            tone: "infra",
-          },
-        ]}
+        layers={LAYERS.map((l) => ({
+          tone: l.tone,
+          label: <CT key={l.k} k={l.k as "layers.customers.label"} />,
+        }))}
       />
     </>
   )
@@ -382,44 +233,20 @@ export function LayeredDiagram() {
 
 /* ---------------- 07 · Joint use-case scenarios ---------------- */
 
+const SCENARIOS: { titleK: string; steps: string[] }[] = [
+  { titleK: "scenarios.startup.title", steps: ["Git", "Deploy", "Database", "Domain"] },
+  { titleK: "scenarios.data.title", steps: ["PostgreSQL", "Redis", "Storage", "Backup"] },
+  { titleK: "scenarios.enterprise.title", steps: ["Dedicated infra", "Software layer", "Isolated workloads"] },
+  { titleK: "scenarios.ai.title", steps: ["Compute / GPU", "Inference", "AI Gateway", "Metering"] },
+]
+
 export function Scenarios() {
-  const items = [
-    { title: { fa: "Startup Cloud", en: "Startup Cloud" }, steps: ["Git", "Deploy", "Database", "Domain"] },
-    {
-      title: { fa: "Managed Data", en: "Managed Data" },
-      steps: ["PostgreSQL", "Redis", "Storage", "Backup"],
-    },
-    {
-      title: { fa: "Enterprise Private Platform", en: "Enterprise Private Platform" },
-      steps: ["Dedicated infra", "Software layer", "Isolated workloads"],
-    },
-    {
-      title: { fa: "AI Cloud", en: "AI Cloud" },
-      steps: ["Compute / GPU", "Inference", "AI Gateway", "Metering"],
-    },
-  ]
   return (
     <>
-      <SlideHead
-        eyebrow="// concrete scenarios"
-        title={
-          <BiN
-            fa={
-              <>
-                سناریوهای <Hl>محصول مشترک</Hl>
-              </>
-            }
-            en={
-              <>
-                Concrete <Hl>joint-use cases</Hl>
-              </>
-            }
-          />
-        }
-      />
+      <SlideHead eyebrow={<CT k="scenarios.eyebrow" />} title={<CT k="scenarios.title" rich />} />
       <div className="scenarios">
-        {items.map((s, i) => (
-          <Scenario key={i} title={s.title} steps={s.steps} />
+        {SCENARIOS.map((s, i) => (
+          <Scenario key={i} title={<CT k={s.titleK as "scenarios.startup.title"} />} steps={s.steps} />
         ))}
       </div>
     </>
@@ -428,91 +255,53 @@ export function Scenarios() {
 
 /* ---------------- 08 · Existing technology foundation ---------------- */
 
+const FOUNDATION_CHIPS = [
+  "foundation.chips.projects",
+  "foundation.chips.gitDeploy",
+  "foundation.chips.environments",
+  "foundation.chips.managedServices",
+  "foundation.chips.networking",
+  "foundation.chips.volumes",
+  "foundation.chips.observability",
+  "foundation.chips.secrets",
+  "foundation.chips.templates",
+  "foundation.chips.metering",
+  "foundation.chips.regionReplica",
+  "foundation.chips.controlPlane",
+] as const
+
 export function Foundation() {
   return (
     <>
-      <Phase n="04" label={{ fa: "پایه فناوری", en: "Existing Foundation" }} />
-      <SlideHead
-        eyebrow="// not from zero"
-        title={
-          <BiN
-            fa={
-              <>
-                ما از <Hl>صفر</Hl> شروع نمی‌کنیم
-              </>
-            }
-            en={
-              <>
-                We are <Hl>not starting from zero</Hl>
-              </>
-            }
-          />
-        }
-      />
+      <Phase n={<CT k="foundation.phaseN" />} label={<CT k="foundation.phase" />} />
+      <SlideHead eyebrow={<CT k="foundation.eyebrow" />} title={<CT k="foundation.title" rich />} />
       <div className="two">
         <div className="card">
           <div className="ct">
-            <Bi fa="ParsLinks — تیم مهندسی" en="ParsLinks — Engineering Team" />
+            <CT k="foundation.team.title" />
           </div>
           <div className="cd">
-            <Bi
-              fa="تیم نرم‌افزار و مهندسی محصول؛ مسئول طراحی و ساخت لایه نرم‌افزاری."
-              en="The software & product engineering team — designs and builds the software layer."
-            />
+            <CT k="foundation.team.desc" />
           </div>
         </div>
         <div className="card accent">
           <div className="ct">
-            <Bi fa="ParsLinks Platform — فناوری موجود" en="ParsLinks Platform — existing tech" />
+            <CT k="foundation.platform.title" />
           </div>
           <div className="cd">
-            <Bi
-              fa="پلتفرم ابری موجودی که بخشی از لایه نرم‌افزار را پیشاپیش پیاده‌سازی کرده است."
-              en="An existing cloud platform that already implements part of the software layer."
-            />
+            <CT k="foundation.platform.desc" />
           </div>
         </div>
       </div>
       <Callout>
-        <Bi fa="ParsLinks سرمایه قابل‌توجهی در لایه نرم‌افزاری گذاشته که زیرساخت را به محصولات توسعه‌دهنده‌محور تبدیل می‌کند — از جمله:" en="ParsLinks has already invested significantly in the software layer that turns infrastructure into developer-facing products — including:" />
+        <CT k="foundation.callout" />
       </Callout>
       <div className="chips">
-        <span className="chip">
-          <Bi fa="Projects / Services" en="Projects / Services" />
-        </span>
-        <span className="chip">
-          <Bi fa="Deploy مبتنی بر Git" en="Git-based deploy" />
-        </span>
-        <span className="chip">
-          <Bi fa="محیط‌ها (Preview / Prod)" en="Environments" />
-        </span>
-        <span className="chip">
-          <Bi fa="Managed services" en="Managed services" />
-        </span>
-        <span className="chip">
-          <Bi fa="Networking (دامنه، HTTPS، مسیریابی)" en="Networking" />
-        </span>
-        <span className="chip">
-          <Bi fa="Volumes / ذخیره‌سازی" en="Volumes / storage" />
-        </span>
-        <span className="chip">
-          <Bi fa="مشاهده‌پذیری" en="Observability" />
-        </span>
-        <span className="chip">
-          <Bi fa="متغیرها / رازها" en="Variables / secrets" />
-        </span>
-        <span className="chip">
-          <Bi fa="الگوها (Templates)" en="Templates" />
-        </span>
-        <span className="chip">
-          <Bi fa="معماری Metering / Billing" en="Metering / billing" />
-        </span>
-        <span className="chip">
-          <Bi fa="مفاهیم Region / Replica" en="Region / replica" />
-        </span>
-        <span className="chip">
-          <Bi fa="اتوماسیون Control Plane" en="Control-plane automation" />
-        </span>
+        {FOUNDATION_CHIPS.map((k) => (
+          <span className="chip" key={k}>
+            <CT k={k} />
+          </span>
+        ))}
       </div>
     </>
   )
@@ -520,41 +309,27 @@ export function Foundation() {
 
 /* ---------------- 09 · What ParsLinks brings (non-defensive) ---------------- */
 
+const BRINGS_ITEMS = [
+  "brings.item.softwareEng",
+  "brings.item.controlPlane",
+  "brings.item.productArch",
+  "brings.item.dx",
+  "brings.item.automation",
+  "brings.item.observability",
+  "brings.item.metering",
+  "brings.item.integration",
+  "brings.item.platform",
+] as const
+
 export function WhatBrings() {
   return (
     <>
-      <SlideHead
-        eyebrow="// what ParsLinks brings"
-        title={
-          <BiN
-            fa={
-              <>
-                آنچه <Hl>ParsLinks</Hl> می‌آورد
-              </>
-            }
-            en={
-              <>
-                What <Hl>ParsLinks</Hl> brings
-              </>
-            }
-          />
-        }
-      />
+      <SlideHead eyebrow={<CT k="brings.eyebrow" />} title={<CT k="brings.title" rich />} />
       <div className="g3">
-        {[
-          { fa: "مهندسی نرم‌افزار ابری", en: "Cloud software engineering" },
-          { fa: "مهندسی Control Plane", en: "Control-plane engineering" },
-          { fa: "معماری محصول", en: "Product architecture" },
-          { fa: "تجربه توسعه‌دهنده", en: "Developer experience" },
-          { fa: "اتوماسیون", en: "Automation" },
-          { fa: "مشاهده‌پذیری", en: "Observability" },
-          { fa: "Metering / Billing", en: "Metering / billing" },
-          { fa: "یکپارچه‌سازی", en: "Integration capability" },
-          { fa: "پلتفرم موجود", en: "An existing platform" },
-        ].map((c, i) => (
-          <div className="card" key={i}>
+        {BRINGS_ITEMS.map((k) => (
+          <div className="card" key={k}>
             <div className="ct">
-              <Bi {...c} />
+              <CT k={k} />
             </div>
           </div>
         ))}
@@ -565,78 +340,28 @@ export function WhatBrings() {
 
 /* ---------------- 10 · Partnership models ---------------- */
 
+const MODELS: { name: string; desc: string }[] = [
+  { name: "models.infraBacked.name", desc: "models.infraBacked.desc" },
+  { name: "models.jointDev.name", desc: "models.jointDev.desc" },
+  { name: "models.whiteLabel.name", desc: "models.whiteLabel.desc" },
+  { name: "models.revenueShare.name", desc: "models.revenueShare.desc" },
+  { name: "models.dedicatedCapacity.name", desc: "models.dedicatedCapacity.desc" },
+  { name: "models.enterprise.name", desc: "models.enterprise.desc" },
+]
+
 export function PartnershipModels() {
   return (
     <>
-      <Phase n="05" label={{ fa: "مشارکت", en: "Partnership" }} />
-      <SlideHead
-        eyebrow="// open models"
-        title={
-          <BiN
-            fa={
-              <>
-                مدل‌های <Hl>مشارکت ممکن</Hl>
-              </>
-            }
-            en={
-              <>
-                Possible <Hl>partnership models</Hl>
-              </>
-            }
-          />
-        }
-      />
+      <Phase n={<CT k="models.phaseN" />} label={<CT k="models.phase" />} />
+      <SlideHead eyebrow={<CT k="models.eyebrow" />} title={<CT k="models.title" rich />} />
       <Matrix
-        models={[
-          {
-            name: { fa: "محصول زیرساخت‌محور", en: "Infra-backed product" },
-            desc: {
-              fa: "محصولات روی Infrastructure نوین هاست اجرا می‌شوند و با نرم‌افزار ParsLinks مدیریت می‌شوند.",
-              en: "Products run on NovinHost infra, operated through ParsLinks software.",
-            },
-          },
-          {
-            name: { fa: "توسعه‌ی مشترک محصول", en: "Joint product dev" },
-            desc: {
-              fa: "هر دو طرف سرویس‌های جدید را تعریف و ارائه می‌کنند.",
-              en: "Both sides define and launch new services.",
-            },
-          },
-          {
-            name: { fa: "White-label", en: "White-label" },
-            desc: {
-              fa: "نرم‌افزار ParsLinks، سرویس‌ها را با برند نوین هاست ارائه می‌دهد.",
-              en: "ParsLinks software powers services under NovinHost branding.",
-            },
-          },
-          {
-            name: { fa: "مدل درآمد مشترک", en: "Revenue-sharing" },
-            desc: {
-              fa: "ساختار تجاری برای هر سرویس تعیین می‌شود.",
-              en: "Commercial model decided per service.",
-            },
-          },
-          {
-            name: { fa: "ظرفیت اختصاصی", en: "Dedicated capacity" },
-            desc: {
-              fa: "ظرفیت مشخصی به محصولات منتخب اختصاص می‌یابد.",
-              en: "Specific capacity allocated to selected products.",
-            },
-          },
-          {
-            name: { fa: "راهکارهای سازمانی", en: "Enterprise solutions" },
-            desc: {
-              fa: "زیرساخت + نرم‌افزار برای مشتریان بزرگ.",
-              en: "Infra + software for larger customers.",
-            },
-          },
-        ]}
+        models={MODELS.map((m) => ({
+          name: <CT key={m.name} k={m.name as "models.infraBacked.name"} />,
+          desc: <CT key={m.desc} k={m.desc as "models.infraBacked.desc"} />,
+        }))}
       />
       <Callout center>
-        <Bi
-          fa="ساختار تجاری عمداً باز می‌ماند تا در جلسه بررسی شود."
-          en="The commercial structure is deliberately left open for discussion."
-        />
+        <CT k="models.callout" />
       </Callout>
     </>
   )
@@ -644,62 +369,29 @@ export function PartnershipModels() {
 
 /* ---------------- 11 · Pilot proposal ---------------- */
 
+const PILOT_STEPS: { k: string; label: string; note?: string }[] = [
+  { k: "01", label: "pilot.step1.label", note: "pilot.step1.note" },
+  { k: "02", label: "pilot.step2.label" },
+  { k: "03", label: "pilot.step3.label", note: "pilot.step3.note" },
+  { k: "04", label: "pilot.step4.label" },
+  { k: "05", label: "pilot.step5.label" },
+  { k: "06", label: "pilot.step6.label" },
+]
+
 export function Pilot() {
   return (
     <>
-      <Phase n="06" label={{ fa: "پایلوت", en: "Pilot" }} />
-      <SlideHead
-        eyebrow="// low-risk first step"
-        title={
-          <BiN
-            fa={
-              <>
-                کوچک شروع کنیم، واقعی <Hl>بسنجیم</Hl>
-              </>
-            }
-            en={
-              <>
-                A <Hl>small pilot</Hl> first
-              </>
-            }
-          />
-        }
-      />
+      <Phase n={<CT k="pilot.phaseN" />} label={<CT k="pilot.phase" />} />
+      <SlideHead eyebrow={<CT k="pilot.eyebrow" />} title={<CT k="pilot.title" rich />} />
       <Timeline
-        steps={[
-          {
-            k: "01",
-            label: { fa: "انتخاب یک استخر زیرساخت", en: "Select an infra pool" },
-            note: { fa: "محدود و کنترل‌شده", en: "Limited, contained" },
-          },
-          {
-            k: "02",
-            label: { fa: "اتصال لایه نرم‌افزار", en: "Connect the software layer" },
-          },
-          {
-            k: "03",
-            label: { fa: "انتخاب ۱–۲ سرویس", en: "Choose 1–2 services" },
-            note: { fa: "مثلاً Deploy یا PostgreSQL", en: "e.g. deploy or PostgreSQL" },
-          },
-          {
-            k: "04",
-            label: { fa: "اجرای پایلوت", en: "Run the pilot" },
-          },
-          {
-            k: "05",
-            label: { fa: "اندازه‌گیری فنی + تجاری", en: "Measure tech + commercial" },
-          },
-          {
-            k: "06",
-            label: { fa: "تصمیم برای مقیاس", en: "Decide how to scale" },
-          },
-        ]}
+        steps={PILOT_STEPS.map((s) => ({
+          k: s.k,
+          label: <CT key={s.label} k={s.label as "pilot.step1.label"} />,
+          note: s.note ? <CT key={s.note} k={s.note as "pilot.step1.note"} /> : undefined,
+        }))}
       />
       <Callout>
-        <Bi
-          fa="می‌توانیم کوچک شروع کنیم، مدل را اعتبارسنجی کنیم و بر اساس شواهد گسترش دهیم."
-          en="We can start small, validate the model, and expand based on evidence."
-        />
+        <CT k="pilot.callout" />
       </Callout>
     </>
   )
@@ -707,47 +399,14 @@ export function Pilot() {
 
 /* ---------------- 12 · Discussion ---------------- */
 
+const DISCUSSION_QS = ["discussion.q1", "discussion.q2", "discussion.q3", "discussion.q4"] as const
+
 export function Discussion() {
   return (
     <>
-      <Phase n="07" label={{ fa: "بحث", en: "Discussion" }} />
-      <SlideHead
-        eyebrow="// where to start"
-        title={
-          <BiN
-            fa={
-              <>
-                از کجا <Hl>شروع کنیم؟</Hl>
-              </>
-            }
-            en={
-              <>
-                Where should we <Hl>start?</Hl>
-              </>
-            }
-          />
-        }
-      />
-      <Questions
-        items={[
-          {
-            fa: "کدام استخر زیرساخت برای پایلوت اولیه مناسب‌تر است؟",
-            en: "Which infrastructure pool is most suitable for an initial pilot?",
-          },
-          {
-            fa: "کدام خانواده محصول برای بازار فعلی نوین هاست جذاب‌تر است؟",
-            en: "Which product category is most attractive for NovinHost's current market?",
-          },
-          {
-            fa: "کدام مدل مشارکت برای فاز یک منطقی‌ست؟",
-            en: "Which partnership model makes sense for phase one?",
-          },
-          {
-            fa: "پیش از گسترش، چه مواردی فنی و تجاری باید اعتبارسنجی شوند؟",
-            en: "What should be validated technically and commercially before expansion?",
-          },
-        ]}
-      />
+      <Phase n={<CT k="discussion.phaseN" />} label={<CT k="discussion.phase" />} />
+      <SlideHead eyebrow={<CT k="discussion.eyebrow" />} title={<CT k="discussion.title" rich />} />
+      <Questions items={DISCUSSION_QS.map((k) => <CT key={k} k={k} />)} />
     </>
   )
 }

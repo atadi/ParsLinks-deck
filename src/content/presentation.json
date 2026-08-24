@@ -1,0 +1,1372 @@
+{
+  "$comment": "Canonical presentation content. Single source of truth for all audience-visible copy. Flat map: semantic dotted id -> {fa,en}. Edit via /?edit=1 writes local overrides; promote permanently with `pnpm run content:apply -- <export.json>`.",
+  "schemaVersion": 1,
+  "brand.lockup": {
+    "fa": "ParsLinks × نوین هاست",
+    "en": "ParsLinks × NovinHost"
+  },
+  "hero.title": {
+    "fa": "از قلب Infrastructure نوین هاست تا Productی که مشتری لمس می‌کند",
+    "en": "Infrastructure, turned into products"
+  },
+  "hero.subtitle": {
+    "fa": "نوین هاست قدرت Infrastructure را دارد؛ ParsLinks آن را به یک Software Layer تبدیل می‌کند که سرویس می‌سازد.",
+    "en": "Combining NovinHost infrastructure and ParsLinks software engineering to create the next generation of cloud services."
+  },
+  "hero.cta.start": {
+    "fa": "شروع ارائه",
+    "en": "Start the presentation"
+  },
+  "hero.cta.technical": {
+    "fa": "بررسی فنی (اختیاری)",
+    "en": "Technical Deep Dive (optional)"
+  },
+  "hero.visual.infra.name": {
+    "fa": "نوین هاست",
+    "en": "NovinHost Infrastructure"
+  },
+  "hero.visual.infra.meta": {
+    "fa": "محاسبات · شبکه · ذخیره‌سازی · ظرفیت",
+    "en": "Compute · Network · Storage · Capacity"
+  },
+  "hero.visual.soft.name": {
+    "fa": "ParsLinks",
+    "en": "ParsLinks Software Eng."
+  },
+  "hero.visual.soft.meta": {
+    "fa": "Control Plane · اتوماسیون · DX",
+    "en": "Control Plane · Automation · DX"
+  },
+  "hero.visual.result": {
+    "fa": "محصولات ابری تازه",
+    "en": "New Cloud Products"
+  },
+  "hero.foot": {
+    "fa": "ارائه برای جلسه مشترک ParsLinks و نوین هاست. بخش فنی اختیاری‌ست و می‌توان آن را نادیده گرفت.",
+    "en": "Prepared for the joint ParsLinks × NovinHost session. The technical section is optional and may be skipped."
+  },
+  "hud.home": {
+    "fa": "خانه",
+    "en": "Home"
+  },
+  "hud.prev": {
+    "fa": "قبلی",
+    "en": "Previous"
+  },
+  "hud.next": {
+    "fa": "بعدی",
+    "en": "Next"
+  },
+  "hud.overview": {
+    "fa": "نمای کلی",
+    "en": "Overview"
+  },
+  "hud.help": {
+    "fa": "راهنما",
+    "en": "Help"
+  },
+  "hud.toTechnical": {
+    "fa": "بررسی فنی",
+    "en": "Technical Deep Dive"
+  },
+  "hud.toMain": {
+    "fa": "داستان اصلی",
+    "en": "Main Story"
+  },
+  "hud.controlsLabel": {
+    "fa": "کنترل ارائه",
+    "en": "Presenter controls"
+  },
+  "hud.counter": {
+    "fa": "اسلاید",
+    "en": "Slide"
+  },
+  "overview.title": {
+    "fa": "نمای کلی",
+    "en": "Overview"
+  },
+  "overview.dialogLabel": {
+    "fa": "نمای کلی اسلایدها",
+    "en": "Slide overview"
+  },
+  "help.title": {
+    "fa": "کلیدهای میان‌بر",
+    "en": "Keyboard shortcuts"
+  },
+  "help.dialogLabel": {
+    "fa": "کلیدهای میان‌بر",
+    "en": "Keyboard shortcuts"
+  },
+  "help.nextSlide": {
+    "fa": "اسلاید بعدی",
+    "en": "Next slide"
+  },
+  "help.prevSlide": {
+    "fa": "اسلاید قبلی",
+    "en": "Previous slide"
+  },
+  "help.next": {
+    "fa": "بعدی",
+    "en": "Next"
+  },
+  "help.prevNext": {
+    "fa": "قبلی / بعدی",
+    "en": "Prev / Next"
+  },
+  "help.firstLast": {
+    "fa": "اول / آخر",
+    "en": "First / Last"
+  },
+  "help.thisHelp": {
+    "fa": "این راهنما",
+    "en": "This help"
+  },
+  "help.toggleLang": {
+    "fa": "تغییر زبان",
+    "en": "Toggle language"
+  },
+  "help.close": {
+    "fa": "بستن",
+    "en": "Close overlays"
+  },
+  "intro.hint": {
+    "fa": "برای شروع: ← یا Space",
+    "en": "Press → or Space to begin"
+  },
+  "state.current": {
+    "fa": "وضعیت فعلی",
+    "en": "Current"
+  },
+  "state.target": {
+    "fa": "معماری هدف",
+    "en": "Target"
+  },
+  "state.ok": {
+    "fa": "موجود",
+    "en": "Available"
+  },
+  "state.dev": {
+    "fa": "در توسعه",
+    "en": "In dev"
+  },
+  "state.plan": {
+    "fa": "برنامه",
+    "en": "Planned"
+  },
+  "deck.main.title": {
+    "fa": "ParsLinks × NovinHost",
+    "en": "ParsLinks × NovinHost"
+  },
+  "deck.main.tagline": {
+    "fa": "داستانِ اصلیِ ارائه",
+    "en": "The main presentation story"
+  },
+  "deck.technical.title": {
+    "fa": "بررسیِ فنی",
+    "en": "Technical Deep Dive"
+  },
+  "deck.technical.tagline": {
+    "fa": "شاخه‌ی اختیاری — قابل رد کردن",
+    "en": "Optional branch — may be skipped"
+  },
+  "section.main": {
+    "fa": "داستانِ اصلی",
+    "en": "Main Story"
+  },
+  "section.technical": {
+    "fa": "بررسیِ فنی",
+    "en": "Technical Deep Dive"
+  },
+  "slide.vision.title": {
+    "fa": "چشم‌انداز",
+    "en": "Vision"
+  },
+  "slide.together.title": {
+    "fa": "با هم",
+    "en": "Together"
+  },
+  "slide.shift.title": {
+    "fa": "از منابع تا محصول",
+    "en": "Resources → Products"
+  },
+  "slide.opportunity.title": {
+    "fa": "فرصت",
+    "en": "Opportunity"
+  },
+  "slide.oppmap.title": {
+    "fa": "نقشه‌ی فرصت",
+    "en": "Opportunity Map"
+  },
+  "slide.layers.title": {
+    "fa": "لایه‌های معماری",
+    "en": "Architecture Layers"
+  },
+  "slide.scenarios.title": {
+    "fa": "سناریوها",
+    "en": "Scenarios"
+  },
+  "slide.foundation.title": {
+    "fa": "پایه‌ی فناوری",
+    "en": "Foundation"
+  },
+  "slide.brings.title": {
+    "fa": "آورده‌ی ParsLinks",
+    "en": "What ParsLinks Brings"
+  },
+  "slide.models.title": {
+    "fa": "مدل‌های مشارکت",
+    "en": "Partnership Models"
+  },
+  "slide.pilot.title": {
+    "fa": "پایلوت",
+    "en": "Pilot"
+  },
+  "slide.discussion.title": {
+    "fa": "بحث",
+    "en": "Discussion"
+  },
+  "slide.t_overview.title": {
+    "fa": "نمای کلیِ معماری",
+    "en": "Architecture Overview"
+  },
+  "slide.t_planes.title": {
+    "fa": "صفحه‌ها",
+    "en": "Planes"
+  },
+  "slide.t_lifecycle.title": {
+    "fa": "چرخه‌ی استقرار",
+    "en": "Lifecycle"
+  },
+  "slide.t_runtime.title": {
+    "fa": "مدلِ اجرا",
+    "en": "Runtime Model"
+  },
+  "slide.t_networking.title": {
+    "fa": "شبکه",
+    "en": "Networking"
+  },
+  "slide.t_storage.title": {
+    "fa": "ذخیره‌سازی",
+    "en": "Storage"
+  },
+  "slide.t_observability.title": {
+    "fa": "مشاهده‌پذیری",
+    "en": "Observability"
+  },
+  "slide.t_security.title": {
+    "fa": "امنیت",
+    "en": "Security"
+  },
+  "slide.t_metering.title": {
+    "fa": "Metering",
+    "en": "Metering"
+  },
+  "slide.t_region.title": {
+    "fa": "Region / Replica",
+    "en": "Region / Replica"
+  },
+  "slide.t_integration.title": {
+    "fa": "یکپارچگی",
+    "en": "Integration"
+  },
+  "vision.kicker": {
+    "fa": "ParsLinks × نوین هاست",
+    "en": "ParsLinks × NovinHost"
+  },
+  "vision.lead": {
+    "fa": "از قلب Infrastructure **نوین هاست** تا Productی که مشتری لمس می‌کند",
+    "en": "From the core of **NovinHost** Infrastructure to the Product the customer touches"
+  },
+  "vision.sub": {
+    "fa": "نوین هاست قدرت Infrastructure را دارد؛ ParsLinks آن را به یک Software Layer تبدیل می‌کند که سرویس می‌سازد.",
+    "en": "NovinHost brings infrastructure power; ParsLinks turns it into a software layer that builds products."
+  },
+  "vision.eq.left": {
+    "fa": "Infrastructure نوین هاست",
+    "en": "NovinHost Infrastructure"
+  },
+  "vision.eq.leftMeta": {
+    "fa": "محاسبات، شبکه، ذخیره‌سازی، ظرفیت",
+    "en": "Compute, network, storage, capacity"
+  },
+  "vision.eq.right": {
+    "fa": "مهندسی نرم‌افزار ParsLinks",
+    "en": "ParsLinks Software Eng."
+  },
+  "vision.eq.rightMeta": {
+    "fa": "Control Plane، اتوماسیون، تجربه توسعه‌دهنده",
+    "en": "Control plane, automation, DX"
+  },
+  "vision.eq.result": {
+    "fa": "محصولات ابری تازه",
+    "en": "New Cloud Products"
+  },
+  "together.eyebrow": {
+    "fa": "// together",
+    "en": "// together"
+  },
+  "together.title": {
+    "fa": "دو تخصص متفاوت، یک مسیر **مشترک**",
+    "en": "Two sides, **complementary capabilities**"
+  },
+  "together.infra.brand": {
+    "fa": "NovinHost",
+    "en": "NovinHost"
+  },
+  "together.soft.brand": {
+    "fa": "ParsLinks",
+    "en": "ParsLinks"
+  },
+  "together.infra.compute": {
+    "fa": "Compute (محاسبات)",
+    "en": "Compute"
+  },
+  "together.infra.network": {
+    "fa": "شبکه و ارتباطات",
+    "en": "Network & connectivity"
+  },
+  "together.infra.storage": {
+    "fa": "ذخیره‌سازی و دیتاسنتر",
+    "en": "Storage & datacenter"
+  },
+  "together.infra.capacity": {
+    "fa": "ظرفیت سخت‌افزاری و تأمین",
+    "en": "Hardware capacity & procurement"
+  },
+  "together.infra.operations": {
+    "fa": "عملیات زیرساخت",
+    "en": "Infrastructure operations"
+  },
+  "together.infra.customers": {
+    "fa": "مشتریان فعلی",
+    "en": "Existing customer base"
+  },
+  "together.infra.market": {
+    "fa": "دسترسی تجاری و بازار",
+    "en": "Commercial reach & market"
+  },
+  "together.infra.experience": {
+    "fa": "تجربه میزبانی و ابر",
+    "en": "Hosting/cloud experience"
+  },
+  "together.soft.softwareEng": {
+    "fa": "مهندسی نرم‌افزار",
+    "en": "Software engineering"
+  },
+  "together.soft.productEng": {
+    "fa": "مهندسی محصول ابری",
+    "en": "Cloud product engineering"
+  },
+  "together.soft.controlPlane": {
+    "fa": "مهندسی Control Plane",
+    "en": "Control-plane engineering"
+  },
+  "together.soft.automation": {
+    "fa": "اتوماسیون و Orchestration",
+    "en": "Automation & orchestration"
+  },
+  "together.soft.apiDesign": {
+    "fa": "طراحی API و پلتفرم",
+    "en": "API & platform design"
+  },
+  "together.soft.dx": {
+    "fa": "تجربه توسعه‌دهنده (DX)",
+    "en": "Developer experience"
+  },
+  "together.soft.observability": {
+    "fa": "Observability و Metering",
+    "en": "Observability & metering"
+  },
+  "together.soft.aiIntegration": {
+    "fa": "یکپارچه‌سازی هوش مصنوعی",
+    "en": "AI integration"
+  },
+  "together.callout": {
+    "fa": "توانمندی‌های مکمل — نه کسب‌وکارهای هم‌پوشان.",
+    "en": "Complementary capabilities, not overlapping businesses."
+  },
+  "shift.eyebrow": {
+    "fa": "// the shift",
+    "en": "// the shift"
+  },
+  "shift.title": {
+    "fa": "مشتری منابع نمی‌خواهد؛ **نتیجه** می‌خواهد",
+    "en": "From selling resources to **cloud products**"
+  },
+  "shift.beforeTitle": {
+    "fa": "فروش منابع خام",
+    "en": "Raw resource sales"
+  },
+  "shift.afterTitle": {
+    "fa": "سرویس‌های ابری محصول‌شده",
+    "en": "Productized cloud services"
+  },
+  "shift.after.deployApp": {
+    "fa": "Deploy اپلیکیشن",
+    "en": "Deploy an application"
+  },
+  "shift.after.postgres": {
+    "fa": "PostgreSQL مدیریت‌شده",
+    "en": "Managed PostgreSQL"
+  },
+  "shift.after.redis": {
+    "fa": "Redis مدیریت‌شده",
+    "en": "Managed Redis"
+  },
+  "shift.after.objectStorage": {
+    "fa": "Object Storage",
+    "en": "Object storage"
+  },
+  "shift.after.devPlatform": {
+    "fa": "Developer Platform",
+    "en": "Developer platform"
+  },
+  "shift.after.aiWorkloads": {
+    "fa": "AI workloads",
+    "en": "AI workloads"
+  },
+  "shift.after.oneClick": {
+    "fa": "One-click apps",
+    "en": "One-click apps"
+  },
+  "shift.after.apiAutomation": {
+    "fa": "API و اتوماسیون",
+    "en": "APIs & automation"
+  },
+  "shift.lede": {
+    "fa": "مشتریان لزوماً نمی‌خواهند خودشان زیرساخت را مدیریت کنند؛ بیشتر ترجیح می‌دهند زیرساخت به سرویس تبدیل شود. منابع خام همچنان پایه‌اند — محصول‌سازی ارزش بیشتری می‌آورد.",
+    "en": "Customers do not always want to manage infrastructure — often they want infrastructure converted into an outcome. Raw resources remain the foundation; productization adds value on top."
+  },
+  "opportunity.phaseN": {
+    "fa": "02",
+    "en": "02"
+  },
+  "opportunity.phase": {
+    "fa": "فرصت",
+    "en": "Opportunity"
+  },
+  "opportunity.lead": {
+    "fa": "زیرساخت وقتی **محصول** شود، ارزشمندتر است.",
+    "en": "Infrastructure becomes more valuable when it is **productized**."
+  },
+  "opportunity.sub": {
+    "fa": "مشتریان فعلی می‌توانند نقطه شروع طبیعی برای سرویس‌های ابری با ارزش افزوده بیشتر باشند.",
+    "en": "The existing customer base can provide a natural starting point for higher-value cloud services."
+  },
+  "oppmap.eyebrow": {
+    "fa": "// possible directions",
+    "en": "// possible directions"
+  },
+  "oppmap.title": {
+    "fa": "خانواده‌های محصول **مشترک ممکن**",
+    "en": "Possible **joint product** families"
+  },
+  "oppmap.appPlatform.name": {
+    "fa": "Application Platform",
+    "en": "Application Platform"
+  },
+  "oppmap.appPlatform.gitDeploy": {
+    "fa": "Git-to-deploy",
+    "en": "Git-to-deploy"
+  },
+  "oppmap.appPlatform.hosting": {
+    "fa": "میزبانی اپلیکیشن",
+    "en": "App hosting"
+  },
+  "oppmap.appPlatform.services": {
+    "fa": "سرویس‌ها و محیط‌ها",
+    "en": "Services & environments"
+  },
+  "oppmap.appPlatform.domains": {
+    "fa": "دامنه‌ها",
+    "en": "Domains"
+  },
+  "oppmap.appPlatform.workflows": {
+    "fa": "گردش‌کارهای توسعه‌دهنده",
+    "en": "Dev workflows"
+  },
+  "oppmap.managedData.name": {
+    "fa": "Managed Data",
+    "en": "Managed Data"
+  },
+  "oppmap.managedData.postgresql": {
+    "fa": "PostgreSQL",
+    "en": "PostgreSQL"
+  },
+  "oppmap.managedData.redis": {
+    "fa": "Redis",
+    "en": "Redis"
+  },
+  "oppmap.managedData.objectStorage": {
+    "fa": "ذخیره‌سازی ابجکت",
+    "en": "Object storage"
+  },
+  "oppmap.managedData.backup": {
+    "fa": "Backup",
+    "en": "Backups"
+  },
+  "oppmap.devCloud.name": {
+    "fa": "Developer Cloud",
+    "en": "Developer Cloud"
+  },
+  "oppmap.devCloud.api": {
+    "fa": "API",
+    "en": "APIs"
+  },
+  "oppmap.devCloud.cli": {
+    "fa": "CLI",
+    "en": "CLI"
+  },
+  "oppmap.devCloud.automation": {
+    "fa": "اتوماسیون",
+    "en": "Automation"
+  },
+  "oppmap.devCloud.runtimes": {
+    "fa": "Managed runtimes",
+    "en": "Managed runtimes"
+  },
+  "oppmap.enterprise.name": {
+    "fa": "Enterprise / Private",
+    "en": "Enterprise / Private"
+  },
+  "oppmap.enterprise.platforms": {
+    "fa": "پلتفرم‌های اختصاصی",
+    "en": "Private platforms"
+  },
+  "oppmap.enterprise.environments": {
+    "fa": "محیط‌های ایزوله",
+    "en": "Isolated environments"
+  },
+  "oppmap.enterprise.deployments": {
+    "fa": "استقرارهای مدیریت‌شده",
+    "en": "Managed deployments"
+  },
+  "oppmap.aiInfra.name": {
+    "fa": "AI Infrastructure",
+    "en": "AI Infrastructure"
+  },
+  "oppmap.aiInfra.gpu": {
+    "fa": "GPU workloads",
+    "en": "GPU workloads"
+  },
+  "oppmap.aiInfra.inference": {
+    "fa": "سرویس‌های Inference",
+    "en": "Inference services"
+  },
+  "oppmap.aiInfra.gateway": {
+    "fa": "AI Gateway",
+    "en": "AI gateway"
+  },
+  "oppmap.aiInfra.routing": {
+    "fa": "مسیریابی مدل",
+    "en": "Model routing"
+  },
+  "oppmap.aiInfra.metering": {
+    "fa": "Metering",
+    "en": "Metering"
+  },
+  "oppmap.marketplace.name": {
+    "fa": "Marketplace",
+    "en": "Marketplace"
+  },
+  "oppmap.marketplace.wordpress": {
+    "fa": "WordPress",
+    "en": "WordPress"
+  },
+  "oppmap.marketplace.n8n": {
+    "fa": "n8n",
+    "en": "n8n"
+  },
+  "oppmap.marketplace.gitlab": {
+    "fa": "GitLab",
+    "en": "GitLab"
+  },
+  "oppmap.marketplace.templates": {
+    "fa": "الگوهای سرویس",
+    "en": "Service templates"
+  },
+  "oppmap.lede": {
+    "fa": "جهت‌های محصول؛ نه تعهد نقشه‌راه. هر مورد یک امکان همکاری‌ست — نه ادعای پیاده‌سازی امروز.",
+    "en": "Product directions, not a roadmap commitment. Each is a possible collaboration — not a claim of today's implementation."
+  },
+  "layers.eyebrow": {
+    "fa": "// how it fits",
+    "en": "// how it fits"
+  },
+  "layers.title": {
+    "fa": "فاصله Infrastructure تا Product، یک **Software Layer** است",
+    "en": "How the **layers** stack"
+  },
+  "layers.customers.label": {
+    "fa": "مشتریان، توسعه‌دهندگان، سازمان‌ها",
+    "en": "Customers · Developers · Enterprises"
+  },
+  "layers.products.label": {
+    "fa": "محصولات ابری",
+    "en": "Cloud Products"
+  },
+  "layers.software.label": {
+    "fa": "لایه نرم‌افزار / محصول ParsLinks",
+    "en": "ParsLinks Software / Product Layer"
+  },
+  "layers.controlPlane.label": {
+    "fa": "Control Plane · اتوماسیون · API",
+    "en": "Control Plane · Automation · API"
+  },
+  "layers.infra.label": {
+    "fa": "Infrastructure نوین هاست",
+    "en": "NovinHost Infrastructure"
+  },
+  "layers.infraMeta.label": {
+    "fa": "محاسبات · شبکه · ذخیره‌سازی · ظرفیت",
+    "en": "Compute · Network · Storage · Capacity"
+  },
+  "scenarios.eyebrow": {
+    "fa": "// concrete scenarios",
+    "en": "// concrete scenarios"
+  },
+  "scenarios.title": {
+    "fa": "سناریوهای **محصول مشترک**",
+    "en": "Concrete **joint-use cases**"
+  },
+  "scenarios.startup.title": {
+    "fa": "Startup Cloud",
+    "en": "Startup Cloud"
+  },
+  "scenarios.data.title": {
+    "fa": "Managed Data",
+    "en": "Managed Data"
+  },
+  "scenarios.enterprise.title": {
+    "fa": "Enterprise Private Platform",
+    "en": "Enterprise Private Platform"
+  },
+  "scenarios.ai.title": {
+    "fa": "AI Cloud",
+    "en": "AI Cloud"
+  },
+  "foundation.phaseN": {
+    "fa": "04",
+    "en": "04"
+  },
+  "foundation.phase": {
+    "fa": "پایه فناوری",
+    "en": "Existing Foundation"
+  },
+  "foundation.eyebrow": {
+    "fa": "// not from zero",
+    "en": "// not from zero"
+  },
+  "foundation.title": {
+    "fa": "ما از **صفر** شروع نمی‌کنیم",
+    "en": "We are **not starting from zero**"
+  },
+  "foundation.team.title": {
+    "fa": "ParsLinks — تیم مهندسی",
+    "en": "ParsLinks — Engineering Team"
+  },
+  "foundation.team.desc": {
+    "fa": "تیم نرم‌افزار و مهندسی محصول؛ مسئول طراحی و ساخت لایه نرم‌افزاری.",
+    "en": "The software & product engineering team — designs and builds the software layer."
+  },
+  "foundation.platform.title": {
+    "fa": "ParsLinks Platform — فناوری موجود",
+    "en": "ParsLinks Platform — existing tech"
+  },
+  "foundation.platform.desc": {
+    "fa": "پلتفرم ابری موجودی که بخشی از لایه نرم‌افزار را پیشاپیش پیاده‌سازی کرده است.",
+    "en": "An existing cloud platform that already implements part of the software layer."
+  },
+  "foundation.callout": {
+    "fa": "ParsLinks سرمایه قابل‌توجهی در لایه نرم‌افزاری گذاشته که زیرساخت را به محصولات توسعه‌دهنده‌محور تبدیل می‌کند — از جمله:",
+    "en": "ParsLinks has already invested significantly in the software layer that turns infrastructure into developer-facing products — including:"
+  },
+  "foundation.chips.projects": {
+    "fa": "Projects / Services",
+    "en": "Projects / Services"
+  },
+  "foundation.chips.gitDeploy": {
+    "fa": "Deploy مبتنی بر Git",
+    "en": "Git-based deploy"
+  },
+  "foundation.chips.environments": {
+    "fa": "محیط‌ها (Preview / Prod)",
+    "en": "Environments"
+  },
+  "foundation.chips.managedServices": {
+    "fa": "Managed services",
+    "en": "Managed services"
+  },
+  "foundation.chips.networking": {
+    "fa": "Networking (دامنه، HTTPS، مسیریابی)",
+    "en": "Networking"
+  },
+  "foundation.chips.volumes": {
+    "fa": "Volumes / ذخیره‌سازی",
+    "en": "Volumes / storage"
+  },
+  "foundation.chips.observability": {
+    "fa": "مشاهده‌پذیری",
+    "en": "Observability"
+  },
+  "foundation.chips.secrets": {
+    "fa": "متغیرها / رازها",
+    "en": "Variables / secrets"
+  },
+  "foundation.chips.templates": {
+    "fa": "الگوها (Templates)",
+    "en": "Templates"
+  },
+  "foundation.chips.metering": {
+    "fa": "معماری Metering / Billing",
+    "en": "Metering / billing"
+  },
+  "foundation.chips.regionReplica": {
+    "fa": "مفاهیم Region / Replica",
+    "en": "Region / replica"
+  },
+  "foundation.chips.controlPlane": {
+    "fa": "اتوماسیون Control Plane",
+    "en": "Control-plane automation"
+  },
+  "brings.eyebrow": {
+    "fa": "// what ParsLinks brings",
+    "en": "// what ParsLinks brings"
+  },
+  "brings.title": {
+    "fa": "آنچه **ParsLinks** می‌آورد",
+    "en": "What **ParsLinks** brings"
+  },
+  "brings.item.softwareEng": {
+    "fa": "مهندسی نرم‌افزار ابری",
+    "en": "Cloud software engineering"
+  },
+  "brings.item.controlPlane": {
+    "fa": "مهندسی Control Plane",
+    "en": "Control-plane engineering"
+  },
+  "brings.item.productArch": {
+    "fa": "معماری محصول",
+    "en": "Product architecture"
+  },
+  "brings.item.dx": {
+    "fa": "تجربه توسعه‌دهنده",
+    "en": "Developer experience"
+  },
+  "brings.item.automation": {
+    "fa": "اتوماسیون",
+    "en": "Automation"
+  },
+  "brings.item.observability": {
+    "fa": "مشاهده‌پذیری",
+    "en": "Observability"
+  },
+  "brings.item.metering": {
+    "fa": "Metering / Billing",
+    "en": "Metering / billing"
+  },
+  "brings.item.integration": {
+    "fa": "یکپارچه‌سازی",
+    "en": "Integration capability"
+  },
+  "brings.item.platform": {
+    "fa": "پلتفرم موجود",
+    "en": "An existing platform"
+  },
+  "models.phaseN": {
+    "fa": "05",
+    "en": "05"
+  },
+  "models.phase": {
+    "fa": "مشارکت",
+    "en": "Partnership"
+  },
+  "models.eyebrow": {
+    "fa": "// open models",
+    "en": "// open models"
+  },
+  "models.title": {
+    "fa": "مدل‌های **مشارکت ممکن**",
+    "en": "Possible **partnership models**"
+  },
+  "models.infraBacked.name": {
+    "fa": "محصول زیرساخت‌محور",
+    "en": "Infra-backed product"
+  },
+  "models.infraBacked.desc": {
+    "fa": "محصولات روی Infrastructure نوین هاست اجرا می‌شوند و با نرم‌افزار ParsLinks مدیریت می‌شوند.",
+    "en": "Products run on NovinHost infra, operated through ParsLinks software."
+  },
+  "models.jointDev.name": {
+    "fa": "توسعه‌ی مشترک محصول",
+    "en": "Joint product dev"
+  },
+  "models.jointDev.desc": {
+    "fa": "هر دو طرف سرویس‌های جدید را تعریف و ارائه می‌کنند.",
+    "en": "Both sides define and launch new services."
+  },
+  "models.whiteLabel.name": {
+    "fa": "White-label",
+    "en": "White-label"
+  },
+  "models.whiteLabel.desc": {
+    "fa": "نرم‌افزار ParsLinks، سرویس‌ها را با برند نوین هاست ارائه می‌دهد.",
+    "en": "ParsLinks software powers services under NovinHost branding."
+  },
+  "models.revenueShare.name": {
+    "fa": "مدل درآمد مشترک",
+    "en": "Revenue-sharing"
+  },
+  "models.revenueShare.desc": {
+    "fa": "ساختار تجاری برای هر سرویس تعیین می‌شود.",
+    "en": "Commercial model decided per service."
+  },
+  "models.dedicatedCapacity.name": {
+    "fa": "ظرفیت اختصاصی",
+    "en": "Dedicated capacity"
+  },
+  "models.dedicatedCapacity.desc": {
+    "fa": "ظرفیت مشخصی به محصولات منتخب اختصاص می‌یابد.",
+    "en": "Specific capacity allocated to selected products."
+  },
+  "models.enterprise.name": {
+    "fa": "راهکارهای سازمانی",
+    "en": "Enterprise solutions"
+  },
+  "models.enterprise.desc": {
+    "fa": "زیرساخت + نرم‌افزار برای مشتریان بزرگ.",
+    "en": "Infra + software for larger customers."
+  },
+  "models.callout": {
+    "fa": "ساختار تجاری عمداً باز می‌ماند تا در جلسه بررسی شود.",
+    "en": "The commercial structure is deliberately left open for discussion."
+  },
+  "pilot.phaseN": {
+    "fa": "06",
+    "en": "06"
+  },
+  "pilot.phase": {
+    "fa": "پایلوت",
+    "en": "Pilot"
+  },
+  "pilot.eyebrow": {
+    "fa": "// low-risk first step",
+    "en": "// low-risk first step"
+  },
+  "pilot.title": {
+    "fa": "کوچک شروع کنیم، واقعی **بسنجیم**",
+    "en": "A **small pilot** first"
+  },
+  "pilot.step1.label": {
+    "fa": "انتخاب یک استخر زیرساخت",
+    "en": "Select an infra pool"
+  },
+  "pilot.step1.note": {
+    "fa": "محدود و کنترل‌شده",
+    "en": "Limited, contained"
+  },
+  "pilot.step2.label": {
+    "fa": "اتصال لایه نرم‌افزار",
+    "en": "Connect the software layer"
+  },
+  "pilot.step3.label": {
+    "fa": "انتخاب ۱–۲ سرویس",
+    "en": "Choose 1–2 services"
+  },
+  "pilot.step3.note": {
+    "fa": "مثلاً Deploy یا PostgreSQL",
+    "en": "e.g. deploy or PostgreSQL"
+  },
+  "pilot.step4.label": {
+    "fa": "اجرای پایلوت",
+    "en": "Run the pilot"
+  },
+  "pilot.step5.label": {
+    "fa": "اندازه‌گیری فنی + تجاری",
+    "en": "Measure tech + commercial"
+  },
+  "pilot.step6.label": {
+    "fa": "تصمیم برای مقیاس",
+    "en": "Decide how to scale"
+  },
+  "pilot.callout": {
+    "fa": "می‌توانیم کوچک شروع کنیم، مدل را اعتبارسنجی کنیم و بر اساس شواهد گسترش دهیم.",
+    "en": "We can start small, validate the model, and expand based on evidence."
+  },
+  "discussion.phaseN": {
+    "fa": "07",
+    "en": "07"
+  },
+  "discussion.phase": {
+    "fa": "بحث",
+    "en": "Discussion"
+  },
+  "discussion.eyebrow": {
+    "fa": "// where to start",
+    "en": "// where to start"
+  },
+  "discussion.title": {
+    "fa": "از کجا **شروع کنیم؟**",
+    "en": "Where should we **start?**"
+  },
+  "discussion.q1": {
+    "fa": "کدام استخر زیرساخت برای پایلوت اولیه مناسب‌تر است؟",
+    "en": "Which infrastructure pool is most suitable for an initial pilot?"
+  },
+  "discussion.q2": {
+    "fa": "کدام خانواده محصول برای بازار فعلی نوین هاست جذاب‌تر است؟",
+    "en": "Which product category is most attractive for NovinHost's current market?"
+  },
+  "discussion.q3": {
+    "fa": "کدام مدل مشارکت برای فاز یک منطقی‌ست؟",
+    "en": "Which partnership model makes sense for phase one?"
+  },
+  "discussion.q4": {
+    "fa": "پیش از گسترش، چه مواردی فنی و تجاری باید اعتبارسنجی شوند؟",
+    "en": "What should be validated technically and commercially before expansion?"
+  },
+  "t_overview.eyebrow": {
+    "fa": "// deep dive · 01",
+    "en": "// deep dive · 01"
+  },
+  "t_overview.title": {
+    "fa": "نمای کلی **معماری**",
+    "en": "Architecture **Overview**"
+  },
+  "t_overview.plane1.code": {
+    "fa": "Developer / Git",
+    "en": "Developer / Git"
+  },
+  "t_overview.plane1.sub": {
+    "fa": "توسعه‌دهنده",
+    "en": "Developer"
+  },
+  "t_overview.plane2.sub": {
+    "fa": "مغز پلتفرم",
+    "en": "Platform brain"
+  },
+  "t_overview.plane3.sub": {
+    "fa": "Orchestration",
+    "en": "Orchestration"
+  },
+  "t_overview.plane4.code": {
+    "fa": "Infrastructure نوین هاست",
+    "en": "NovinHost Infrastructure"
+  },
+  "t_overview.plane4.sub": {
+    "fa": "زیرساخت",
+    "en": "Infrastructure"
+  },
+  "t_overview.lede": {
+    "fa": "هدف توضیح هر زیرسیستم نیست — نشان دادن این است که پلتفرم روی Infrastructure نوین هاست می‌نشیند و بخش قابل‌توجهی از پایه نرم‌افزاری موردنیاز از قبل توسعه داده شده است.",
+    "en": "Not to explain every subsystem — but to show the platform sits on NovinHost infrastructure, and a substantial part of the required software foundation already exists."
+  },
+  "t_planes.eyebrow": {
+    "fa": "// deep dive · 02",
+    "en": "// deep dive · 02"
+  },
+  "t_planes.title": {
+    "fa": "صفحه‌های **Developer / Control / Execution / Infra**",
+    "en": "**Developer / Control / Execution / Infra** Planes"
+  },
+  "t_planes.p1.sub": {
+    "fa": "ورودی",
+    "en": "Entry"
+  },
+  "t_planes.p2.sub": {
+    "fa": "وضعیت مطلوب",
+    "en": "Desired state"
+  },
+  "t_planes.p3.sub": {
+    "fa": "اجرا",
+    "en": "Run"
+  },
+  "t_planes.p4.sub": {
+    "fa": "زیرساخت",
+    "en": "Infra"
+  },
+  "t_planes.callout": {
+    "fa": "تفکیک مسیر کنترل از اجرا، پایداری و ارتقای مستقل پلتفرم را ممکن می‌کند.",
+    "en": "Separating the control path from execution enables independent stability and upgrades."
+  },
+  "t_lifecycle.eyebrow": {
+    "fa": "// deep dive · 03",
+    "en": "// deep dive · 03"
+  },
+  "t_lifecycle.title": {
+    "fa": "چرخه حیات **Deploy**",
+    "en": "Deployment **Lifecycle**"
+  },
+  "t_lifecycle.calloutLead": {
+    "fa": "Commit → Deployment",
+    "en": "Commit → Deployment"
+  },
+  "t_lifecycle.callout": {
+    "fa": " — هر تغییر کد، مسیر کامل اعتبارسنجی، ساخت و مسیریابی را طی می‌کند.",
+    "en": " — every code change runs the full validation, build and routing path."
+  },
+  "t_runtime.eyebrow": {
+    "fa": "// deep dive · 04",
+    "en": "// deep dive · 04"
+  },
+  "t_runtime.title": {
+    "fa": "مدل اجرای **سرویس**",
+    "en": "Service **Runtime** Model"
+  },
+  "t_runtime.tenant.sub": {
+    "fa": "مستأجر",
+    "en": "Tenant"
+  },
+  "t_runtime.namespace.sub": {
+    "fa": "محدوده جدا",
+    "en": "Isolated scope"
+  },
+  "t_runtime.container.sub": {
+    "fa": "مرز اجرا",
+    "en": "Execution boundary"
+  },
+  "t_runtime.resources.title": {
+    "fa": "مرز منابع",
+    "en": "Resource boundary"
+  },
+  "t_runtime.resources.desc": {
+    "fa": "سهمیه CPU/RAM برای هر بار کاری.",
+    "en": "CPU/RAM quotas per workload."
+  },
+  "t_runtime.network.title": {
+    "fa": "مرز شبکه",
+    "en": "Network boundary"
+  },
+  "t_runtime.network.desc": {
+    "fa": "هر مستأجر در فضای شبکه مجزا.",
+    "en": "Each tenant in its own network space."
+  },
+  "t_runtime.os.title": {
+    "fa": "مرز سیستم‌عامل",
+    "en": "OS boundary"
+  },
+  "t_runtime.os.desc": {
+    "fa": "محدودسازی syscall و سطح دسترسی.",
+    "en": "Constrained syscalls and privileges."
+  },
+  "t_networking.eyebrow": {
+    "fa": "// deep dive · 05",
+    "en": "// deep dive · 05"
+  },
+  "t_networking.title": {
+    "fa": "**Networking** و مسیریابی",
+    "en": "**Networking** & Routing"
+  },
+  "t_networking.cur.ingress": {
+    "fa": "ورودی HTTP(S) برای هر سرویس.",
+    "en": "HTTP(S) ingress per service."
+  },
+  "t_networking.cur.domains": {
+    "fa": "مدیریت خودکار دامنه و HTTPS.",
+    "en": "Automatic domain & HTTPS."
+  },
+  "t_networking.cur.routing": {
+    "fa": "مسیریابی ترافیک به نمونه‌های سالم.",
+    "en": "Routing to healthy instances."
+  },
+  "t_networking.tgt.anycast": {
+    "fa": "توزیع لبه‌ای ترافیک (هدف).",
+    "en": "Edge traffic distribution (target)."
+  },
+  "t_networking.tgt.edgeRouters": {
+    "fa": "روترهای لبه برای کاهش تأخیر (هدف).",
+    "en": "Edge routers to cut latency (target)."
+  },
+  "t_networking.tgt.multiSite": {
+    "fa": "مسیریابی چند-سایت (هدف).",
+    "en": "Multi-site routing (target)."
+  },
+  "t_networking.callout.current": {
+    "fa": " امروز پیاده‌سازی شده؛ ",
+    "en": " shipped today — "
+  },
+  "t_networking.callout.target": {
+    "fa": " جهت توسعه‌ست، نه وضعیت فعلی.",
+    "en": " is a direction, not current state."
+  },
+  "t_storage.eyebrow": {
+    "fa": "// deep dive · 06",
+    "en": "// deep dive · 06"
+  },
+  "t_storage.title": {
+    "fa": "ذخیره‌سازی و **Volumes**",
+    "en": "Storage & **Volumes**"
+  },
+  "t_storage.volumes.title": {
+    "fa": "حجم‌های ماندگار",
+    "en": "Persistent volumes"
+  },
+  "t_storage.volumes.desc": {
+    "fa": "دیسک متصل به هر سرویس برای داده‌های ماندگار.",
+    "en": "Disk attached to a service for durable data."
+  },
+  "t_storage.objectStorage.title": {
+    "fa": "Object Storage",
+    "en": "Object storage"
+  },
+  "t_storage.objectStorage.desc": {
+    "fa": "محل Build artifacts و خروجی‌ها.",
+    "en": "Build artifacts and outputs."
+  },
+  "t_storage.infraLayer.title": {
+    "fa": "لایه زیرساخت",
+    "en": "Infra layer"
+  },
+  "t_storage.infraLayer.desc": {
+    "fa": "روی Block/Object Storage نوین هاست قرار دارد.",
+    "en": "Sits on NovinHost block/object storage."
+  },
+  "t_storage.backup.title": {
+    "fa": "Backup (هدف)",
+    "en": "Backups (target)"
+  },
+  "t_storage.backup.desc": {
+    "fa": "برنامه‌ریزی و بازیابی متمرکز — جهت.",
+    "en": "Scheduled, centralized recovery — a direction."
+  },
+  "t_observability.eyebrow": {
+    "fa": "// deep dive · 07",
+    "en": "// deep dive · 07"
+  },
+  "t_observability.title": {
+    "fa": "Observability و **Logs**",
+    "en": "Observability & **Logs**"
+  },
+  "t_observability.logs.title": {
+    "fa": "Logs",
+    "en": "Logs"
+  },
+  "t_observability.logs.desc": {
+    "fa": "گردآوری لاگ هر سرویس به‌صورت زنده.",
+    "en": "Live per-service log aggregation."
+  },
+  "t_observability.metrics.title": {
+    "fa": "Metrics",
+    "en": "Metrics"
+  },
+  "t_observability.metrics.desc": {
+    "fa": "زمان پاسخ، بار، مصرف منابع.",
+    "en": "Latency, throughput, resource use."
+  },
+  "t_observability.health.title": {
+    "fa": "Health",
+    "en": "Health"
+  },
+  "t_observability.health.desc": {
+    "fa": "بررسی سلامت برای مسیریابی.",
+    "en": "Health checks drive routing."
+  },
+  "t_security.eyebrow": {
+    "fa": "// deep dive · 08",
+    "en": "// deep dive · 08"
+  },
+  "t_security.title": {
+    "fa": "Security و **Identity**",
+    "en": "Security & **Identity**"
+  },
+  "t_security.auth.title": {
+    "fa": "Authentication",
+    "en": "Authentication"
+  },
+  "t_security.auth.desc": {
+    "fa": "کاربر و کلیدهای API.",
+    "en": "Users and API keys."
+  },
+  "t_security.access.title": {
+    "fa": "Access control",
+    "en": "Access control"
+  },
+  "t_security.access.desc": {
+    "fa": "محدوده دسترسی بر پایه پروژه.",
+    "en": "Project-scoped access."
+  },
+  "t_security.secrets.title": {
+    "fa": "Secrets",
+    "en": "Secrets"
+  },
+  "t_security.secrets.desc": {
+    "fa": "تزریق ایمن متغیرهای محرمانه.",
+    "en": "Safe injection of secrets."
+  },
+  "t_security.isolation.title": {
+    "fa": "Isolation",
+    "en": "Isolation"
+  },
+  "t_security.isolation.desc": {
+    "fa": "مرزهای اجرا بین مستأجرها.",
+    "en": "Runtime boundaries between tenants."
+  },
+  "t_security.tls.title": {
+    "fa": "TLS",
+    "en": "TLS"
+  },
+  "t_security.tls.desc": {
+    "fa": "HTTPS خودکار برای دامنه‌ها.",
+    "en": "Automatic HTTPS for domains."
+  },
+  "t_security.netpol.title": {
+    "fa": "Network policy",
+    "en": "Network policy"
+  },
+  "t_security.netpol.desc": {
+    "fa": "محدودسازی ترافیک درون محیط.",
+    "en": "Constrains in-environment traffic."
+  },
+  "t_metering.eyebrow": {
+    "fa": "// deep dive · 09",
+    "en": "// deep dive · 09"
+  },
+  "t_metering.title": {
+    "fa": "**Metering** و Billing",
+    "en": "**Metering** & Billing"
+  },
+  "t_metering.usage.sub": {
+    "fa": "رویدادهای مصرف",
+    "en": "Usage"
+  },
+  "t_metering.aggregate.sub": {
+    "fa": "تجمیع",
+    "en": "Aggregate"
+  },
+  "t_metering.units.sub": {
+    "fa": "واحدهای اندازه‌گیری",
+    "en": "Units"
+  },
+  "t_metering.adapter.sub": {
+    "fa": "آداپتور صورتحساب",
+    "en": "Adapter"
+  },
+  "t_metering.callout": {
+    "fa": "معماری Metering جدا از پلتفرم طراحی شده تا به سیستم‌های صورتحساب متنوع (از جمله مدل نوین هاست) متصل شود.",
+    "en": "The metering architecture is decoupled so it can plug into different billing systems — including NovinHost's."
+  },
+  "t_region.eyebrow": {
+    "fa": "// deep dive · 10",
+    "en": "// deep dive · 10"
+  },
+  "t_region.title": {
+    "fa": "معماری **Region / Replica**",
+    "en": "**Region / Replica** Architecture"
+  },
+  "t_region.cur.singlePool": {
+    "fa": "استقرار روی یک استخر زیرساخت.",
+    "en": "Runs on a single infra pool."
+  },
+  "t_region.cur.replica": {
+    "fa": "مفهوم نمونه‌های تکرار برای سرویس.",
+    "en": "Replica concept per service."
+  },
+  "t_region.tgt.multiRegion": {
+    "fa": "توزیع روی چند منطقه (هدف).",
+    "en": "Distribute across regions (target)."
+  },
+  "t_region.tgt.failover": {
+    "fa": "انتقال بار در صورت خطا (هدف).",
+    "en": "Workload failover (target)."
+  },
+  "t_region.callout": {
+    "fa": " چند-منطقه‌ای و DR از جهت‌های معماری‌اند، نه ادعای آمادگی فعلی.",
+    "en": " Multi-region and DR are architectural directions, not a claim of current readiness."
+  },
+  "t_integration.eyebrow": {
+    "fa": "// deep dive · 11",
+    "en": "// deep dive · 11"
+  },
+  "t_integration.title": {
+    "fa": "یکپارچگی با Infrastructure **نوین هاست**",
+    "en": "Integration with **NovinHost** Infrastructure"
+  },
+  "t_integration.compute.title": {
+    "fa": "Compute",
+    "en": "Compute"
+  },
+  "t_integration.compute.desc": {
+    "fa": "پلتفرم روی ظرفیت محاسباتی موجود مستقر می‌شود.",
+    "en": "Runs on existing compute capacity."
+  },
+  "t_integration.storage.title": {
+    "fa": "Storage",
+    "en": "Storage"
+  },
+  "t_integration.storage.desc": {
+    "fa": "Block/Object Storage به‌عنوان لایه ذخیره‌سازی.",
+    "en": "Block/object as the storage layer."
+  },
+  "t_integration.network.title": {
+    "fa": "Network",
+    "en": "Network"
+  },
+  "t_integration.network.desc": {
+    "fa": "شبکه و DNS از طریق زیرساخت.",
+    "en": "Network & DNS via the infrastructure."
+  },
+  "t_integration.billing.title": {
+    "fa": "Billing",
+    "en": "Billing"
+  },
+  "t_integration.billing.desc": {
+    "fa": "Metering به سیستم صورتحساب متصل می‌شود.",
+    "en": "Metering links to the billing system."
+  },
+  "t_integration.capacity.title": {
+    "fa": "Capacity",
+    "en": "Capacity"
+  },
+  "t_integration.capacity.desc": {
+    "fa": "تخصیص ظرفیت به محصولات منتخب.",
+    "en": "Capacity allocated to selected products."
+  },
+  "t_integration.ops.title": {
+    "fa": "Ops",
+    "en": "Operations"
+  },
+  "t_integration.ops.desc": {
+    "fa": "عملیات زیرساخت با نوین هاست.",
+    "en": "Infra operations with NovinHost."
+  },
+  "edit.toolbar.title": {
+    "fa": "حالت ویرایش",
+    "en": "Edit Mode"
+  },
+  "edit.export": {
+    "fa": "خروجی تغییرات",
+    "en": "Export Changes"
+  },
+  "edit.import": {
+    "fa": "بارگذاری تغییرات",
+    "en": "Import"
+  },
+  "edit.resetAll": {
+    "fa": "حذف همه تغییرات",
+    "en": "Reset All"
+  },
+  "edit.exit": {
+    "fa": "خروج از ویرایش",
+    "en": "Exit Edit Mode"
+  },
+  "edit.save": {
+    "fa": "ذخیره",
+    "en": "Save"
+  },
+  "edit.cancel": {
+    "fa": "انصراف",
+    "en": "Cancel"
+  },
+  "edit.persian": {
+    "fa": "فارسی",
+    "en": "Persian"
+  },
+  "edit.english": {
+    "fa": "English",
+    "en": "English"
+  },
+  "edit.modifiedBadge": {
+    "fa": "ویرایش‌شده",
+    "en": "edited"
+  }
+}

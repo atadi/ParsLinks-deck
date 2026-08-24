@@ -3,7 +3,8 @@
 import Link from "next/link"
 import { useCallback, useEffect, useRef, useState } from "react"
 
-import { Bi, useLang, useNum } from "@/app/providers"
+import { useLang, useNum } from "@/app/providers"
+import { CT } from "@/content/edit"
 import { DECK_MAP } from "@/content/decks"
 import type { DeckSlide } from "@/content/slides"
 
@@ -121,7 +122,7 @@ export function Deck({ slides, deckSlug }: { slides: DeckSlide[]; deckSlug: stri
       </div>
 
       <div className="counter" aria-live="polite">
-        <Bi fa="اسلاید" en="Slide" /> {num(i + 1)} / {num(total)}
+        <CT k="hud.counter" /> {num(i + 1)} / {num(total)}
       </div>
 
       <main className="slide" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
@@ -130,14 +131,12 @@ export function Deck({ slides, deckSlug }: { slides: DeckSlide[]; deckSlug: stri
         </div>
         <footer className="sfoot">
           <span className="brand">ParsLinks · {num(String(i + 1).padStart(2, "0"))}</span>
-          <span>
-            <Bi {...slide.section} />
-          </span>
+          <span>{slide.section}</span>
         </footer>
       </main>
 
       {/* ---------------- HUD ---------------- */}
-      <nav className="hud" aria-label={lang === "fa" ? "کنترل ارائه" : "Presenter controls"}>
+      <nav className="hud" aria-label={<CT k="hud.controlsLabel" /> as unknown as string}>
         <Link className="hbtn" href="/" aria-label={lang === "fa" ? "خانه" : "Home"}>
           ⌂
         </Link>
@@ -164,10 +163,10 @@ export function Deck({ slides, deckSlug }: { slides: DeckSlide[]; deckSlug: stri
             aria-label={
               deckSlug === "main"
                 ? lang === "fa"
-                  ? "بررسیِ فنی"
+                  ? "بررسی فنی"
                   : "Technical Deep Dive"
                 : lang === "fa"
-                  ? "داستانِ اصلی"
+                  ? "داستان اصلی"
                   : "Main Story"
             }
           >
@@ -204,7 +203,7 @@ export function Deck({ slides, deckSlug }: { slides: DeckSlide[]; deckSlug: stri
             onClick={(e) => e.stopPropagation()}
           >
             <h2>
-              <Bi fa="نمای کلی" en="Overview" />
+              <CT k="overview.title" />
             </h2>
             <div className="ovgrid">
               {slides.map((s, n) => (
@@ -217,12 +216,8 @@ export function Deck({ slides, deckSlug }: { slides: DeckSlide[]; deckSlug: stri
                   }}
                 >
                   <span className="n">{num(String(n + 1).padStart(2, "0"))}</span>
-                  <span className="t">
-                    <Bi {...s.title} />
-                  </span>
-                  <span className="s">
-                    <Bi {...s.section} />
-                  </span>
+                  <span className="t">{s.title}</span>
+                  <span className="s">{s.section}</span>
                 </button>
               ))}
             </div>
@@ -241,30 +236,24 @@ export function Deck({ slides, deckSlug }: { slides: DeckSlide[]; deckSlug: stri
             onClick={(e) => e.stopPropagation()}
           >
             <h2>
-              <Bi fa="کلیدهای میان‌بر" en="Keyboard shortcuts" />
+              <CT k="help.title" />
             </h2>
             <div className="keys">
               {[
-                {
-                  k: dir === "rtl" ? "←" : "→",
-                  t: { fa: "اسلاید بعدی", en: "Next slide" },
-                },
-                {
-                  k: dir === "rtl" ? "→" : "←",
-                  t: { fa: "اسلاید قبلی", en: "Previous slide" },
-                },
-                { k: "Space", t: { fa: "بعدی", en: "Next" } },
-                { k: "PageUp / PageDown", t: { fa: "قبلی / بعدی", en: "Prev / Next" } },
-                { k: "Home / End", t: { fa: "اول / آخر", en: "First / Last" } },
-                { k: "O", t: { fa: "نمای کلی", en: "Overview" } },
-                { k: "?", t: { fa: "این راهنما", en: "This help" } },
-                { k: "L", t: { fa: "تغییر زبان", en: "Toggle language" } },
-                { k: "Esc", t: { fa: "بستن", en: "Close overlays" } },
+                { k: dir === "rtl" ? "←" : "→", t: "help.nextSlide" },
+                { k: dir === "rtl" ? "→" : "←", t: "help.prevSlide" },
+                { k: "Space", t: "help.next" },
+                { k: "PageUp / PageDown", t: "help.prevNext" },
+                { k: "Home / End", t: "help.firstLast" },
+                { k: "O", t: "hud.overview" },
+                { k: "?", t: "help.thisHelp" },
+                { k: "L", t: "help.toggleLang" },
+                { k: "Esc", t: "help.close" },
               ].map((row) => (
                 <div className="keyrow" key={row.k}>
                   <kbd>{row.k}</kbd>
                   <span>
-                    <Bi {...row.t} />
+                    <CT k={row.t as "help.nextSlide"} />
                   </span>
                 </div>
               ))}

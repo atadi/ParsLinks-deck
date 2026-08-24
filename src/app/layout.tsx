@@ -3,6 +3,8 @@ import type { ReactNode } from "react"
 
 import "./globals.css"
 import { Providers } from "./providers"
+import { EditModeProvider } from "@/content/edit"
+import { EditToolbar } from "@/components/EditToolbar"
 
 export const metadata: Metadata = {
   title: "ParsLinks — پلتفرم توسعه‌دهندگان برای ابر ایران",
@@ -24,7 +26,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <EditModeProvider>
+            {children}
+            <EditToolbar />
+          </EditModeProvider>
+        </Providers>
       </body>
     </html>
   )
