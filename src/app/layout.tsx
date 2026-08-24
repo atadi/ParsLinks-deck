@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import type { ReactNode } from "react"
 
 import "./globals.css"
+import "./design-v2.css"
 import { Providers } from "./providers"
 import { EditModeProvider } from "@/content/edit"
 import { EditToolbar } from "@/components/EditToolbar"

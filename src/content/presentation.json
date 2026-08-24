@@ -41,6 +41,10 @@
     "fa": "محصولات ابری تازه",
     "en": "New Cloud Products"
   },
+  "hero.visual.result.meta": {
+    "fa": "سرویس‌های قابل مصرف برای مشتری",
+    "en": "Consumable services for customers"
+  },
   "hero.foot": {
     "fa": "ارائه برای جلسه مشترک ParsLinks و نوین هاست. بخش فنی اختیاری‌ست و می‌توان آن را نادیده گرفت.",
     "en": "Prepared for the joint ParsLinks × NovinHost session. The technical section is optional and may be skipped."

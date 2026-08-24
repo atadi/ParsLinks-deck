@@ -23,8 +23,8 @@ const TECH_SEC = <CT k="section.technical" />
 /* ---------------- slide registry ---------------- */
 
 export const SLIDES: Record<string, DeckSlide> = {
-  /* ============ MAIN STORY (presenter-controlled) ============ */
-  vision: { id: "vision", section: MAIN_SEC, title: <CT k="slide.vision.title" />, Comp: MAIN.Vision },
+  /* ============ MAIN STORY (presenter-controlled) ============
+     "vision" slide removed — the landing page is the cover. */
   together: { id: "together", section: MAIN_SEC, title: <CT k="slide.together.title" />, Comp: MAIN.CapabilitiesSplit },
   shift: { id: "shift", section: MAIN_SEC, title: <CT k="slide.shift.title" />, Comp: MAIN.InfraToProducts },
   opportunity: { id: "opportunity", section: MAIN_SEC, title: <CT k="slide.opportunity.title" />, Comp: MAIN.OpportunityMsg },

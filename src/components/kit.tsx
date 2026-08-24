@@ -389,7 +389,10 @@ export function OppMap({
     <div className="oppmap">
       {families.map((f, i) => (
         <div className="opp-fam" key={i}>
-          <div className="opp-name">{f.name}</div>
+          <div className="opp-name">
+            <span className="fidx">{String(i + 1).padStart(2, "0")}</span>
+            {f.name}
+          </div>
           <div className="opp-items">
             {f.items.map((it, j) => (
               <span className="chip" key={j}>

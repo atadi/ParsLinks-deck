@@ -5,6 +5,13 @@ import Link from "next/link"
 import { useLang } from "@/app/providers"
 import { CT } from "@/content/edit"
 
+/**
+ * Slide 0 — the presentation opening statement.
+ * Composition: brand kicker → display statement → partnership equation band.
+ * The equation band is a single architectural strip (not three cards):
+ * infrastructure + software layer = new cloud products, tied together by
+ * one baseline rule that runs beneath all three cells.
+ */
 export default function Home() {
   const { lang, dir, toggle } = useLang()
   return (
@@ -17,47 +24,14 @@ export default function Home() {
       </div>
 
       <div className="cover-grid">
-        {/* Left: meaningful transformation visual */}
-        <div className="cover-visual">
-          <div className="cv-card cv-infra">
-            <span className="cv-tag">Infrastructure</span>
-            <span className="cv-name">
-              <CT k="hero.visual.infra.name" />
-            </span>
-            <span className="cv-meta">
-              <CT k="hero.visual.infra.meta" />
-            </span>
-          </div>
-          <div className="cv-arrow" aria-hidden>
-            +
-          </div>
-          <div className="cv-card cv-soft">
-            <span className="cv-tag">Software / Product</span>
-            <span className="cv-name">
-              <CT k="hero.visual.soft.name" />
-            </span>
-            <span className="cv-meta">
-              <CT k="hero.visual.soft.meta" />
-            </span>
-          </div>
-          <div className="cv-equals" aria-hidden>
-            =
-          </div>
-          <div className="cv-card cv-res">
-            <span className="cv-name">
-              <CT k="hero.visual.result" />
-            </span>
-          </div>
-        </div>
-
-        {/* Right: title + copy + CTA */}
         <div className="cover-hero">
-          <span className="eyebrow">
-            <CT k="brand.lockup" />
+          <span className="cover-kicker">
+            ParsLinks&nbsp;<b>×</b>&nbsp;<em>نوین هاست</em>
           </span>
           <h1 className="cover-title">
             <CT k="hero.title" />
           </h1>
+          <div className="cover-rule" aria-hidden />
           <p className="cover-sub">
             <CT k="hero.subtitle" />
           </p>
@@ -69,6 +43,43 @@ export default function Home() {
             <Link className="cover-link" href="/technical">
               <CT k="hero.cta.technical" />
             </Link>
+          </div>
+        </div>
+
+        {/* partnership equation band */}
+        <div className="eqband" role="img" aria-label="Infrastructure plus Software equals Cloud Products">
+          <div className="eqb-cell eqb-infra">
+            <span className="eqb-tag">Infrastructure</span>
+            <span className="eqb-name">
+              <CT k="hero.visual.infra.name" />
+            </span>
+            <span className="eqb-meta">
+              <CT k="hero.visual.infra.meta" />
+            </span>
+          </div>
+          <div className="eqb-op op-plus" aria-hidden>
+            +
+          </div>
+          <div className="eqb-cell eqb-soft">
+            <span className="eqb-tag">Software / Product</span>
+            <span className="eqb-name">
+              <CT k="hero.visual.soft.name" />
+            </span>
+            <span className="eqb-meta">
+              <CT k="hero.visual.soft.meta" />
+            </span>
+          </div>
+          <div className="eqb-op res" aria-hidden>
+            =
+          </div>
+          <div className="eqb-cell eqb-res">
+            <span className="eqb-tag">Cloud Products</span>
+            <span className="eqb-name">
+              <CT k="hero.visual.result" />
+            </span>
+            <span className="eqb-meta">
+              <CT k="hero.visual.result.meta" />
+            </span>
           </div>
         </div>
       </div>

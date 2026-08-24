@@ -4,13 +4,11 @@ import { CT } from "@/content/edit"
 import {
   Callout,
   Compare,
-  Equation,
   LayerStack,
   Lede,
   OppMap,
   Phase,
   Questions,
-  Matrix,
   Scenario,
   SlideHead,
   Split,
@@ -24,48 +22,7 @@ import {
    Slides compose layout primitives + <CT k="..."/> content keys only.
    ================================================================== */
 
-/* ---------------- 01 · Vision (opening) ---------------- */
-
-export function Vision() {
-  return (
-    <>
-      <Statement
-        kicker={<CT k="vision.kicker" />}
-        lead={<CT k="vision.lead" rich />}
-        sub={<CT k="vision.sub" />}
-      />
-      <Equation
-        left={
-          <>
-            <strong>
-              <CT k="vision.eq.left" />
-            </strong>
-            <span className="eq-meta">
-              <CT k="vision.eq.leftMeta" />
-            </span>
-          </>
-        }
-        right={
-          <>
-            <strong>
-              <CT k="vision.eq.right" />
-            </strong>
-            <span className="eq-meta">
-              <CT k="vision.eq.rightMeta" />
-            </span>
-          </>
-        }
-        result={
-          <strong>
-            <CT k="vision.eq.result" />
-          </strong>
-        }
-      />
-    </>
-  )
-}
-
-/* ---------------- 02 · Complementary capabilities ---------------- */
+/* ---------------- 02 · Complementary capabilities (opening slide) ---------------- */
 
 const INFRA_ITEMS = [
   "together.infra.compute",
@@ -296,11 +253,14 @@ export function Foundation() {
       <Callout>
         <CT k="foundation.callout" />
       </Callout>
-      <div className="chips">
+      {/* proof-of-capability grid: one shared system, many capabilities */}
+      <div className="proofgrid">
         {FOUNDATION_CHIPS.map((k) => (
-          <span className="chip" key={k}>
-            <CT k={k} />
-          </span>
+          <div className="proofcell" key={k}>
+            <span>
+              <CT k={k} />
+            </span>
+          </div>
         ))}
       </div>
     </>
@@ -325,12 +285,12 @@ export function WhatBrings() {
   return (
     <>
       <SlideHead eyebrow={<CT k="brings.eyebrow" />} title={<CT k="brings.title" rich />} />
-      <div className="g3">
-        {BRINGS_ITEMS.map((k) => (
-          <div className="card" key={k}>
-            <div className="ct">
-              <CT k={k} />
-            </div>
+      {/* capability index: editorial two-column list, not a card grid */}
+      <div className="caplist">
+        {BRINGS_ITEMS.map((k, i) => (
+          <div className="cap" key={k}>
+            <span className="ci">{String(i + 1).padStart(2, "0")}</span>
+            <CT k={k} />
           </div>
         ))}
       </div>
@@ -354,12 +314,22 @@ export function PartnershipModels() {
     <>
       <Phase n={<CT k="models.phaseN" />} label={<CT k="models.phase" />} />
       <SlideHead eyebrow={<CT k="models.eyebrow" />} title={<CT k="models.title" rich />} />
-      <Matrix
-        models={MODELS.map((m) => ({
-          name: <CT key={m.name} k={m.name as "models.infraBacked.name"} />,
-          desc: <CT key={m.desc} k={m.desc as "models.infraBacked.desc"} />,
-        }))}
-      />
+      {/* option spectrum: models arranged along a shared rail — an option
+          space, not a mandatory sequence */}
+      <div className="spectrum">
+        {MODELS.map((m) => (
+          <div className="spec-cell" key={m.name}>
+            <div>
+              <div className="spec-name">
+                <CT k={m.name as "models.infraBacked.name"} />
+              </div>
+              <div className="spec-desc">
+                <CT k={m.desc as "models.infraBacked.desc"} />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
       <Callout center>
         <CT k="models.callout" />
       </Callout>
@@ -406,7 +376,10 @@ export function Discussion() {
     <>
       <Phase n={<CT k="discussion.phaseN" />} label={<CT k="discussion.phase" />} />
       <SlideHead eyebrow={<CT k="discussion.eyebrow" />} title={<CT k="discussion.title" rich />} />
-      <Questions items={DISCUSSION_QS.map((k) => <CT key={k} k={k} />)} />
+      {/* open frame: prompts, not dense content — conversation begins here */}
+      <div className="discussion-frame">
+        <Questions items={DISCUSSION_QS.map((k) => <CT key={k} k={k} />)} />
+      </div>
     </>
   )
 }
