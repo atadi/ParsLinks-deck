@@ -136,8 +136,12 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    direction: ltr;
-    unicode-bidi: isolate;
+    unicode-bidi: plaintext; /* marker leads in the visual flow of its side */
+  }
+  html[lang="fa"] .eyebrow {
+    letter-spacing: 0;
+    word-spacing: 0.04em;
+    flex-direction: row-reverse; /* dot + // lead from the RIGHT in RTL */
   }
   .eyebrow::before {
     content: "";
