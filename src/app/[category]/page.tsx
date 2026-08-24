@@ -1,12 +1,12 @@
 import { notFound } from "next/navigation"
 
 import { CategoryDeck } from "@/components/CategoryDeck"
-import { CATEGORY_MAP, CATEGORY_SLUGS } from "@/content/categories"
+import { DECK_MAP, DECK_SLUGS } from "@/content/decks"
 
 export const dynamicParams = false
 
 export function generateStaticParams() {
-  return CATEGORY_SLUGS.map((category) => ({ category }))
+  return DECK_SLUGS.map((category) => ({ category }))
 }
 
 export default async function CategoryPage({
@@ -15,6 +15,6 @@ export default async function CategoryPage({
   params: Promise<{ category: string }>
 }) {
   const { category } = await params
-  if (!CATEGORY_MAP[category]) notFound()
+  if (!DECK_MAP[category]) notFound()
   return <CategoryDeck slug={category} />
 }

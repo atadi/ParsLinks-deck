@@ -1,29 +1,32 @@
 "use client"
 
-import { Bi } from "@/app/providers"
+import { Bi, useLang, useNum } from "@/app/providers"
 import { Deck } from "@/components/Deck"
-import { CATEGORY_MAP, type CategoryMeta } from "@/content/categories"
-import { SLIDES, type DeckSlide } from "@/content/slides"
+import { resolveDeck, type DeckSlide } from "@/content/slides"
+import { DECKS, DECK_MAP, type DeckMeta } from "@/content/decks"
 
-/** Generated first slide of every track, built from CategoryMeta. */
-function makeIntro(meta: CategoryMeta): DeckSlide {
+/** Generated first slide of every deck, built from the deck metadata. */
+function makeIntro(slug: string): DeckSlide {
+  const deck: DeckMeta = DECK_MAP[slug]
   return {
-    id: `intro-${meta.slug}`,
-    section: meta.title,
-    title: meta.title,
-    Comp: function CategoryIntro() {
+    id: `intro-${slug}`,
+    section: deck.title,
+    title: deck.title,
+    Comp: function DeckIntro() {
+      const { lang } = useLang()
+      const num = useNum()
+      const idx = DECKS.findIndex((d) => d.slug === slug) + 1
       return (
         <div className="intro">
-          <div className="idx" style={{ color: meta.accent }}>
-            {meta.index}
+          <div className="idx" style={{ color: "var(--color-turq)" }}>
+            {num(String(idx).padStart(2, "0"))}
           </div>
-          <span className="tag">{meta.tagline}</span>
-          <h1 className="title">
-            <Bi {...meta.title} />
+          <span className="tag">
+            <Bi {...deck.tagline} />
+          </span>
+          <h1 className="title" style={{ maxWidth: "20ch" }}>
+            <Bi {...deck.title} />
           </h1>
-          <p className="lede" style={{ marginInline: "auto" }}>
-            <Bi {...meta.desc} />
-          </p>
           <p className="hint">
             <Bi fa="برای شروع: ← یا Space" en="Press → or Space to begin" />
           </p>
@@ -34,10 +37,6 @@ function makeIntro(meta: CategoryMeta): DeckSlide {
 }
 
 export function CategoryDeck({ slug }: { slug: string }) {
-  const meta = CATEGORY_MAP[slug]
-  const slides: DeckSlide[] = [
-    makeIntro(meta),
-    ...meta.slides.map((id) => SLIDES[id]).filter(Boolean),
-  ]
-  return <Deck slides={slides} />
+  const slides: DeckSlide[] = [makeIntro(slug), ...resolveDeck(slug)]
+  return <Deck slides={slides} deckSlug={slug} />
 }

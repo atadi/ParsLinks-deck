@@ -4,9 +4,10 @@ import Link from "next/link"
 import { useCallback, useEffect, useRef, useState } from "react"
 
 import { Bi, useLang, useNum } from "@/app/providers"
+import { DECK_MAP } from "@/content/decks"
 import type { DeckSlide } from "@/content/slides"
 
-export function Deck({ slides }: { slides: DeckSlide[] }) {
+export function Deck({ slides, deckSlug }: { slides: DeckSlide[]; deckSlug: string }) {
   const { lang, dir, toggle } = useLang()
   const num = useNum()
   const total = slides.length
@@ -156,6 +157,23 @@ export function Deck({ slides }: { slides: DeckSlide[] }) {
         >
           {dir === "rtl" ? "←" : "→"}
         </button>
+        {DECK_MAP[deckSlug === "main" ? "technical" : "main"] && (
+          <Link
+            className="hbtn"
+            href={`/${deckSlug === "main" ? "technical" : "main"}`}
+            aria-label={
+              deckSlug === "main"
+                ? lang === "fa"
+                  ? "بررسیِ فنی"
+                  : "Technical Deep Dive"
+                : lang === "fa"
+                  ? "داستانِ اصلی"
+                  : "Main Story"
+            }
+          >
+            {deckSlug === "main" ? "⚙" : "★"}
+          </Link>
+        )}
         <button
           className="hbtn"
           onClick={() => setOverview(true)}

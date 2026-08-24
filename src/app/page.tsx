@@ -2,90 +2,57 @@
 
 import Link from "next/link"
 
-import { Bi, useLang, useNum } from "./providers"
-import { CATEGORIES } from "@/content/categories"
-import { SLIDES } from "@/content/slides"
+import { Bi, useLang } from "@/app/providers"
 
-const PIPELINE = ["git push", "build", "deploy", "production"]
-
-export default function Landing() {
-  const { lang, toggle } = useLang()
-  const num = useNum()
-
+export default function Home() {
+  const { lang, dir, toggle } = useLang()
   return (
-    <div className="land">
-      <header className="lhead">
-        <span className="wordmark">ParsLinks</span>
+    <main className="cover">
+      <div className="cover-head">
+        <span className="cover-mark">ParsLinks</span>
         <button className="hbtn" onClick={toggle} aria-label="Toggle language">
           {lang === "fa" ? "EN" : "فا"}
         </button>
-      </header>
+      </div>
 
-      <section className="lhero">
-        <span className="eyebrow">{"// confidential deck"}</span>
-        <h1 className="title">
+      <div className="cover-hero">
+        <span className="eyebrow">ParsLinks × NovinHost</span>
+        <h1 className="cover-title">
           <Bi
-            fa="پلتفرمِ توسعه‌دهندگان برای ابرِ ایران"
-            en="The developer platform for Iran's cloud"
+            fa="زیرساخت، تبدیل‌شده به محصول"
+            en="Infrastructure, turned into products"
           />
         </h1>
-        <p className="lede">
+        <p className="cover-sub">
           <Bi
-            fa="یک ارائه در چهار مسیر — بسته به مخاطب، مسیرِ خود را انتخاب کنید."
-            en="One deck, four tracks — choose the path for your audience."
+            fa="ترکیبِ زیرساختِ NovinHost و مهندسیِ نرم‌افزارِ ParsLinks، تا نسلِ بعدیِ سرویس‌های ابری را بسازیم."
+            en="Combining NovinHost infrastructure and ParsLinks software engineering to create the next generation of cloud services."
           />
         </p>
+      </div>
 
-        {/* single orchestrated motion moment: the deploy pipeline */}
-        <div className="pipe" aria-hidden>
-          {PIPELINE.map((stop, i) => (
-            <span key={stop} style={{ display: "contents" }}>
-              {i > 0 && <span className="rail" />}
-              <span className="stop">{stop}</span>
-            </span>
-          ))}
-        </div>
+      <div className="cover-eq">
+        <span className="cover-pill">
+          <Bi fa="داستانِ اصلی · ۱۲ اسلاید" en="Main story · 12 slides" />
+        </span>
+      </div>
 
-        <p className="ltags">
-          <Bi
-            fa="PaaS بومی • تحویل اپلیکیشن • Edge • تجربه‌ی توسعه‌دهنده"
-            en="Native PaaS • Application Delivery • Edge • Developer Experience"
-          />
-        </p>
-      </section>
+      <div className="cover-cta">
+        <Link className="cover-btn" href="/main">
+          <Bi fa="شروعِ ارائه" en="Start the presentation" />
+          <span aria-hidden>{dir === "rtl" ? "←" : "→"}</span>
+        </Link>
+        <Link className="cover-link" href="/technical">
+          <Bi fa="بررسیِ فنی (اختیاری)" en="Technical Deep Dive (optional)" />
+        </Link>
+      </div>
 
-      <nav className="cards" aria-label={lang === "fa" ? "مسیرهای ارائه" : "Deck tracks"}>
-        {CATEGORIES.map((c) => {
-          const count = c.slides.filter((id) => SLIDES[id]).length + 1
-          return (
-            <Link
-              key={c.slug}
-              href={`/${c.slug}`}
-              className="ccard"
-              style={{ ["--accent" as string]: c.accent }}
-            >
-              <span className="cidx">{c.index}</span>
-              <span className="ctag">{c.tagline}</span>
-              <h2 className="ctitle">
-                <Bi {...c.title} />
-              </h2>
-              <p className="cdesc">
-                <Bi {...c.desc} />
-              </p>
-              <span className="cfoot">
-                <span>
-                  {num(count)} <Bi fa="اسلاید" en="slides" />
-                </span>
-                <span className="go" aria-hidden />
-              </span>
-            </Link>
-          )
-        })}
-      </nav>
-
-      <footer className="lfoot">
-        <Bi fa="ParsLinks · ارائه‌ی محرمانه" en="ParsLinks · Confidential deck" />
-      </footer>
-    </div>
+      <div className="cover-foot">
+        <Bi
+          fa="ارائه برای جلسه‌ی مشترکِ ParsLinks و NovinHost. بخشِ فنی اختیاری‌ست و می‌توان آن را رد کرد."
+          en="Prepared for the joint ParsLinks × NovinHost session. The technical section is optional and may be skipped."
+        />
+      </div>
+    </main>
   )
 }
