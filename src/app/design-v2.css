@@ -335,7 +335,10 @@
   /* --- capability split: junction medallion between the columns --- */
   .split {
     position: relative;
-    gap: clamp(18px, 3vw, 40px);
+    /* one variable drives both the gap and the medallion size below,
+       so the + always sits exactly inside the gap, never on a card */
+    --split-gap: clamp(28px, 3.2vw, 44px);
+    gap: var(--split-gap);
   }
   .split::after {
     content: "+";
@@ -344,18 +347,21 @@
     top: 50%;
     translate: -50% -50%;
     z-index: 2;
-    width: 46px;
-    height: 46px;
+    /* fits within the gap at every supported width */
+    width: min(38px, var(--split-gap));
+    height: min(38px, var(--split-gap));
     display: grid;
     place-items: center;
     font-family: var(--font-mono);
-    font-size: 22px;
-    font-weight: 800;
+    font-size: 19px;
+    font-weight: 700;
     color: var(--color-turq-deep);
     background: var(--color-surface);
-    border: 1px solid var(--color-turq);
+    border: 1px solid color-mix(in srgb, var(--color-turq) 55%, transparent);
     border-radius: 999px;
-    box-shadow: 0 0 0 8px var(--turq-glow), var(--shadow-soft);
+    /* connector read, not button: no halo, no lift shadow */
+    box-shadow: none;
+    pointer-events: none;
   }
   .split-col {
     padding: 22px 24px;
