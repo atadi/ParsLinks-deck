@@ -317,6 +317,9 @@ export function Split({
   return (
     <div className="split">
       {col(left, 0)}
+      <span className="split-plus" aria-hidden="true">
+        +
+      </span>
       {col(right, 1)}
     </div>
   )

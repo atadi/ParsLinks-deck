@@ -334,22 +334,22 @@
      SLIDE RHYTHM — per-composition refinement
      ============================================================ */
 
-  /* --- capability split: junction medallion between the columns --- */
+  /* --- capability split: junction medallion between the columns ---
+     Layout-centered (not absolute % math), so the + sits exactly in the
+     gap between the cards at ANY column width or viewport. The middle grid
+     track IS the gap; the medallion centers inside it. */
   .split {
-    position: relative;
-    /* one variable drives both the gap and the medallion size below,
-       so the + always sits exactly inside the gap, never on a card */
+    display: grid;
+    grid-template-columns: 1fr var(--split-gap) 1fr;
+    align-items: stretch; /* keep both cards equal height / tops aligned */
+    gap: 0;
     --split-gap: clamp(28px, 3.2vw, 44px);
-    gap: var(--split-gap);
   }
-  .split::after {
-    content: "+";
-    position: absolute;
-    inset-inline-start: 50%;
-    top: 50%;
-    translate: -50% -50%;
+  .split-plus {
+    align-self: center;
+    justify-self: center;
     z-index: 2;
-    /* fits within the gap at every supported width */
+    /* fits within the gap track at every supported width */
     width: min(38px, var(--split-gap));
     height: min(38px, var(--split-gap));
     display: grid;
