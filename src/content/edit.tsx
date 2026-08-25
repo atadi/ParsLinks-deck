@@ -1,16 +1,7 @@
 "use client"
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  useSyncExternalStore,
-  type ReactNode,
-} from "react"
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from "react"
+import { createPortal } from "react-dom"
 import {
   DEFAULT_CONTENT,
   SCHEMA_VERSION,
@@ -353,7 +344,7 @@ function FieldEditor({
 
   const dirty = fa !== initial.fa || en !== initial.en
 
-  return (
+  const markup = (
     <div
       className="edit-pop fixed"
       ref={ref}
@@ -405,6 +396,10 @@ function FieldEditor({
       <span hidden>{lang}</span>
     </div>
   )
+  /* Portal to <body>: the popover must paint above ALL slide content.
+     Inside the editable span it would be trapped by ancestor stacking
+     contexts (animated blocks create transforms) and render underneath. */
+  return typeof document !== "undefined" ? createPortal(markup, document.body) : markup
 }
 
 /* ---------------- editable text primitive ---------------- */
