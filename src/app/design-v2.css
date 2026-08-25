@@ -212,6 +212,8 @@
     backdrop-filter: blur(4px);
     box-shadow: var(--shadow-soft);
     overflow: hidden;
+    min-height: 0;
+    flex: 0 1 auto;
   }
   .eqband::before {
     /* baseline that ties the three sides together */

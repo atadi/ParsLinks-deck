@@ -1,39 +1,12 @@
-import type { Metadata } from "next"
 import type { ReactNode } from "react"
 
-import "./globals.css"
-import "./design-v2.css"
-import { Providers } from "./providers"
-import { EditModeProvider } from "@/content/edit"
-import { EditToolbar } from "@/components/EditToolbar"
-
-export const metadata: Metadata = {
-  title: "ParsLinks — پلتفرم توسعه‌دهندگان برای ابر ایران",
-  description:
-    "ParsLinks — the developer platform (PaaS) layer for Iran's cloud infrastructure. Confidential deck.",
-}
-
+/**
+ * Root layout — passthrough only.
+ * The real <html>/<body> (with per-locale lang/dir) is rendered by
+ * src/app/[locale]/layout.tsx, which is the effective root for every real
+ * route. This file exists only so Next has a root layout boundary for the
+ * bare `/`, `/main`, `/technical` back-compat redirect pages.
+ */
 export default function RootLayout({ children }: { children: ReactNode }) {
-  return (
-    <html lang="fa" dir="rtl">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* Vazirmatn (FA), Inter (EN), JetBrains Mono (technical tokens).
-            Degrades to Tahoma / system-ui offline — see globals.css. */}
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
-        />
-      </head>
-      <body>
-        <Providers>
-          <EditModeProvider>
-            {children}
-            <EditToolbar />
-          </EditModeProvider>
-        </Providers>
-      </body>
-    </html>
-  )
+  return <>{children}</>
 }

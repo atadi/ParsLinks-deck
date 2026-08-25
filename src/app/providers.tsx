@@ -10,20 +10,22 @@ import {
   type ReactNode,
 } from "react"
 
-export type Lang = "fa" | "en"
+import { localeMeta, type Locale } from "@/i18n/config"
+
+export type Lang = Locale
 
 interface LangCtx {
   lang: Lang
+  dir: "rtl" | "ltr"
   setLang: (l: Lang) => void
   toggle: () => void
-  dir: "rtl" | "ltr"
 }
 
 const Ctx = createContext<LangCtx>({
   lang: "fa",
+  dir: "rtl",
   setLang: () => {},
   toggle: () => {},
-  dir: "rtl",
 })
 
 export function useLang() {
@@ -61,64 +63,48 @@ export function useNum() {
   )
 }
 
-const STORAGE_KEY = "pl-lang"
-
-/* Tiny external store so the persisted language is read via
-   useSyncExternalStore (no setState-in-effect cascade), while the
-   server snapshot stays "fa" for a stable static prerender. */
-const langStore = {
-  current: "fa" as Lang,
-  listeners: new Set<() => void>(),
-  subscribe(cb: () => void) {
-    langStore.listeners.add(cb)
-    return () => langStore.listeners.delete(cb)
-  },
-  get(): Lang {
-    return langStore.current
-  },
-  getServer(): Lang {
-    return "fa"
-  },
-  set(l: Lang) {
-    langStore.current = l
-    try {
-      window.localStorage.setItem(STORAGE_KEY, l)
-    } catch {
-      /* storage unavailable — keep in-memory value */
-    }
-    langStore.listeners.forEach((cb) => cb())
-  },
-}
-
-/* Hydrate from localStorage once, before React subscribes. */
-if (typeof window !== "undefined") {
-  try {
-    const saved = window.localStorage.getItem(STORAGE_KEY)
-    if (saved === "fa" || saved === "en") langStore.current = saved
-  } catch {
-    /* ignore */
-  }
-}
-
-export function Providers({ children }: { children: ReactNode }) {
-  const lang = useSyncExternalStore(langStore.subscribe, langStore.get, langStore.getServer)
-
-  // sync <html lang/dir> with the active language
-  useEffect(() => {
-    const dir = lang === "fa" ? "rtl" : "ltr"
-    document.documentElement.lang = lang
-    document.documentElement.dir = dir
-  }, [lang])
-
+/**
+ * Locale source of truth = the URL segment ([locale]).
+ * No localStorage language state: the URL drives everything, so shared links
+ * and browser history are correct (see i18n docs). The <html> lang/dir is
+ * synced from the resolved locale on mount.
+ */
+export function Providers({ children, locale }: { children: ReactNode; locale: Locale }) {
   const value = useMemo<LangCtx>(
     () => ({
-      lang,
-      setLang: (l) => langStore.set(l),
-      toggle: () => langStore.set(langStore.current === "fa" ? "en" : "fa"),
-      dir: lang === "fa" ? "rtl" : "ltr",
+      lang: locale,
+      dir: localeMeta[locale].dir,
+      setLang: (l: Lang) => switchLocale(l),
+      toggle: () => switchLocale(locale === "fa" ? "en" : "fa"),
     }),
-    [lang],
+    [locale],
   )
 
+  useEffect(() => {
+    const dir = localeMeta[locale].dir
+    document.documentElement.lang = locale
+    document.documentElement.dir = dir
+  }, [locale])
+
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>
+}
+
+/**
+ * Replace the first path segment (/fa/... -> /en/...) preserving the rest of
+ * the path, the slide hash, and all query params (e.g. edit=1). Falls back to
+ * a full reload if the history API is unavailable.
+ */
+function switchLocale(next: Locale) {
+  if (typeof window === "undefined") return
+  const url = new URL(window.location.href)
+  const parts = url.pathname.split("/")
+  // parts[0] is "" (leading slash). parts[1] is the locale segment.
+  if (parts[1] && (parts[1] === "fa" || parts[1] === "en")) {
+    parts[1] = next
+  } else {
+    // No locale prefix — prepend it.
+    parts.splice(1, 0, next)
+  }
+  url.pathname = parts.join("/")
+  window.location.assign(url.toString())
 }

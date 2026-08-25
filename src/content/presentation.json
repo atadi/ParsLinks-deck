@@ -1,16 +1,16 @@
 {
-  "$comment": "Canonical presentation content. Single source of truth for all audience-visible copy. Flat map: semantic dotted id -> {fa,en}. Edit via /?edit=1 writes local overrides; promote permanently with `pnpm run content:apply -- <export.json>`.",
-  "schemaVersion": 1,
+  "$comment": "Canonical presentation content. Single source of truth for all audience-visible copy. Flat map: semantic dotted id -> {fa,en}. Edit via /<locale>/?edit=1 writes local overrides; promote permanently with `pnpm run content:apply -- <export.json>`. Locale keys derive from the central Locale registry (src/i18n/config.ts).",
+  "schemaVersion": 2,
   "brand.lockup": {
     "fa": "ParsLinks × نوین هاست",
     "en": "ParsLinks × NovinHost"
   },
   "hero.title": {
-    "fa": "از قلب Infrastructure نوین هاست تا Productی که مشتری لمس می‌کند",
+    "fa": "از قلب زیرساخت نوین هاست تا محصولی که مشتری لمس می‌کند",
     "en": "Infrastructure, turned into products"
   },
   "hero.subtitle": {
-    "fa": "نوین هاست قدرت Infrastructure را دارد؛ ParsLinks آن را به یک Software Layer تبدیل می‌کند که سرویس می‌سازد.",
+    "fa": "نوین هاست قدرت زیرساخت را دارد؛ ParsLinks آن را به یک لایه نرم‌افزاری تبدیل می‌کند که سرویس می‌سازد.",
     "en": "Combining NovinHost infrastructure and ParsLinks software engineering to create the next generation of cloud services."
   },
   "hero.cta.start": {
@@ -26,11 +26,11 @@
     "en": "NovinHost Infrastructure"
   },
   "hero.visual.infra.meta": {
-    "fa": "محاسبات · شبکه · ذخیره‌سازی · ظرفیت",
+    "fa": "شبکه · ذخیره‌سازی · ظرفیت · Compute",
     "en": "Compute · Network · Storage · Capacity"
   },
   "hero.visual.soft.name": {
-    "fa": "ParsLinks",
+    "fa": "ParsLinks Software Eng.",
     "en": "ParsLinks Software Eng."
   },
   "hero.visual.soft.meta": {

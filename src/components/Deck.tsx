@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useCallback, useEffect, useRef, useState } from "react"
+import { useTranslations } from "next-intl"
 
 import { useLang, useNum } from "@/app/providers"
 import { CT, useEditHref } from "@/content/edit"
@@ -11,6 +12,7 @@ import type { DeckSlide } from "@/content/slides"
 export function Deck({ slides, deckSlug }: { slides: DeckSlide[]; deckSlug: string }) {
   const { lang, dir, toggle } = useLang()
   const num = useNum()
+  const t = useTranslations("ui")
   const total = slides.length
 
   const [i, setI] = useState(0)
@@ -152,15 +154,15 @@ export function Deck({ slides, deckSlug }: { slides: DeckSlide[]; deckSlug: stri
       </main>
 
       {/* ---------------- HUD ---------------- */}
-      <nav className="hud" aria-label={<CT k="hud.controlsLabel" /> as unknown as string}>
-        <Link className="hbtn" href={homeHref} data-edit-behavior="navigation" aria-label={lang === "fa" ? "خانه" : "Home"}>
+      <nav className="hud" aria-label={t("controlsLabel")}>
+        <Link className="hbtn" href={homeHref} data-edit-behavior="navigation" aria-label={t("home")}>
           ⌂
         </Link>
         <button
           className="hbtn"
           onClick={prev}
           disabled={i === 0}
-          aria-label={lang === "fa" ? "قبلی" : "Previous"}
+          aria-label={t("prev")}
         >
           {dir === "rtl" ? "→" : "←"}
         </button>
@@ -168,7 +170,7 @@ export function Deck({ slides, deckSlug }: { slides: DeckSlide[]; deckSlug: stri
           className="hbtn"
           onClick={next}
           disabled={i === total - 1}
-          aria-label={lang === "fa" ? "بعدی" : "Next"}
+          aria-label={t("next")}
         >
           {dir === "rtl" ? "←" : "→"}
         </button>
@@ -177,15 +179,7 @@ export function Deck({ slides, deckSlug }: { slides: DeckSlide[]; deckSlug: stri
             className="hbtn"
             href={otherDeckHref}
             data-edit-behavior="navigation"
-            aria-label={
-              deckSlug === "main"
-                ? lang === "fa"
-                  ? "بررسی فنی"
-                  : "Technical Deep Dive"
-                : lang === "fa"
-                  ? "داستان اصلی"
-                  : "Main Story"
-            }
+            aria-label={deckSlug === "main" ? t("technical") : t("mainStory")}
           >
             {deckSlug === "main" ? "⚙" : "★"}
           </Link>
@@ -193,18 +187,18 @@ export function Deck({ slides, deckSlug }: { slides: DeckSlide[]; deckSlug: stri
         <button
           className="hbtn"
           onClick={() => setOverview(true)}
-          aria-label={lang === "fa" ? "نمای کلی" : "Overview"}
+          aria-label={t("overview")}
         >
-          ▦ <span className="wide">{lang === "fa" ? "نمای کلی" : "Overview"}</span>
+          ▦ <span className="wide">{t("overview")}</span>
         </button>
         <button
           className="hbtn"
           onClick={() => setHelp(true)}
-          aria-label={lang === "fa" ? "راهنما" : "Help"}
+          aria-label={t("help")}
         >
           ?
         </button>
-        <button className="hbtn" onClick={toggle} aria-label="Toggle language">
+        <button className="hbtn" onClick={toggle} aria-label={t("langSwitch")}>
           {lang === "fa" ? "EN" : "فا"}
         </button>
       </nav>

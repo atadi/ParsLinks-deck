@@ -39,8 +39,8 @@ if (!doc.overrides || typeof doc.overrides !== "object") {
   console.error('Missing "overrides" object.')
   process.exit(1)
 }
-if (doc.schemaVersion !== 1) {
-  console.error(`schemaVersion mismatch (file: ${doc.schemaVersion}, app: 1).`)
+if (doc.schemaVersion !== 1 && doc.schemaVersion !== 2) {
+  console.error(`schemaVersion mismatch (file: ${doc.schemaVersion}, app: 1|2).`)
   process.exit(1)
 }
 
@@ -51,16 +51,27 @@ for (const [id, patch] of Object.entries(doc.overrides)) {
     problems.push(`unknown id "${id}" — skipped`)
     continue
   }
-  const fa = patch && typeof patch.fa === "string" ? patch.fa : undefined
-  const en = patch && typeof patch.en === "string" ? patch.en : undefined
-  if (fa === undefined && en === undefined) {
-    problems.push(`"${id}" has no fa/en strings — skipped`)
+  // Locale-generic: accept any known locale key, skip unknown ones.
+  const known = Object.keys(canonical[id]) // e.g. fa, en
+  const next = { ...canonical[id] }
+  let changed = false
+  for (const [loc, val] of Object.entries(patch || {})) {
+    if (!known.includes(loc)) {
+      problems.push(`unknown locale "${loc}" in "${id}" — skipped`)
+      continue
+    }
+    if (typeof val !== "string") {
+      problems.push(`"${id}.${loc}" is not a string — skipped`)
+      continue
+    }
+    if (val !== "") next[loc] = val
+    changed = true
+  }
+  if (!changed) {
+    problems.push(`"${id}" had no valid locale values — skipped`)
     continue
   }
-  canonical[id] = {
-    fa: fa ?? canonical[id].fa,
-    en: en ?? canonical[id].en,
-  }
+  canonical[id] = next
   applied++
 }
 

@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react"
+import { useTranslations } from "next-intl"
 
 import {
   SCHEMA_VERSION,
@@ -31,6 +32,7 @@ import { useEditMode } from "@/content/edit"
 
 export function EditToolbar() {
   const editing = useEditMode()
+  const t = useTranslations("ui")
   const count = useSyncExternalStore(
     (cb) => overrideStore.subscribe(cb),
     () => overrideStore.count(),
@@ -62,17 +64,21 @@ export function EditToolbar() {
           a.download = "presentation-content-overrides.json"
           a.click()
           URL.revokeObjectURL(url)
-          flash("exported presentation-content-overrides.json")
+          flash(t("exported"))
         } catch {
-          flash("Export failed", "err")
+          flash(t("invalidFile"), "err")
         }
       },
       import: () => root.querySelector<HTMLInputElement>(".eb-file")?.click(),
       reset: () => {
         if (overrideStore.count() === 0) return
-        if (window.confirm(`Remove all ${overrideStore.count()} local override(s)? Repository defaults will show again.`)) {
+        if (
+          window.confirm(
+            `${t("resetConfirm")} (${overrideStore.count()}) — ${t("resetConfirmBody")}`,
+          )
+        ) {
           overrideStore.resetAll()
-          flash("All overrides removed")
+          flash(t("resetAll"))
         }
       },
       exit: () => {
@@ -97,7 +103,7 @@ export function EditToolbar() {
           const parsed: unknown = JSON.parse(await f.text())
           const res = validateOverrides(parsed)
           if (!res.ok || Object.keys(res.overrides).length === 0) {
-            flash(`Invalid file: ${res.problems[0] ?? "no valid overrides"}`, "err")
+            flash(`${t("invalidFile")}: ${res.problems[0] ?? t("noValidOverrides")}`, "err")
             return
           }
           let applied = 0
@@ -105,9 +111,9 @@ export function EditToolbar() {
             overrideStore.set(id as ContentId, patch)
             applied++
           }
-          flash(`${applied} override(s) imported`)
+          flash(`${applied} ${t("overridesCount")}`)
         } catch {
-          flash("Import failed: not valid JSON", "err")
+          flash(t("notJson"), "err")
         }
         input.value = ""
       })()
@@ -121,37 +127,38 @@ export function EditToolbar() {
       root.querySelector<HTMLInputElement>(".eb-file")
         ?.removeEventListener("change", onFileChange)
     }
-  }, [editing])
+  }, [editing, t])
 
   // auto-dismiss status flashes
   useEffect(() => {
     if (!flashMsg) return
-    const t = window.setTimeout(() => setFlashMsg(null), 4000)
-    return () => window.clearTimeout(t)
+    const tm = window.setTimeout(() => setFlashMsg(null), 4000)
+    return () => window.clearTimeout(tm)
   }, [flashMsg])
 
   if (!editing) return null
 
   return (
     <div className="editbar-wrap" dir="ltr" ref={rootRef}>
-      <div className="editbar" role="toolbar" aria-label="Edit mode toolbar">
+      <div className="editbar" role="toolbar" aria-label={t("editMode")}>
         <button className="eb-trigger" data-eb-action="toggle" aria-expanded={expanded}>
-          ✎ EDIT{count > 0 && <b> · {count}</b>}
+          ✎ {t("editMode").toUpperCase()}
+          {count > 0 && <b> · {count}</b>}
         </button>
         {expanded && (
           <>
             <button className="eb-btn" data-eb-action="export">
-              Export
+              {t("export")}
             </button>
             <button className="eb-btn" data-eb-action="import">
-              Import
+              {t("import")}
             </button>
             <input type="file" accept="application/json,.json" hidden className="eb-file" />
             <button className="eb-btn" data-eb-action="reset" disabled={count === 0}>
-              Reset All
+              {t("reset")}
             </button>
             <button className="eb-btn exit" data-eb-action="exit">
-              Exit
+              {t("exit")}
             </button>
           </>
         )}

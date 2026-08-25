@@ -12,6 +12,7 @@ import {
   type LocalizedText,
 } from "@/content/store"
 import { useLang } from "@/app/providers"
+import { isLocale, locales, localeMeta, type Locale } from "@/i18n/config"
 
 /* ==================================================================
    Edit Mode — enabled ONLY via ?edit=1 in the URL.
@@ -48,27 +49,36 @@ function readEditFromUrl(): boolean {
  * (or preserves) edit=1 on INTERNAL paths only — external URLs pass
  * through unchanged so partner links never receive the parameter.
  * Existing destination query params are merged correctly:
- *   "/main/4?foo=bar"  ->  "/main/4?foo=bar&edit=1"
+ *   "/main/4?foo=bar"  ->  "/fa/main/4?foo=bar&edit=1"
  *
- * Use via the useEditHref() hook inside client components.
+ * Locale-aware: internal root-relative hrefs are prefixed with the active
+ * locale segment so links resolve under app/[locale]. Use via useEditHref().
  */
-export function withEditMode(href: string, active: boolean): string {
+export function withEditMode(href: string, active: boolean, lang: Locale = "fa"): string {
   // External links never carry the editing parameter.
   if (/^(https?:)?\/\//i.test(href) || href.startsWith("mailto:") || href.startsWith("tel:")) return href
-  if (!active) return href
+  let working = href
+  // Prefix locale for internal root-relative paths that lack one.
+  if (working.startsWith("/") && !working.startsWith(`/${lang}`)) {
+    const segs = working.split("/")
+    // segs[0] === "" ; segs[1] is the first path segment
+    if (!isLocale(segs[1] ?? "")) working = `/${lang}${working === "/" ? "" : working}`
+  }
+  if (!active) return working
   try {
-    const url = new URL(href, window.location.origin)
+    const url = new URL(working, window.location.origin)
     if (!url.searchParams.has("edit")) url.searchParams.set("edit", "1")
     return url.pathname + url.search + url.hash
   } catch {
-    return href
+    return working
   }
 }
 
-/** Hook form: resolves current Edit Mode state automatically. */
+/** Hook form: resolves current Edit Mode state + active locale automatically. */
 export function useEditHref(href: string): string {
   const active = useContext(EditCtx)
-  return withEditMode(href, active)
+  const { lang } = useLang()
+  return withEditMode(href, active, lang)
 }
 
 const EditCtx = createContext<boolean>(false)
@@ -198,7 +208,8 @@ function subscribeOverrides(cb: () => void) {
   return overrideStore.subscribe(cb)
 }
 
-/** Resolved value for one content id: override wins over canonical default. */
+/** Resolved value for one content id: override wins over canonical default.
+ *  Returns the full locale->string map (locale-generic, not hardcoded fa/en). */
 export function useResolved(id: ContentId): LocalizedText {
   const overrides = useSyncExternalStore(
     subscribeOverrides,
@@ -207,13 +218,14 @@ export function useResolved(id: ContentId): LocalizedText {
   )
   const def = DEFAULT_CONTENT[id]
   const ov = overrides[id]
-  return useMemo(
-    () => ({
-      fa: ov?.fa !== undefined && ov.fa !== "" ? ov.fa : def.fa,
-      en: ov?.en !== undefined && ov.en !== "" ? ov.en : def.en,
-    }),
-    [def, ov],
-  )
+  return useMemo(() => {
+    const out: LocalizedText = {}
+    for (const loc of locales) {
+      const v = ov?.[loc]
+      out[loc] = v !== undefined && v !== "" ? v : (def?.[loc] ?? "")
+    }
+    return out
+  }, [def, ov])
 }
 
 /* ---------------- inline rich text (**highlight**) ---------------- */
@@ -297,10 +309,11 @@ function FieldEditor({
   getAnchor: () => HTMLElement | null
   onClose: () => void
 }) {
-  const [fa, setFa] = useState(initial.fa)
-  const [en, setEn] = useState(initial.en)
+  const [values, setValues] = useState<LocalizedText>(() => ({ ...initial }))
   const ref = useRef<HTMLDivElement>(null)
   const [pos, setPos] = useState<{ left: number; top: number; width: number } | null>(null)
+
+  const setLoc = (loc: Locale, v: string) => setValues((s) => ({ ...s, [loc]: v }))
 
   /* Position on mount and re-position on resize/scroll/slide change. */
   useEffect(() => {
@@ -342,8 +355,12 @@ function FieldEditor({
     }
   }, [onClose, getAnchor])
 
-  const dirty = fa !== initial.fa || en !== initial.en
+  const dirty = locales.some((loc) => (values[loc] ?? "") !== (initial[loc] ?? ""))
+  const hasOverride = locales.some(
+    (loc) => (initial[loc] ?? "") !== (DEFAULT_CONTENT[id][loc] ?? ""),
+  )
 
+  const fieldOrder = locales
   const markup = (
     <div
       className="edit-pop fixed"
@@ -356,20 +373,28 @@ function FieldEditor({
       }
     >
       <div className="edit-pop-id">{id}</div>
-      <label>
-        <span>فارسی</span>
-        <textarea dir="rtl" value={fa} onChange={(e) => setFa(e.target.value)} rows={2} />
-      </label>
-      <label>
-        <span>English</span>
-        <textarea dir="ltr" value={en} onChange={(e) => setEn(e.target.value)} rows={2} />
-      </label>
+      {fieldOrder.map((loc) => (
+        <label key={loc}>
+          <span>{localeMeta[loc].label}</span>
+          <textarea
+            dir={localeMeta[loc].dir}
+            value={values[loc] ?? ""}
+            onChange={(e) => setLoc(loc, e.target.value)}
+            rows={2}
+          />
+        </label>
+      ))}
       <div className="edit-pop-actions">
         <button
           className={dirty ? "ep-btn primary" : "ep-btn"}
           disabled={!dirty}
           onClick={() => {
-            overrideStore.set(id, { fa, en })
+            const patch: LocalizedText = {}
+            for (const loc of locales) {
+              const v = values[loc]
+              if (v !== undefined && v !== "") patch[loc] = v
+            }
+            overrideStore.set(id, patch)
             onClose()
           }}
         >
@@ -378,12 +403,12 @@ function FieldEditor({
         <button className="ep-btn" onClick={onClose}>
           انصراف / Cancel
         </button>
-        {(initial.fa !== DEFAULT_CONTENT[id].fa || initial.en !== DEFAULT_CONTENT[id].en) && (
+        {hasOverride && (
           <button
             className="ep-btn"
             title="Reset to repository default"
             onClick={() => {
-              overrideStore.set(id, { fa: "", en: "" })
+              overrideStore.set(id, {})
               onClose()
             }}
           >
@@ -391,7 +416,7 @@ function FieldEditor({
           </button>
         )}
       </div>
-      <p className="edit-pop-hint">**متن** برای هایلایت · saved locally only</p>
+      <p className="edit-pop-hint">**text** to highlight · saved locally only</p>
       {/* keep lang referenced so the popover re-renders per language */}
       <span hidden>{lang}</span>
     </div>
@@ -424,7 +449,7 @@ export function CT({
   const value = useResolved(k)
   const [open, setOpen] = useState(false)
   const elRef = useRef<HTMLSpanElement>(null)
-  const text = lang === "fa" ? value.fa : value.en
+  const text = value[lang] ?? ""
   const overridden =
     value.fa !== DEFAULT_CONTENT[k].fa || value.en !== DEFAULT_CONTENT[k].en
 
