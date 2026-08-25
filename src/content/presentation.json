@@ -306,8 +306,8 @@
     "en": "New Cloud Products"
   },
   "together.eyebrow": {
-    "fa": "مسیر مشترک //",
-    "en": "// together"
+    "fa": "مسیر مشترک",
+    "en": "together"
   },
   "together.title": {
     "fa": "دو تخصص متفاوت، یک مسیر **مشترک**",
@@ -390,8 +390,8 @@
     "en": "Complementary capabilities, not overlapping businesses."
   },
   "shift.eyebrow": {
-    "fa": "تغییر مسیر //",
-    "en": "// the shift"
+    "fa": "تغییر مسیر",
+    "en": "the shift"
   },
   "shift.title": {
     "fa": "مشتری منابع نمی‌خواهد؛ **نتیجه** می‌خواهد",
@@ -458,8 +458,8 @@
     "en": "The existing customer base can provide a natural starting point for higher-value cloud services."
   },
   "oppmap.eyebrow": {
-    "fa": "جهت‌های ممکن //",
-    "en": "// possible directions"
+    "fa": "جهت‌های ممکن",
+    "en": "possible directions"
   },
   "oppmap.title": {
     "fa": "خانواده‌های محصول **مشترک ممکن**",
@@ -594,8 +594,8 @@
     "en": "Product directions, not a roadmap commitment. Each is a possible collaboration — not a claim of today's implementation."
   },
   "layers.eyebrow": {
-    "fa": "جایگاه //",
-    "en": "// how it fits"
+    "fa": "جایگاه",
+    "en": "how it fits"
   },
   "layers.title": {
     "fa": "فاصله زیرساخت تا محصول، یک **لایه نرم‌افزاری** است",
@@ -626,8 +626,8 @@
     "en": "Compute · Network · Storage · Capacity"
   },
   "scenarios.eyebrow": {
-    "fa": "سناریوهای مشخص //",
-    "en": "// concrete scenarios"
+    "fa": "سناریوهای مشخص",
+    "en": "concrete scenarios"
   },
   "scenarios.title": {
     "fa": "سناریوهای **محصول مشترک**",
@@ -658,8 +658,8 @@
     "en": "Existing Foundation"
   },
   "foundation.eyebrow": {
-    "fa": "از صفر نه //",
-    "en": "// not from zero"
+    "fa": "از صفر نه",
+    "en": "not from zero"
   },
   "foundation.title": {
     "fa": "ما از **صفر** شروع نمی‌کنیم",
@@ -734,8 +734,8 @@
     "en": "Control-plane automation"
   },
   "brings.eyebrow": {
-    "fa": "آنچه ParsLinks می‌آورد //",
-    "en": "// what ParsLinks brings"
+    "fa": "آنچه ParsLinks می‌آورد",
+    "en": "what ParsLinks brings"
   },
   "brings.title": {
     "fa": "آنچه **ParsLinks** می‌آورد",
@@ -786,8 +786,8 @@
     "en": "Partnership"
   },
   "models.eyebrow": {
-    "fa": "مدل‌های باز //",
-    "en": "// open models"
+    "fa": "مدل‌های باز",
+    "en": "open models"
   },
   "models.title": {
     "fa": "مدل‌های **مشارکت ممکن**",
@@ -854,8 +854,8 @@
     "en": "Pilot"
   },
   "pilot.eyebrow": {
-    "fa": "گام اول کم‌ریسک //",
-    "en": "// low-risk first step"
+    "fa": "گام اول کم‌ریسک",
+    "en": "low-risk first step"
   },
   "pilot.title": {
     "fa": "کوچک شروع کنیم، واقعی **بسنجیم**",
@@ -906,8 +906,8 @@
     "en": "Discussion"
   },
   "discussion.eyebrow": {
-    "fa": "از کجا شروع کنیم //",
-    "en": "// where to start"
+    "fa": "از کجا شروع کنیم",
+    "en": "where to start"
   },
   "discussion.title": {
     "fa": "از کجا **شروع کنیم؟**",
@@ -930,8 +930,8 @@
     "en": "What should be validated technically and commercially before expansion?"
   },
   "t_overview.eyebrow": {
-    "fa": "// deep dive · 01",
-    "en": "// deep dive · 01"
+    "fa": "deep dive · 01",
+    "en": "deep dive · 01"
   },
   "t_overview.title": {
     "fa": "نمای کلی **معماری**",
@@ -966,8 +966,8 @@
     "en": "Not to explain every subsystem — but to show the platform sits on Novin Host infrastructure, and a substantial part of the required software foundation already exists."
   },
   "t_planes.eyebrow": {
-    "fa": "deep dive · 02 //",
-    "en": "// deep dive · 02"
+    "fa": "deep dive · 02",
+    "en": "deep dive · 02"
   },
   "t_planes.title": {
     "fa": "صفحه‌های **Developer / Control / Execution / Infra**",
@@ -994,8 +994,8 @@
     "en": "Separating the control path from execution enables independent stability and upgrades."
   },
   "t_lifecycle.eyebrow": {
-    "fa": "deep dive · 03 //",
-    "en": "// deep dive · 03"
+    "fa": "deep dive · 03",
+    "en": "deep dive · 03"
   },
   "t_lifecycle.title": {
     "fa": "چرخه حیات **Deploy**",
@@ -1010,8 +1010,8 @@
     "en": " — every code change runs the full validation, build and routing path."
   },
   "t_runtime.eyebrow": {
-    "fa": "deep dive · 04 //",
-    "en": "// deep dive · 04"
+    "fa": "deep dive · 04",
+    "en": "deep dive · 04"
   },
   "t_runtime.title": {
     "fa": "مدل اجرای **سرویس**",
@@ -1054,8 +1054,8 @@
     "en": "Constrained syscalls and privileges."
   },
   "t_networking.eyebrow": {
-    "fa": "deep dive · 05 //",
-    "en": "// deep dive · 05"
+    "fa": "deep dive · 05",
+    "en": "deep dive · 05"
   },
   "t_networking.title": {
     "fa": "**Networking** و مسیریابی",
@@ -1094,8 +1094,8 @@
     "en": " is a direction, not current state."
   },
   "t_storage.eyebrow": {
-    "fa": "deep dive · 06 //",
-    "en": "// deep dive · 06"
+    "fa": "deep dive · 06",
+    "en": "deep dive · 06"
   },
   "t_storage.title": {
     "fa": "ذخیره‌سازی و **Volumes**",
@@ -1134,8 +1134,8 @@
     "en": "Scheduled, centralized recovery — a direction."
   },
   "t_observability.eyebrow": {
-    "fa": "deep dive · 07 //",
-    "en": "// deep dive · 07"
+    "fa": "deep dive · 07",
+    "en": "deep dive · 07"
   },
   "t_observability.title": {
     "fa": "Observability و **Logs**",
@@ -1166,8 +1166,8 @@
     "en": "Health checks drive routing."
   },
   "t_security.eyebrow": {
-    "fa": "deep dive · 08 //",
-    "en": "// deep dive · 08"
+    "fa": "deep dive · 08",
+    "en": "deep dive · 08"
   },
   "t_security.title": {
     "fa": "Security و **Identity**",
@@ -1222,8 +1222,8 @@
     "en": "Constrains in-environment traffic."
   },
   "t_metering.eyebrow": {
-    "fa": "deep dive · 09 //",
-    "en": "// deep dive · 09"
+    "fa": "deep dive · 09",
+    "en": "deep dive · 09"
   },
   "t_metering.title": {
     "fa": "**Metering** و Billing",
@@ -1250,8 +1250,8 @@
     "en": "The metering architecture is decoupled so it can plug into different billing systems — including NovinHost's."
   },
   "t_region.eyebrow": {
-    "fa": "deep dive · 10 //",
-    "en": "// deep dive · 10"
+    "fa": "deep dive · 10",
+    "en": "deep dive · 10"
   },
   "t_region.title": {
     "fa": "معماری **Region / Replica**",
@@ -1278,8 +1278,8 @@
     "en": " Multi-region and DR are architectural directions, not a claim of current readiness."
   },
   "t_integration.eyebrow": {
-    "fa": "deep dive · 11 //",
-    "en": "// deep dive · 11"
+    "fa": "deep dive · 11",
+    "en": "deep dive · 11"
   },
   "t_integration.title": {
     "fa": "یکپارچگی با زیرساخت **نوین هاست**",
