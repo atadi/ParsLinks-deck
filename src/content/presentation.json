@@ -3,7 +3,7 @@
   "schemaVersion": 2,
   "brand.lockup": {
     "fa": "ParsLinks × نوین هاست",
-    "en": "ParsLinks × NovinHost"
+    "en": "ParsLinks × Novin Host"
   },
   "hero.title": {
     "fa": "از قلب زیرساخت نوین هاست تا محصولی که مشتری لمس می‌کند",
@@ -11,7 +11,7 @@
   },
   "hero.subtitle": {
     "fa": "نوین هاست قدرت زیرساخت را دارد؛ ParsLinks آن را به یک لایه نرم‌افزاری تبدیل می‌کند که سرویس می‌سازد.",
-    "en": "Combining NovinHost infrastructure and ParsLinks software engineering to create the next generation of cloud services."
+    "en": "Combining Novin Host infrastructure and ParsLinks software engineering to create the next generation of cloud services."
   },
   "hero.cta.start": {
     "fa": "شروع ارائه",
@@ -22,23 +22,23 @@
     "en": "Technical Deep Dive (optional)"
   },
   "hero.visual.infra.name": {
-    "fa": "نوین هاست",
-    "en": "NovinHost Infrastructure"
+    "fa": "زیر ساخت نوین هاست",
+    "en": "Novin Host Infrastructure"
   },
   "hero.visual.infra.meta": {
     "fa": "شبکه · ذخیره‌سازی · ظرفیت · Compute",
     "en": "Compute · Network · Storage · Capacity"
   },
   "hero.visual.soft.name": {
-    "fa": "ParsLinks Software Eng.",
+    "fa": "ParsLinks گروه نرم‌افزاری",
     "en": "ParsLinks Software Eng."
   },
   "hero.visual.soft.meta": {
-    "fa": "Control Plane · اتوماسیون · DX",
-    "en": "Control Plane · Automation · DX"
+    "fa": "Control Plane · اتوماسیون · Developer Experience",
+    "en": "Control Plane · Automation · Developer Experience"
   },
   "hero.visual.result": {
-    "fa": "محصولات ابری تازه",
+    "fa": "محصولات ابری بروز",
     "en": "New Cloud Products"
   },
   "hero.visual.result.meta": {
@@ -46,8 +46,8 @@
     "en": "Consumable services for customers"
   },
   "hero.foot": {
-    "fa": "ارائه برای جلسه مشترک ParsLinks و نوین هاست. بخش فنی اختیاری‌ست و می‌توان آن را نادیده گرفت.",
-    "en": "Prepared for the joint ParsLinks × NovinHost session. The technical section is optional and may be skipped."
+    "fa": "ارائه برای جلسه مشترک ParsLinks و نوین هاست.",
+    "en": "Prepared for the joint ParsLinks × Novin Host session."
   },
   "hud.home": {
     "fa": "خانه",
@@ -158,7 +158,7 @@
     "en": "Planned"
   },
   "deck.main.title": {
-    "fa": "ParsLinks × NovinHost",
+    "fa": "ParsLinks × نوین هاست",
     "en": "ParsLinks × NovinHost"
   },
   "deck.main.tagline": {
@@ -242,7 +242,7 @@
     "en": "Lifecycle"
   },
   "slide.t_runtime.title": {
-    "fa": "مدلِ اجرا",
+    "fa": "مدل اجرا",
     "en": "Runtime Model"
   },
   "slide.t_networking.title": {
@@ -275,19 +275,19 @@
   },
   "vision.kicker": {
     "fa": "ParsLinks × نوین هاست",
-    "en": "ParsLinks × NovinHost"
+    "en": "ParsLinks × Novin Host"
   },
   "vision.lead": {
-    "fa": "از قلب Infrastructure **نوین هاست** تا Productی که مشتری لمس می‌کند",
-    "en": "From the core of **NovinHost** Infrastructure to the Product the customer touches"
+    "fa": "از قلب زیرساخت **نوین هاست** تا محصولی که مشتری لمس می‌کند",
+    "en": "From the core of **Novin Host** Infrastructure to the Product the customer touches"
   },
   "vision.sub": {
-    "fa": "نوین هاست قدرت Infrastructure را دارد؛ ParsLinks آن را به یک Software Layer تبدیل می‌کند که سرویس می‌سازد.",
-    "en": "NovinHost brings infrastructure power; ParsLinks turns it into a software layer that builds products."
+    "fa": "نوین هاست قدرت زیرساخت را دارد؛ ParsLinks آن را به یک لایه نرم‌افزاری تبدیل می‌کند که سرویس می‌سازد.",
+    "en": "Novin Host brings infrastructure power; ParsLinks turns it into a software layer that builds products."
   },
   "vision.eq.left": {
-    "fa": "Infrastructure نوین هاست",
-    "en": "NovinHost Infrastructure"
+    "fa": "زیرساخت نوین هاست",
+    "en": "Novin Host Infrastructure"
   },
   "vision.eq.leftMeta": {
     "fa": "محاسبات، شبکه، ذخیره‌سازی، ظرفیت",
@@ -302,11 +302,11 @@
     "en": "Control plane, automation, DX"
   },
   "vision.eq.result": {
-    "fa": "محصولات ابری تازه",
+    "fa": "محصولات ابری بروز",
     "en": "New Cloud Products"
   },
   "together.eyebrow": {
-    "fa": "// مسیر مشترک",
+    "fa": "مسیر مشترک //",
     "en": "// together"
   },
   "together.title": {
@@ -314,7 +314,7 @@
     "en": "Two sides, **complementary capabilities**"
   },
   "together.infra.brand": {
-    "fa": "NovinHost",
+    "fa": "نوین هاست",
     "en": "NovinHost"
   },
   "together.soft.brand": {
@@ -390,7 +390,7 @@
     "en": "Complementary capabilities, not overlapping businesses."
   },
   "shift.eyebrow": {
-    "fa": "// تغییر مسیر",
+    "fa": "تغییر مسیر //",
     "en": "// the shift"
   },
   "shift.title": {
@@ -438,7 +438,7 @@
     "en": "APIs & automation"
   },
   "shift.lede": {
-    "fa": "مشتریان لزوماً نمی‌خواهند خودشان زیرساخت را مدیریت کنند؛ بیشتر ترجیح می‌دهند زیرساخت به سرویس تبدیل شود. منابع خام همچنان پایه‌اند — محصول‌سازی ارزش بیشتری می‌آورد.",
+    "fa": "مشتریان لزوماً نمی‌خواهند خودشان زیرساخت را مدیریت کنند؛ بیشتر ترجیح می‌دهند زیرساخت به سرویس تبدیل شود. منابع خام همچنان اساسی هستند اما محصول‌سازی ارزش بیشتری می‌آورد.",
     "en": "Customers do not always want to manage infrastructure — often they want infrastructure converted into an outcome. Raw resources remain the foundation; productization adds value on top."
   },
   "opportunity.phaseN": {
@@ -458,7 +458,7 @@
     "en": "The existing customer base can provide a natural starting point for higher-value cloud services."
   },
   "oppmap.eyebrow": {
-    "fa": "// جهت‌های ممکن",
+    "fa": "جهت‌های ممکن //",
     "en": "// possible directions"
   },
   "oppmap.title": {
@@ -506,11 +506,11 @@
     "en": "Object storage"
   },
   "oppmap.managedData.backup": {
-    "fa": "Backup",
+    "fa": "Backups",
     "en": "Backups"
   },
   "oppmap.devCloud.name": {
-    "fa": "Developer Cloud",
+    "fa": "ابر توسعه‌دهندگان",
     "en": "Developer Cloud"
   },
   "oppmap.devCloud.api": {
@@ -594,11 +594,11 @@
     "en": "Product directions, not a roadmap commitment. Each is a possible collaboration — not a claim of today's implementation."
   },
   "layers.eyebrow": {
-    "fa": "// جایگاه آن",
+    "fa": "جایگاه //",
     "en": "// how it fits"
   },
   "layers.title": {
-    "fa": "فاصله Infrastructure تا Product، یک **Software Layer** است",
+    "fa": "فاصله زیرساخت تا محصول، یک **لایه نرم‌افزاری** است",
     "en": "How the **layers** stack"
   },
   "layers.customers.label": {
@@ -619,14 +619,14 @@
   },
   "layers.infra.label": {
     "fa": "Infrastructure نوین هاست",
-    "en": "NovinHost Infrastructure"
+    "en": "Novin Host Infrastructure"
   },
   "layers.infraMeta.label": {
     "fa": "محاسبات · شبکه · ذخیره‌سازی · ظرفیت",
     "en": "Compute · Network · Storage · Capacity"
   },
   "scenarios.eyebrow": {
-    "fa": "// سناریوهای مشخص",
+    "fa": "سناریوهای مشخص //",
     "en": "// concrete scenarios"
   },
   "scenarios.title": {
@@ -658,7 +658,7 @@
     "en": "Existing Foundation"
   },
   "foundation.eyebrow": {
-    "fa": "// از صفر نه",
+    "fa": "از صفر نه //",
     "en": "// not from zero"
   },
   "foundation.title": {
@@ -678,7 +678,7 @@
     "en": "ParsLinks Platform — existing tech"
   },
   "foundation.platform.desc": {
-    "fa": "پلتفرم ابری موجودی که بخشی از لایه نرم‌افزار را پیشاپیش پیاده‌سازی کرده است.",
+    "fa": "پلتفرم ابری موجود که بخشی از لایه نرم‌افزار را پیشاپیش پیاده‌سازی کرده است.",
     "en": "An existing cloud platform that already implements part of the software layer."
   },
   "foundation.callout": {
@@ -686,7 +686,7 @@
     "en": "ParsLinks has already invested significantly in the software layer that turns infrastructure into developer-facing products — including:"
   },
   "foundation.chips.projects": {
-    "fa": "Projects / Services",
+    "fa": "پروژه‌ها / سرویس‌ها",
     "en": "Projects / Services"
   },
   "foundation.chips.gitDeploy": {
@@ -714,7 +714,7 @@
     "en": "Observability"
   },
   "foundation.chips.secrets": {
-    "fa": "متغیرها / رازها",
+    "fa": "Variables / secrets",
     "en": "Variables / secrets"
   },
   "foundation.chips.templates": {
@@ -734,7 +734,7 @@
     "en": "Control-plane automation"
   },
   "brings.eyebrow": {
-    "fa": "// آنچه ParsLinks می‌آورد",
+    "fa": "آنچه ParsLinks می‌آورد //",
     "en": "// what ParsLinks brings"
   },
   "brings.title": {
@@ -786,7 +786,7 @@
     "en": "Partnership"
   },
   "models.eyebrow": {
-    "fa": "// مدل‌های باز",
+    "fa": "مدل‌های باز //",
     "en": "// open models"
   },
   "models.title": {
@@ -798,8 +798,8 @@
     "en": "Infra-backed product"
   },
   "models.infraBacked.desc": {
-    "fa": "محصولات روی Infrastructure نوین هاست اجرا می‌شوند و با نرم‌افزار ParsLinks مدیریت می‌شوند.",
-    "en": "Products run on NovinHost infra, operated through ParsLinks software."
+    "fa": "محصولات روی زیرساخت نوین هاست اجرا می‌شوند و با نرم‌افزار ParsLinks مدیریت می‌شوند.",
+    "en": "Products run on Novin Host infra, operated through ParsLinks software."
   },
   "models.jointDev.name": {
     "fa": "توسعه‌ی مشترک محصول",
@@ -854,7 +854,7 @@
     "en": "Pilot"
   },
   "pilot.eyebrow": {
-    "fa": "// گام اول کم‌ریسک",
+    "fa": "گام اول کم‌ریسک //",
     "en": "// low-risk first step"
   },
   "pilot.title": {
@@ -862,7 +862,7 @@
     "en": "A **small pilot** first"
   },
   "pilot.step1.label": {
-    "fa": "انتخاب یک استخر زیرساخت",
+    "fa": "انتخاب یک pool زیرساخت",
     "en": "Select an infra pool"
   },
   "pilot.step1.note": {
@@ -890,7 +890,7 @@
     "en": "Measure tech + commercial"
   },
   "pilot.step6.label": {
-    "fa": "تصمیم برای مقیاس",
+    "fa": "تصمیم برای مقیاس‌پذیری",
     "en": "Decide how to scale"
   },
   "pilot.callout": {
@@ -906,7 +906,7 @@
     "en": "Discussion"
   },
   "discussion.eyebrow": {
-    "fa": "// از کجا شروع",
+    "fa": "از کجا شروع کنیم //",
     "en": "// where to start"
   },
   "discussion.title": {
@@ -914,7 +914,7 @@
     "en": "Where should we **start?**"
   },
   "discussion.q1": {
-    "fa": "کدام استخر زیرساخت برای پایلوت اولیه مناسب‌تر است؟",
+    "fa": "کدام pool زیرساخت برای پایلوت اولیه مناسب‌تر است؟",
     "en": "Which infrastructure pool is most suitable for an initial pilot?"
   },
   "discussion.q2": {
@@ -954,19 +954,19 @@
     "en": "Orchestration"
   },
   "t_overview.plane4.code": {
-    "fa": "Infrastructure نوین هاست",
-    "en": "NovinHost Infrastructure"
+    "fa": "زیرساخت نوین هاست",
+    "en": "Novin Host Infrastructure"
   },
   "t_overview.plane4.sub": {
     "fa": "زیرساخت",
     "en": "Infrastructure"
   },
   "t_overview.lede": {
-    "fa": "هدف توضیح هر زیرسیستم نیست — نشان دادن این است که پلتفرم روی Infrastructure نوین هاست می‌نشیند و بخش قابل‌توجهی از پایه نرم‌افزاری موردنیاز از قبل توسعه داده شده است.",
-    "en": "Not to explain every subsystem — but to show the platform sits on NovinHost infrastructure, and a substantial part of the required software foundation already exists."
+    "fa": "هدف توضیح هر زیرسیستم نیست — نشان دادن این است که پلتفرم روی زیرساخت نوین هاست می‌نشیند و بخش قابل‌توجهی از پایه نرم‌افزاری موردنیاز از قبل توسعه داده شده است.",
+    "en": "Not to explain every subsystem — but to show the platform sits on Novin Host infrastructure, and a substantial part of the required software foundation already exists."
   },
   "t_planes.eyebrow": {
-    "fa": "// deep dive · 02",
+    "fa": "deep dive · 02 //",
     "en": "// deep dive · 02"
   },
   "t_planes.title": {
@@ -994,7 +994,7 @@
     "en": "Separating the control path from execution enables independent stability and upgrades."
   },
   "t_lifecycle.eyebrow": {
-    "fa": "// deep dive · 03",
+    "fa": "deep dive · 03 //",
     "en": "// deep dive · 03"
   },
   "t_lifecycle.title": {
@@ -1010,7 +1010,7 @@
     "en": " — every code change runs the full validation, build and routing path."
   },
   "t_runtime.eyebrow": {
-    "fa": "// deep dive · 04",
+    "fa": "deep dive · 04 //",
     "en": "// deep dive · 04"
   },
   "t_runtime.title": {
@@ -1018,43 +1018,43 @@
     "en": "Service **Runtime** Model"
   },
   "t_runtime.tenant.sub": {
-    "fa": "مستأجر",
+    "fa": "Tenant",
     "en": "Tenant"
   },
   "t_runtime.namespace.sub": {
-    "fa": "محدوده جدا",
+    "fa": "Isolated scope",
     "en": "Isolated scope"
   },
   "t_runtime.container.sub": {
-    "fa": "مرز اجرا",
+    "fa": "Execution boundary",
     "en": "Execution boundary"
   },
   "t_runtime.resources.title": {
-    "fa": "مرز منابع",
+    "fa": "Resource boundary",
     "en": "Resource boundary"
   },
   "t_runtime.resources.desc": {
-    "fa": "سهمیه CPU/RAM برای هر بار کاری.",
+    "fa": "سهمیه CPU/RAM برای هر load کاری.",
     "en": "CPU/RAM quotas per workload."
   },
   "t_runtime.network.title": {
-    "fa": "مرز شبکه",
+    "fa": "Network boundary",
     "en": "Network boundary"
   },
   "t_runtime.network.desc": {
-    "fa": "هر مستأجر در فضای شبکه مجزا.",
+    "fa": "هر tenant در فضای شبکه مجزا.",
     "en": "Each tenant in its own network space."
   },
   "t_runtime.os.title": {
-    "fa": "مرز سیستم‌عامل",
+    "fa": "OS boundary",
     "en": "OS boundary"
   },
   "t_runtime.os.desc": {
-    "fa": "محدودسازی syscall و سطح دسترسی.",
+    "fa": "محدودسازی syscalls و سطح دسترسی.",
     "en": "Constrained syscalls and privileges."
   },
   "t_networking.eyebrow": {
-    "fa": "// deep dive · 05",
+    "fa": "deep dive · 05 //",
     "en": "// deep dive · 05"
   },
   "t_networking.title": {
@@ -1062,7 +1062,7 @@
     "en": "**Networking** & Routing"
   },
   "t_networking.cur.ingress": {
-    "fa": "ورودی HTTP(S) برای هر سرویس.",
+    "fa": "HTTP(S) ingress برای هر سرویس.",
     "en": "HTTP(S) ingress per service."
   },
   "t_networking.cur.domains": {
@@ -1074,15 +1074,15 @@
     "en": "Routing to healthy instances."
   },
   "t_networking.tgt.anycast": {
-    "fa": "توزیع لبه‌ای ترافیک (هدف).",
+    "fa": "Edge traffic distribution (target).",
     "en": "Edge traffic distribution (target)."
   },
   "t_networking.tgt.edgeRouters": {
-    "fa": "روترهای لبه برای کاهش تأخیر (هدف).",
+    "fa": "Edge routers to cut latency (target).",
     "en": "Edge routers to cut latency (target)."
   },
   "t_networking.tgt.multiSite": {
-    "fa": "مسیریابی چند-سایت (هدف).",
+    "fa": "Multi-site routing (target).",
     "en": "Multi-site routing (target)."
   },
   "t_networking.callout.current": {
@@ -1094,7 +1094,7 @@
     "en": " is a direction, not current state."
   },
   "t_storage.eyebrow": {
-    "fa": "// deep dive · 06",
+    "fa": "deep dive · 06 //",
     "en": "// deep dive · 06"
   },
   "t_storage.title": {
@@ -1102,7 +1102,7 @@
     "en": "Storage & **Volumes**"
   },
   "t_storage.volumes.title": {
-    "fa": "حجم‌های ماندگار",
+    "fa": "Persistent volumes",
     "en": "Persistent volumes"
   },
   "t_storage.volumes.desc": {
@@ -1123,10 +1123,10 @@
   },
   "t_storage.infraLayer.desc": {
     "fa": "روی Block/Object Storage نوین هاست قرار دارد.",
-    "en": "Sits on NovinHost block/object storage."
+    "en": "Sits on Novin Host block/object storage."
   },
   "t_storage.backup.title": {
-    "fa": "Backup (هدف)",
+    "fa": "Backups (target)",
     "en": "Backups (target)"
   },
   "t_storage.backup.desc": {
@@ -1134,7 +1134,7 @@
     "en": "Scheduled, centralized recovery — a direction."
   },
   "t_observability.eyebrow": {
-    "fa": "// deep dive · 07",
+    "fa": "deep dive · 07 //",
     "en": "// deep dive · 07"
   },
   "t_observability.title": {
@@ -1166,7 +1166,7 @@
     "en": "Health checks drive routing."
   },
   "t_security.eyebrow": {
-    "fa": "// deep dive · 08",
+    "fa": "deep dive · 08 //",
     "en": "// deep dive · 08"
   },
   "t_security.title": {
@@ -1194,7 +1194,7 @@
     "en": "Secrets"
   },
   "t_security.secrets.desc": {
-    "fa": "تزریق ایمن متغیرهای محرمانه.",
+    "fa": "Safe injection of secrets.",
     "en": "Safe injection of secrets."
   },
   "t_security.isolation.title": {
@@ -1202,7 +1202,7 @@
     "en": "Isolation"
   },
   "t_security.isolation.desc": {
-    "fa": "مرزهای اجرا بین مستأجرها.",
+    "fa": "مرزهای اجرا بین tenants.",
     "en": "Runtime boundaries between tenants."
   },
   "t_security.tls.title": {
@@ -1222,7 +1222,7 @@
     "en": "Constrains in-environment traffic."
   },
   "t_metering.eyebrow": {
-    "fa": "// deep dive · 09",
+    "fa": "deep dive · 09 //",
     "en": "// deep dive · 09"
   },
   "t_metering.title": {
@@ -1230,11 +1230,11 @@
     "en": "**Metering** & Billing"
   },
   "t_metering.usage.sub": {
-    "fa": "رویدادهای مصرف",
+    "fa": "Usage",
     "en": "Usage"
   },
   "t_metering.aggregate.sub": {
-    "fa": "تجمیع",
+    "fa": "Aggregate",
     "en": "Aggregate"
   },
   "t_metering.units.sub": {
@@ -1250,7 +1250,7 @@
     "en": "The metering architecture is decoupled so it can plug into different billing systems — including NovinHost's."
   },
   "t_region.eyebrow": {
-    "fa": "// deep dive · 10",
+    "fa": "deep dive · 10 //",
     "en": "// deep dive · 10"
   },
   "t_region.title": {
@@ -1258,19 +1258,19 @@
     "en": "**Region / Replica** Architecture"
   },
   "t_region.cur.singlePool": {
-    "fa": "استقرار روی یک استخر زیرساخت.",
+    "fa": "استقرار روی یک pool زیرساخت.",
     "en": "Runs on a single infra pool."
   },
   "t_region.cur.replica": {
-    "fa": "مفهوم نمونه‌های تکرار برای سرویس.",
+    "fa": "Replica concept per service.",
     "en": "Replica concept per service."
   },
   "t_region.tgt.multiRegion": {
-    "fa": "توزیع روی چند منطقه (هدف).",
+    "fa": "Distribute across regions (target).",
     "en": "Distribute across regions (target)."
   },
   "t_region.tgt.failover": {
-    "fa": "انتقال بار در صورت خطا (هدف).",
+    "fa": "Workload failover (target).",
     "en": "Workload failover (target)."
   },
   "t_region.callout": {
@@ -1278,12 +1278,12 @@
     "en": " Multi-region and DR are architectural directions, not a claim of current readiness."
   },
   "t_integration.eyebrow": {
-    "fa": "// deep dive · 11",
+    "fa": "deep dive · 11 //",
     "en": "// deep dive · 11"
   },
   "t_integration.title": {
-    "fa": "یکپارچگی با Infrastructure **نوین هاست**",
-    "en": "Integration with **NovinHost** Infrastructure"
+    "fa": "یکپارچگی با زیرساخت **نوین هاست**",
+    "en": "Integration with **Novin Host** Infrastructure"
   },
   "t_integration.compute.title": {
     "fa": "Compute",
@@ -1326,12 +1326,12 @@
     "en": "Capacity allocated to selected products."
   },
   "t_integration.ops.title": {
-    "fa": "Ops",
+    "fa": "Operations",
     "en": "Operations"
   },
   "t_integration.ops.desc": {
     "fa": "عملیات زیرساخت با نوین هاست.",
-    "en": "Infra operations with NovinHost."
+    "en": "Infra operations with Novin Host."
   },
   "edit.toolbar.title": {
     "fa": "حالت ویرایش",
@@ -1366,7 +1366,7 @@
     "en": "Persian"
   },
   "edit.english": {
-    "fa": "English",
+    "fa": "انگلیسی",
     "en": "English"
   },
   "edit.modifiedBadge": {
