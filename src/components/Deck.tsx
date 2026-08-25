@@ -149,6 +149,14 @@ export function Deck({ slides, deckSlug }: { slides: DeckSlide[]; deckSlug: stri
         </div>
         <footer className="sfoot">
           <span className="brand">ParsLinks · {num(String(i + 1).padStart(2, "0"))}</span>
+          <a
+            className="sfoot-link"
+            href="https://www.parslinks.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            www.parslinks.com
+          </a>
           <span>{slide.section}</span>
         </footer>
       </main>
